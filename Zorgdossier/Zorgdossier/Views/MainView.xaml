@@ -1,0 +1,46 @@
+﻿<Window x:Class="Zorgdossier.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zorgdossier.Views"
+        xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        mc:Ignorable="d"
+        Title="MainView" Height="450" Width="800">
+    <d:Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </d:Window.DataContext>
+    <Grid>
+        <!--#region rij 0: menu, rij 1: applicatie, rij 2: (fout)melding aan gebruiker -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+
+        <!--#region Rij 0: Menu -->
+        <Menu Grid.Row="0" Style="{StaticResource MaterialDesignMenu}">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Contact" Command="{Binding ShowContactInfoCommand}"
+                      Style="{StaticResource MaterialDesignMenuItem}"/>
+        </Menu>
+        <!--#endregion-->
+
+        <!--#region Rij 1: T.v.b view actieve applicatie functie -->
+        <ContentControl Grid.Row="1" Content="{Binding ActiveViewModel}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+        <!--#endregion-->
+
+        <!--#region Rij 2: Eventuele meldingen aan de gebruiker -->
+        <TextBlock Grid.Row="2" Text="{Binding UserMessage.Text}" HorizontalAlignment="Center"/>
+        <!--#endregion-->
+    </Grid>
+</Window>
