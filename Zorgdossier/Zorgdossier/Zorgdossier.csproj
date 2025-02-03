@@ -9,12 +9,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\summa-logo-long.png" />
+    <None Remove="Resources\summa-logo-short.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\summa-logo-long.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\summa-logo-short.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

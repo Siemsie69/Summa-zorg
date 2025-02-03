@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Zorgdossier.Helpers
 {
-    internal abstract class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         #region implementatie INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;

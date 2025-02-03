@@ -1,24 +1,24 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using Zorgdossier.Helpers;
+using Zorgdossier.Models;
 using Zorgdossier.ViewModels;
 using Zorgdossier.Views;
 
 namespace Zorgdossier
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-        //Deze methode vervangt de MainWindow door de MainView en past de datacontext van de MainView aan zodat het gebruikt maakt van de MainViewModel.
-        //Vervolgens wordt de MainView laten zien.
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppNavigation _appNavigation = new();
+            UserMessage _userMessage = new();
+
             base.OnStartup(e);
             MainWindow = new MainView()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_appNavigation, _userMessage)
             };
             MainWindow.Show();
         }

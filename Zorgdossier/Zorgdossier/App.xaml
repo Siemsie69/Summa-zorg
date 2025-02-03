@@ -8,11 +8,45 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <materialDesign:BundledTheme BaseTheme="Light"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <DataTemplate DataType="{x:Type viewModels:ContactInfoViewModel}">
-                <views:ContactInfoView/>
+
+            <!-- Aangepaste Kleuren -->
+            <SolidColorBrush x:Key="PrimaryBrush" Color="#240d68" />
+            <SolidColorBrush x:Key="SecondaryBrush" Color="White" />
+
+            <!-- Material Design Aangepaste Kleurvervanging -->
+            <SolidColorBrush x:Key="MaterialDesignPrimaryColor" Color="#240d68" />
+            <SolidColorBrush x:Key="MaterialDesignSecondaryColor" Color="White" />
+
+            <!-- DataTemplates for ViewModels -->
+            <!-- <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
+                <views:RegistrationView />
+            </DataTemplate> -->
+
+            <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
+                <views:MainView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
+                <views:HomeView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:DossiersViewModel}">
+                <views:DossiersView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:ExplanationViewModel}">
+                <views:ExplanationView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:CreditsViewModel}">
+                <views:CreditsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+                <views:SettingsView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

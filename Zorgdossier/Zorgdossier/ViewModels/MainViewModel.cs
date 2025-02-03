@@ -1,71 +1,121 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
+using Zorgdossier.Views;
 
 namespace Zorgdossier.ViewModels
 {
     internal class MainViewModel : ObservableObject
     {
-        #region fields
+        private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
-        private object _activeViewModel = null!;
-        #endregion
+        private bool _isMenuExpanded = true;
 
-        #region constructers
-        public MainViewModel()
+        public MainViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
-            _userMessage = new()
-            {
-                Text = "Standaard MVVM template"
-            };
-            _activeViewModel = new ContactInfoViewModel();
-            ShowContactInfoCommand = new RelayCommand(ExecuteShowContactInfo);
-        }
-        #endregion
+            _appNavigation = appNavigation;
+            _userMessage = userMessage;
+            _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
 
-        #region properties
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
+            ShowExplanationCommand = new RelayCommand(ExecuteShowExplanation);
+            ShowCreditsCommand = new RelayCommand(ExecuteShowCredits);
+            ToggleMenuCommand = new RelayCommand(ExecuteToggleMenu);
+            ShowSettingsCommand = new RelayCommand(ExecuteShowSettings); 
+        }
+
+        public MainViewModel() { }
+
+        public IAppNavigation AppNavigation
+        {
+            get => _appNavigation;
+        }
+
         public UserMessage UserMessage
         {
-            get
-            {
-                return _userMessage;
-            }
+            get => _userMessage;
             set
             {
-                _userMessage = value; OnPropertyChanged();
+                _userMessage = value;
+                OnPropertyChanged();
             }
         }
-        public object ActiveViewModel
+
+        public bool IsMenuExpanded
         {
-            get
-            {
-                return _activeViewModel;
-            }
+            get => _isMenuExpanded;
             set
             {
-                _activeViewModel = value; OnPropertyChanged();
+                _isMenuExpanded = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsMenuCollapsed));
             }
         }
-        #endregion
 
-        #region commands
-        public ICommand ShowContactInfoCommand
-        {
-            get;
-        }
-        #endregion
+        public bool IsMenuCollapsed => !IsMenuExpanded;
 
-        #region methods
-        //Deze methode zet de ContactInfoViewModel in ActiveViewModel, zodat de ContactInfoView in de ContentControl in de MainView weergegeven wordt.
-        private void ExecuteShowContactInfo(object? obj)
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowDossiersCommand { get; }
+        public ICommand ShowExplanationCommand { get; }
+        public ICommand ShowCreditsCommand { get; }
+        public ICommand ToggleMenuCommand { get; }
+        public ICommand ShowSettingsCommand { get; }
+
+        private void ExecuteShowHome(object? obj)
         {
-            ActiveViewModel = new ContactInfoViewModel();
+            _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
         }
-        #endregion
+
+        private void ExecuteShowDossiers(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowExplanation(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowCredits(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new CreditsViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteToggleMenu(object? obj)
+        {
+            var targetWidth = IsMenuExpanded ? new GridLength(80) : new GridLength(200);
+            var menuColumn = (Application.Current.MainWindow as MainView)?.FindName("MenuColumn") as ColumnDefinition;
+
+            if (menuColumn != null)
+            {
+                var gridLengthAnimation = new GridLengthAnimation
+                {
+                    From = menuColumn.Width,
+                    To = targetWidth,
+                    Duration = TimeSpan.FromMilliseconds(300),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut } // Add easing function
+                };
+
+                var storyboard = new Storyboard();
+                storyboard.Children.Add(gridLengthAnimation);
+
+                Storyboard.SetTarget(gridLengthAnimation, menuColumn);
+                Storyboard.SetTargetProperty(gridLengthAnimation, new PropertyPath(ColumnDefinition.WidthProperty));
+
+                storyboard.Begin(); // Begin the animation smoothly
+            }
+
+            IsMenuExpanded = !IsMenuExpanded;
+        }
+
+
+        private void ExecuteShowSettings(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage);
+        }
     }
 }

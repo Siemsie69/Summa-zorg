@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Zorgdossier.Views
 {
     /// <summary>
-    /// Interaction logic for ContactInfoView.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class ContactInfoView : UserControl
+    public partial class SettingsView : UserControl
     {
-        public ContactInfoView()
+        public SettingsView()
         {
             InitializeComponent();
         }

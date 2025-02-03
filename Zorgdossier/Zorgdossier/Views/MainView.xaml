@@ -6,41 +6,133 @@
         xmlns:local="clr-namespace:Zorgdossier.Views"
         xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Style="{StaticResource MaterialDesignWindow}"
-        mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Style="{StaticResource MaterialDesignWindow}" mc:Ignorable="d"
+        Title="MainView" Height="540" Width="800">
     <d:Window.DataContext>
         <viewmodels:MainViewModel/>
     </d:Window.DataContext>
+
     <Grid>
-        <!--#region rij 0: menu, rij 1: applicatie, rij 2: (fout)melding aan gebruiker -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MenuColumn" Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <!--#region Rij 0: Menu -->
-        <Menu Grid.Row="0" Style="{StaticResource MaterialDesignMenu}">
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <MenuItem Header="Contact" Command="{Binding ShowContactInfoCommand}"
-                      Style="{StaticResource MaterialDesignMenuItem}"/>
-        </Menu>
-        <!--#endregion-->
+        <Border Background="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+            <StackPanel VerticalAlignment="Stretch">
 
-        <!--#region Rij 1: T.v.b view actieve applicatie functie -->
-        <ContentControl Grid.Row="1" Content="{Binding ActiveViewModel}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
-        <!--#endregion-->
+                <!-- Logo Button (visible in both expanded and collapsed states) -->
+                <Button Command="{Binding ShowHomeCommand}" Background="Transparent" VerticalAlignment="Top" Height="100">
+                    <StackPanel>
+                        <!-- Long logo shown when the menu is expanded -->
+                        <Image Source="pack://application:,,,/Resources/summa-logo-long.png" 
+                               Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <!-- Short logo shown when the menu is collapsed -->
+                        <Image Source="pack://application:,,,/Resources/summa-logo-short.png" 
+                               Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </StackPanel>
+                </Button>
 
-        <!--#region Rij 2: Eventuele meldingen aan de gebruiker -->
-        <TextBlock Grid.Row="2" Text="{Binding UserMessage.Text}" HorizontalAlignment="Center"/>
-        <!--#endregion-->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!-- Home Button -->
+                    <Button Command="{Binding ShowHomeCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- Icon visible when menu is collapsed -->
+                            <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
+                                Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <!-- Text visible when menu is expanded -->
+                            <TextBlock Text="Home" FontSize="16"
+                                Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Dossiers Button -->
+                    <Button Command="{Binding ShowDossiersCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="PaperOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
+                                Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock Text="Dossiers" FontSize="16"
+                                Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Explanation Button -->
+                    <Button Command="{Binding ShowExplanationCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="InformationCircleOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
+                                Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock Text="Explanation" FontSize="16"
+                                Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Height="40"/>
+
+                    <!-- Credits Button -->
+                    <Button Command="{Binding ShowCreditsCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10,0,20">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountCircleOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
+                                Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock Text="Credits" FontSize="16"
+                                Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel>
+                        <!-- Menu Controls (Hamburger and Settings) -->
+
+                        <!-- StackPanel for when the menu is expanded -->
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <!-- Hamburger Menu Button (only visible when menu is expanded) -->
+                            <Button Command="{Binding ToggleMenuCommand}" VerticalAlignment="Center" Height="40"
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Menu" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Settings Button (visible only when menu is expanded) -->
+                            <Button Command="{Binding ShowSettingsCommand}" VerticalAlignment="Center" Height="40"
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}" Margin="10,0,0,0">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Cog" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- StackPanel for when the menu is collapsed -->
+                        <StackPanel Orientation="Vertical" Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <!-- Hamburger Menu Button (only visible when collapsed) -->
+                            <Button Command="{Binding ToggleMenuCommand}" VerticalAlignment="Center" Height="40"
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}" HorizontalAlignment="Stretch">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Menu" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Settings Button (only visible when collapsed) -->
+                            <Button Command="{Binding ShowSettingsCommand}" VerticalAlignment="Center" Height="40"
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}" Margin="0,10,0,0" HorizontalAlignment="Stretch">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Cog" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area (this is where your views will be displayed) -->
+        <Grid Grid.Column="1" Background="White">
+            <!-- Content control binds to the active view model -->
+            <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+            <!-- User Message (this TextBlock shows a message when there is text to display) -->
+            <TextBlock Text="{Binding UserMessage.Text}" 
+                       Visibility="{Binding UserMessage.Text, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
+                       FontSize="16" TextAlignment="Center" HorizontalAlignment="Stretch"
+                       Padding="0,10,0,10" Foreground="Red"/>
+        </Grid>
     </Grid>
 </Window>
