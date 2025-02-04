@@ -1,18 +1,76 @@
 ﻿<UserControl x:Class="Zorgdossier.Views.CreditsView"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:local="clr-namespace:Zorgdossier.Views"
-                 xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
-                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-                 mc:Ignorable="d"
-                 Height="450" Width="800">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Zorgdossier.Views"
+             xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Name="Credits" Height="Auto" MaxWidth="900" Background="White">
     <UserControl.DataContext>
         <viewmodels:CreditsViewModel/>
     </UserControl.DataContext>
-    
-    <Grid>
-        <TextBlock Text="Credits" FontSize="24" FontWeight="Bold" Margin="10"/>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Credits Title -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="CreditsText" Text="Credits" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=CreditsText}"/>
+        </StackPanel>
+
+        <!-- Credits Content -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <TextBlock Text="Deze applicatie biedt zorgstudenten een veilige omgeving om te oefenen met fictieve patiëntendossiers. Door realistische casussen te analyseren, gerichte vragen te stellen en diagnoses te formuleren, ontwikkelen zij essentiële vaardigheden zonder de druk van een echte medische setting." 
+                FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Dankzij de inzet van enthousiaste ontwikkelaars en docenten is deze applicatie een waardevol leermiddel geworden. Het Zorgdossier combineert technologie en educatie om studenten optimaal voor te bereiden op de praktijk." 
+                FontSize="14" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <!-- Credits Content -->
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,20,10,0">
+            <TextBlock Text="Applicatie is ontwikkeld door:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock Text="• Siem van Bree (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+            <TextBlock Text="• Niek van Bree (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+            <TextBlock Text="• Damian van de Lee (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,0">
+            <TextBlock Text="Technologieën:" FontSize="16" FontWeight="Bold" Margin="0,20,0,10"/>
+            <TextBlock Text="• C#" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+            <TextBlock Text="• XAML" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+            <TextBlock Text="• SQLite" FontSize="14" TextWrapping="Wrap" Margin="0,5"/>
+        </StackPanel>
+
+        <!-- Buttons Section -->
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
+            <Button Content="Summa ICT" FontSize="14" Width="200" Height="45"
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0"
+                    Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-ict"/>
+            <Button Content="Summa Zorg &amp; Welzijn" FontSize="14" Width="200" Height="45"
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0"
+                    Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-zorg-welzijn"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <TextBlock Text="© 2025 Zorgdossier. Alle rechten voorbehouden." FontSize="14" FontStyle="Italic" Margin="0,20,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
     </Grid>
 </UserControl>

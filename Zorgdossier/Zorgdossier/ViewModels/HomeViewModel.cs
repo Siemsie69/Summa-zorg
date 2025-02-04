@@ -13,6 +13,9 @@ namespace Zorgdossier.ViewModels
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+
+            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
+            ShowExplanationCommand = new RelayCommand(ExecuteShowExplanation);
         }
 
         public HomeViewModel() { }
@@ -30,6 +33,19 @@ namespace Zorgdossier.ViewModels
                 _userMessage = value;
                 OnPropertyChanged();
             }
+        }
+
+        public ICommand ShowDossiersCommand { get; }
+        public ICommand ShowExplanationCommand { get; }
+
+        private void ExecuteShowDossiers(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowExplanation(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage);
         }
     }
 }

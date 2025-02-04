@@ -97,7 +97,7 @@ namespace Zorgdossier.ViewModels
                     From = menuColumn.Width,
                     To = targetWidth,
                     Duration = TimeSpan.FromMilliseconds(300),
-                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut } // Add easing function
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
                 var storyboard = new Storyboard();
@@ -106,7 +106,7 @@ namespace Zorgdossier.ViewModels
                 Storyboard.SetTarget(gridLengthAnimation, menuColumn);
                 Storyboard.SetTargetProperty(gridLengthAnimation, new PropertyPath(ColumnDefinition.WidthProperty));
 
-                storyboard.Begin(); // Begin the animation smoothly
+                storyboard.Begin();
             }
 
             IsMenuExpanded = !IsMenuExpanded;

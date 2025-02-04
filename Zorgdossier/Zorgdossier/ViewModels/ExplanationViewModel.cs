@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 
@@ -17,6 +18,8 @@ namespace Zorgdossier.ViewModels
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+
+            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
         }
 
         public ExplanationViewModel() { }
@@ -34,6 +37,13 @@ namespace Zorgdossier.ViewModels
                 _userMessage = value;
                 OnPropertyChanged();
             }
+        }
+
+        public ICommand ShowDossiersCommand { get; }
+
+        private void ExecuteShowDossiers(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
         }
     }
 }

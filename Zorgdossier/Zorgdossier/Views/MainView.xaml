@@ -61,7 +61,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="InformationCircleOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
                                 Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock Text="Explanation" FontSize="16"
+                            <TextBlock Text="Uitleg" FontSize="16"
                                 Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
                     </Button>

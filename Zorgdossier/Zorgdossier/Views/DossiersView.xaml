@@ -1,18 +1,95 @@
 ﻿<UserControl x:Class="Zorgdossier.Views.DossiersView"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:local="clr-namespace:Zorgdossier.Views"
-                 xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
-                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-                 mc:Ignorable="d"
-                 Height="450" Width="800">
-    <UserControl.DataContext>
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Zorgdossier.Views"
+             xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Name="Dossiers" Height="Auto" MaxWidth="900" Background="White">
+    <d:UserControl.DataContext>
         <viewmodels:DossiersViewModel/>
-    </UserControl.DataContext>
+    </d:UserControl.DataContext>
 
-    <Grid>
-        <TextBlock Text="Dossiers" FontSize="24" FontWeight="Bold" Margin="10"/>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="240"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Title Section -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="TitleText" Text="Dossiers" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <!-- Underline (Rectangle) -->
+            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
+        </StackPanel>
+
+        <!-- Subtekst -->
+        <TextBlock Text="Hier zie je een overzicht van al je dossiers. Dossiers kunnen bewerkt en geëxporteerd worden. Gebruik de knoppen onder het overzicht om een nieuw dossier aan te maken of een voorbeelddossier te openen."
+                   FontSize="14" TextWrapping="Wrap" Margin="0,10,40,10" HorizontalAlignment="Left"
+                   Foreground="Black" MaxWidth="620" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <!-- Spacer -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2"/>
+
+        <!-- DataGrid with Dossier List -->
+        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Dossiers}" AutoGenerateColumns="False" IsReadOnly="True" 
+                  CanUserAddRows="False" HorizontalAlignment="Stretch" FontSize="14" Background="LightGray">
+            <DataGrid.Columns>
+                <!-- Title Column -->
+                <DataGridTextColumn Header="Titel" Binding="{Binding Title}" Width="*" />
+
+                <!-- Edit Button Column -->
+                <DataGridTemplateColumn Header="Bewerken" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Bewerken" HorizontalAlignment="Left" Command="{Binding DataContext.ShowIntroductionViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" 
+                                    Width="105" Height="30" Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Export Button Column -->
+                <DataGridTemplateColumn Header="Exporteren" MinWidth="110">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Exporteren" HorizontalAlignment="Left" Command="{Binding DataContext.ExportDossierCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="120" Height="30" 
+                                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Spacer (Empty space after DataGrid) -->
+        <Grid Grid.Row="4" Grid.ColumnSpan="2"/>
+
+        <!-- Spacer row added between DataGrid and Buttons -->
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Height="20"/>
+
+        <!-- Buttons Section -->
+        <Button Grid.Row="6" Content="Dossier aanmaken" FontSize="14" Command="{Binding ShowIntroductionViewCommand}" Width="200" Height="45" 
+                Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" HorizontalAlignment="Left"/>
+        <Button Grid.Row="6" Grid.Column="1" Content="Voorbeelddossier openen" FontSize="14" Command="{Binding ShowSampleDossierViewCommand}" Width="200" Height="45" 
+                Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+
+        <!-- Spacer between Buttons and User Message -->
+        <Grid Grid.Row="7" Grid.ColumnSpan="2"/>
+
+        <!-- User Message Section -->
+        <TextBlock Grid.Row="8" Grid.ColumnSpan="2"
+                   Text="Hier worden meldingen of foutmeldingen weergegeven."
+                   FontSize="14" TextWrapping="Wrap" Foreground="DarkGray" HorizontalAlignment="Left" Margin="0,10,10,10"/>
     </Grid>
 </UserControl>

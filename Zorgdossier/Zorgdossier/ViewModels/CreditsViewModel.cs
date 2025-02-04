@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Windows.Input;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 
@@ -17,22 +15,32 @@ namespace Zorgdossier.ViewModels
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            OpenWebsiteCommand = new RelayCommand(OpenWebsite);
         }
 
-        public CreditsViewModel() { }
-
-        public IAppNavigation AppNavigation
+        public CreditsViewModel()
         {
-            get => _appNavigation;
+            OpenWebsiteCommand = new RelayCommand(OpenWebsite);
         }
 
-        public UserMessage UserMessage
+        public ICommand OpenWebsiteCommand { get; }
+
+        private void OpenWebsite(object? parameter)
         {
-            get => _userMessage;
-            set
+            if (parameter is string url)
             {
-                _userMessage = value;
-                OnPropertyChanged();
+                try
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error opening URL: {ex.Message}");
+                }
             }
         }
     }

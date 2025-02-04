@@ -7,12 +7,86 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Height="450" Width="800">
+             Name="Instellingen" Height="Auto" MaxWidth="900" Background="White">
+
     <UserControl.DataContext>
         <viewmodels:SettingsViewModel/>
     </UserControl.DataContext>
 
-    <Grid>
-        <TextBlock Text="Settings" FontSize="24" FontWeight="Bold" Margin="10"/>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Extra row for Data Reset Description -->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Settings Title -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="SettingsText" Text="Instellingen" FontSize="36" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=SettingsText}"/>
+        </StackPanel>
+
+        <!-- Settings Description -->
+        <TextBlock Text="Beheer uw voorkeuren voor een optimale gebruikerservaring. U kunt eenvoudig het thema van de applicatie aanpassen, kiezen tussen Nederlands of Engels als voorkeurstaal en uw gegevens beheren."
+                   FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <!-- Settings Details -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,10,10">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                    <Setter Property="Foreground" Value="{DynamicResource BodyTextColor}"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="Applicatiethema: Kies tussen een licht of donker thema om de visuele ervaring aan te passen aan uw voorkeuren." />
+            <TextBlock Text="Voorkeurstaal: Selecteer de taal van de applicatie, kies tussen Nederlands of Engels." />
+        </StackPanel>
+
+        <!-- Theme Selection -->
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,10,5" Orientation="Horizontal">
+            <TextBlock Text="Selecteer voorkeurthema" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <ComboBox SelectedItem="{Binding SelectedTheme}" Width="150" Height="40" 
+                      Background="White" Foreground="{StaticResource PrimaryBrush}" 
+                      BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+                <ComboBoxItem Content="Licht" Background="White"/>
+                <ComboBoxItem Content="Donker" Background="White"/>
+            </ComboBox>
+            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Command="{Binding ResetCommand}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Language Selection -->
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,10,5" Orientation="Horizontal">
+            <TextBlock Text="Selecteer voorkeurtaal" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <ComboBox SelectedItem="{Binding SelectedLanguage}" Width="150" Height="40" 
+                      Background="White" Foreground="{StaticResource PrimaryBrush}" 
+                      BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+                <ComboBoxItem Content="Nederlands" Background="White"/>
+                <ComboBoxItem Content="Engels" Background="White"/>
+            </ComboBox>
+            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Command="{Binding ResetCommand}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Data Reset Description -->
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,10,10">
+            <TextBlock Text="Resetten van gegevens: Wis alle opgeslagen gegevens en herstel de applicatie naar de oorspronkelijke instellingen." FontSize="14" TextWrapping="Wrap"/>
+            <TextBlock Text="Let op: uw dossiers worden allemaal verwijderd." FontSize="14" TextWrapping="Wrap" Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <!-- Reset Button -->
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+            <Button Content="Gegevens Resetten" Width="200" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Command="{Binding ResetCommand}" />
+        </StackPanel>
+
     </Grid>
 </UserControl>
