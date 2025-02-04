@@ -35,5 +35,5 @@ De applicatie biedt een gestructureerde aanpak voor het beheer van patiëntgegev
 Dit project is ontwikkeld en gemaakt door:
 
 - [Siem van Bree](https://www.linkedin.com/in/siemvanbree)
-- Niek van Bree
+- [Niek van Bree](www.linkedin.com/in/niek-van-bree)
 - Damian van der Lee
