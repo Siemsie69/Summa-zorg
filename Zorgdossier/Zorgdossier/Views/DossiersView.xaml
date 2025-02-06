@@ -19,8 +19,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="240"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -29,14 +28,14 @@
         </Grid.ColumnDefinitions>
 
         <!-- Title Section -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock x:Name="TitleText" Text="Dossiers" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+            <TextBlock x:Name="TitleText" Text="Dossiers" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
             <!-- Underline (Rectangle) -->
             <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
         </StackPanel>
 
         <!-- Subtekst -->
-        <TextBlock Text="Hier zie je een overzicht van al je dossiers. Dossiers kunnen bewerkt en geëxporteerd worden. Gebruik de knoppen onder het overzicht om een nieuw dossier aan te maken of een voorbeelddossier te openen."
+        <TextBlock Text="Hier zie je een overzicht van al je dossiers. Dossiers kunnen bewerkt en geëxporteerd worden."
                    FontSize="14" TextWrapping="Wrap" Margin="0,10,40,10" HorizontalAlignment="Left"
                    Foreground="Black" MaxWidth="620" Grid.Row="1" Grid.ColumnSpan="2"/>
 
@@ -72,19 +71,27 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Spacer (Empty space after DataGrid) -->
-        <Grid Grid.Row="4" Grid.ColumnSpan="2"/>
-
-        <!-- Spacer row added between DataGrid and Buttons -->
+        <!-- Spacer between DataGrid and Buttons -->
         <Grid Grid.Row="5" Grid.ColumnSpan="2" Height="20"/>
 
-        <!-- Buttons Section -->
-        <Button Grid.Row="6" Content="Dossier aanmaken" FontSize="14" Command="{Binding ShowIntroductionViewCommand}" Width="200" Height="45" 
-                Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" HorizontalAlignment="Left"/>
-        <Button Grid.Row="6" Grid.Column="1" Content="Voorbeelddossier openen" FontSize="14" Command="{Binding ShowSampleDossierViewCommand}" Width="200" Height="45" 
-                Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+        <!-- Spacer to push buttons to the bottom -->
+        <Grid Grid.Row="6" Grid.ColumnSpan="2" Height="20"/>
 
-        <!-- Spacer between Buttons and User Message -->
-        <Grid Grid.Row="7" Grid.ColumnSpan="2"/>
+        <!-- Buttons Section placed in the bottom row -->
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Button -->
+            <Button Content="Dossier aanmaken" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+
+            <!-- Right Button -->
+            <Button Content="Voorbeelddossier openen" FontSize="14" Command="{Binding ShowSampleDossierViewCommand}" Width="200" Height="45" 
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right"/>
+        </Grid>
     </Grid>
 </UserControl>

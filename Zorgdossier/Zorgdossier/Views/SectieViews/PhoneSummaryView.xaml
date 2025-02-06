@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Zorgdossier.Views.SectieViews.PhoneSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Zorgdossier.Views.SectieViews"
+             xmlns:sectieviewmodels="clr-namespace:Zorgdossier.ViewModels.SectieViewModels"
+             xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Name="Organs" Height="Auto" MaxWidth="900" Background="White">
+    <d:UserControl.DataContext>
+        <sectieviewmodels:OrgansViewModel/>
+    </d:UserControl.DataContext>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Title Section -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="OrgansText" Text="Dossiers: Telefoongesprek" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <!-- Underline (Rectangle) -->
+            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=OrgansText}"/>
+        </StackPanel>
+
+        <!-- Text Section -->
+        <TextBlock Text="Maak hier een korte samenvatting van het gehele telefoongesprek" 
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,40,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+        <!-- Spacer -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="3"/>
+
+        <!-- Buttons Section -->
+        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Button -->
+            <Button Content="Vorige" FontSize="14" Command="{Binding ShowBasicInformationCommand}" Width="200" Height="45" 
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+
+            <!-- Right Button -->
+            <Button Content="Volgende" FontSize="14" Command="{Binding ShowQuestionsCommand}" Width="200" Height="45" 
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right"/>
+        </Grid>
+    </Grid>
+</UserControl>

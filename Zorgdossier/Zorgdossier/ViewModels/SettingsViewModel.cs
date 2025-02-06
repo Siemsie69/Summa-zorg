@@ -10,9 +10,12 @@ namespace Zorgdossier.ViewModels
 {
     internal class SettingsViewModel : ObservableObject
     {
+        #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        #endregion
 
+        #region Constructors
         public SettingsViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
@@ -20,6 +23,11 @@ namespace Zorgdossier.ViewModels
         }
 
         public SettingsViewModel() { }
+        #endregion
+
+        #region Properties
+
+        #endregion
 
         public IAppNavigation AppNavigation
         {

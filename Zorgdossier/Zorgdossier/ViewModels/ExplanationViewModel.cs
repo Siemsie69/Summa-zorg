@@ -11,9 +11,13 @@ namespace Zorgdossier.ViewModels
 {
     internal class ExplanationViewModel : ObservableObject
     {
+        #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
 
+        #endregion
+
+        #region Constructors
         public ExplanationViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
@@ -23,6 +27,11 @@ namespace Zorgdossier.ViewModels
         }
 
         public ExplanationViewModel() { }
+        #endregion
+
+        #region Properties
+
+        #endregion
 
         public IAppNavigation AppNavigation
         {
@@ -39,11 +48,15 @@ namespace Zorgdossier.ViewModels
             }
         }
 
+        #region Commands
         public ICommand ShowDossiersCommand { get; }
+        #endregion
 
+        #region Methods
         private void ExecuteShowDossiers(object? obj)
         {
             _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
         }
+        #endregion
     }
 }

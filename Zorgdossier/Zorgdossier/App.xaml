@@ -1,10 +1,13 @@
 ﻿<Application x:Class="Zorgdossier.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Zorgdossier"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Zorgdossier"
              xmlns:views="clr-namespace:Zorgdossier.Views"
-             xmlns:viewModels="clr-namespace:Zorgdossier.ViewModels">
+             xmlns:viewModels="clr-namespace:Zorgdossier.ViewModels"
+             xmlns:sectieViews="clr-namespace:Zorgdossier.Views.SectieViews"
+             xmlns:sectieViewModels="clr-namespace:Zorgdossier.ViewModels.SectieViewModels">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,6 +50,51 @@
 
             <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
                 <views:SettingsView />
+            </DataTemplate>
+            
+            <!-- Dossier Navigatie -->
+            <DataTemplate DataType="{x:Type sectieViewModels:IntroductionViewModel}">
+                <sectieViews:IntroductionView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:BasicInformationViewModel}">
+                <sectieViews:BasicInformationView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:PhoneSummaryViewModel}">
+                <sectieViews:PhoneSummaryView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:QuestionsViewModel}">
+                <sectieViews:QuestionsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:OrgansViewModel}">
+                <sectieViews:OrgansView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:ComplaintsAndSymptomsViewModel}">
+                <sectieViews:ComplaintsAndSymptomsView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:ResearchViewModel}">
+                <sectieViews:ResearchView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:PolicyViewModel}">
+                <sectieViews:PolicyView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:ContactAdvicesViewModel}">
+                <sectieViews:ContactAdvicesView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:TreatmentViewModel}">
+                <sectieViews:TreatmentView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type sectieViewModels:FinishProgressViewModel}">
+                <sectieViews:FinishProgressView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

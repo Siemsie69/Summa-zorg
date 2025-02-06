@@ -10,10 +10,14 @@ namespace Zorgdossier.ViewModels
 {
     internal class MainViewModel : ObservableObject
     {
+        #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
         private bool _isMenuExpanded = true;
 
+        #endregion
+
+        #region Constructors
         public MainViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
@@ -29,6 +33,11 @@ namespace Zorgdossier.ViewModels
         }
 
         public MainViewModel() { }
+        #endregion
+
+        #region Properties
+
+        #endregion
 
         public IAppNavigation AppNavigation
         {
@@ -56,6 +65,7 @@ namespace Zorgdossier.ViewModels
             }
         }
 
+        #region Commands
         public bool IsMenuCollapsed => !IsMenuExpanded;
 
         public ICommand ShowHomeCommand { get; }
@@ -64,7 +74,9 @@ namespace Zorgdossier.ViewModels
         public ICommand ShowCreditsCommand { get; }
         public ICommand ToggleMenuCommand { get; }
         public ICommand ShowSettingsCommand { get; }
+        #endregion
 
+        #region Methods
         private void ExecuteShowHome(object? obj)
         {
             _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
@@ -112,10 +124,10 @@ namespace Zorgdossier.ViewModels
             IsMenuExpanded = !IsMenuExpanded;
         }
 
-
         private void ExecuteShowSettings(object? obj)
         {
             _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage);
         }
+        #endregion
     }
 }

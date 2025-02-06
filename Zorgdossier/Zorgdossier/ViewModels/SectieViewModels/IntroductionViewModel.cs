@@ -1,10 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
+using Zorgdossier.Views.SectieViews;
 
-namespace Zorgdossier.ViewModels
+namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    internal class HomeViewModel : ObservableObject
+    public class IntroductionViewModel : ObservableObject
     {
         #region Fields
         private IAppNavigation _appNavigation;
@@ -12,20 +14,16 @@ namespace Zorgdossier.ViewModels
         #endregion
 
         #region Constructors
-        public HomeViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        public IntroductionViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
 
+            ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
             ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
-            ShowExplanationCommand = new RelayCommand(ExecuteShowExplanation);
         }
 
-        public HomeViewModel() { }
-        #endregion
-
-        #region Properties
-
+        public IntroductionViewModel() { }
         #endregion
 
         public IAppNavigation AppNavigation
@@ -44,19 +42,19 @@ namespace Zorgdossier.ViewModels
         }
 
         #region Commands
+        public ICommand ShowBasicInformationCommand { get; }
         public ICommand ShowDossiersCommand { get; }
-        public ICommand ShowExplanationCommand { get; }
         #endregion
 
         #region Methods
+        private void ExecuteShowBasicInformation(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage);
+        }
+
         private void ExecuteShowDossiers(object? obj)
         {
             _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
-        }
-
-        private void ExecuteShowExplanation(object? obj)
-        {
-            _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage);
         }
         #endregion
     }

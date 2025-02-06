@@ -8,9 +8,12 @@ namespace Zorgdossier.ViewModels
 {
     internal class CreditsViewModel : ObservableObject
     {
+        #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        #endregion
 
+        #region Constructors
         public CreditsViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
@@ -22,9 +25,17 @@ namespace Zorgdossier.ViewModels
         {
             OpenWebsiteCommand = new RelayCommand(OpenWebsite);
         }
+        #endregion
 
+        #region Properties
+
+        #endregion
+
+        #region Commands
         public ICommand OpenWebsiteCommand { get; }
+        #endregion
 
+        #region Methods
         private void OpenWebsite(object? parameter)
         {
             if (parameter is string url)
@@ -43,5 +54,6 @@ namespace Zorgdossier.ViewModels
                 }
             }
         }
+        #endregion
     }
 }

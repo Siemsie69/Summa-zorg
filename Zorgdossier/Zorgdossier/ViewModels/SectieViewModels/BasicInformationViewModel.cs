@@ -1,37 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.ViewModels.SectieViewModels;
+using Zorgdossier.Views.SectieViews;
 
-namespace Zorgdossier.ViewModels
+namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    internal class DossiersViewModel : ObservableObject
+    public class BasicInformationViewModel : ObservableObject
     {
         #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
-
         #endregion
 
         #region Constructors
-        public DossiersViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        public BasicInformationViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
 
-            ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
+            ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
+            ShowIntroductionViewCommand = new RelayCommand(ExecuteShowIntroduction);
         }
 
-        public DossiersViewModel() { }
-        #endregion
-
-        #region Properties
-
+        public BasicInformationViewModel() { }
         #endregion
 
         public IAppNavigation AppNavigation
@@ -50,11 +42,16 @@ namespace Zorgdossier.ViewModels
         }
 
         #region Commands
-        public ICommand ShowIntroductionCommand { get; }
-
+        public ICommand ShowPhoneSummaryCommand { get; }
+        public ICommand ShowIntroductionViewCommand { get; }
         #endregion
 
         #region Methods
+        private void ExecuteShowPhoneSummary(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage);
+        }
+        
         private void ExecuteShowIntroduction(object? obj)
         {
             _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage);

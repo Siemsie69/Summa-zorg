@@ -1,37 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.ViewModels.SectieViewModels;
+using Zorgdossier.Views.SectieViews;
 
-namespace Zorgdossier.ViewModels
+namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    internal class DossiersViewModel : ObservableObject
+    public class FinishProgressViewModel : ObservableObject
     {
         #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
-
         #endregion
 
         #region Constructors
-        public DossiersViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        public FinishProgressViewModel(IAppNavigation appNavigation, UserMessage userMessage)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
 
-            ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
+            ShowTreatmentCommand = new RelayCommand(ExecuteShowTreatment);
         }
 
-        public DossiersViewModel() { }
-        #endregion
-
-        #region Properties
-
+        public FinishProgressViewModel() { }
         #endregion
 
         public IAppNavigation AppNavigation
@@ -50,14 +41,13 @@ namespace Zorgdossier.ViewModels
         }
 
         #region Commands
-        public ICommand ShowIntroductionCommand { get; }
-
+        public ICommand ShowTreatmentCommand { get; }
         #endregion
 
         #region Methods
-        private void ExecuteShowIntroduction(object? obj)
+        private void ExecuteShowTreatment(object? obj)
         {
-            _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage);
+            _appNavigation.ActiveViewModel = new TreatmentViewModel(_appNavigation, _userMessage);
         }
         #endregion
     }
