@@ -21,6 +21,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestions);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public PhoneSummaryViewModel() { }
@@ -44,6 +46,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region Commands
         public ICommand ShowQuestionsCommand { get; }
         public ICommand ShowBasicInformationCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -55,6 +59,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowBasicInformation(object? obj)
         {
             _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowHome(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Zorg ervoor dat je niet alleen de naam en klachten opneemt, maar ook andere belangrijke details, zoals mogelijke triggers of eerdere behandelingen. Deze aanvullende informatie kan het behandeltraject beïnvloeden en helpt bij het verder begrijpen van de zorgbehoefte van de patiënt.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }

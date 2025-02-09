@@ -25,18 +25,37 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Title Section -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock x:Name="BasicInfoText" Text="Dossiers: Basisinformatie" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
-            <!-- Underline (Rectangle) -->
-            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=BasicInfoText}"/>
-        </StackPanel>
+        <!-- Title Section with Buttons -->
+        <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                <!-- Title -->
+                <TextBlock x:Name="BasicInfoText" Text="Dossiers: Basisinformatie" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <!-- Underline (Rectangle) -->
+                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=BasicInfoText}"/>
+            </StackPanel>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
+                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <!-- Text Section -->
-        <TextBlock Text="Vul hier de basisinformatie van het dossier in." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,40,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <TextBlock Text="Vul hier de basisinformatie van de patiënt in, zoals de naam, de klacht en het type patiënt. Deze gegevens vormen de basis voor de verdere beoordeling en behandeling van de patiënt. Het is van groot belang om zorgvuldig te zijn bij het invullen van deze informatie, omdat dit invloed heeft op de juiste zorg die geboden kan worden. Zorg ervoor dat je alle relevante details verzamelt ." 
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
 
         <!-- Spacer -->
         <Grid Grid.Row="2" Grid.ColumnSpan="3"/>
@@ -50,7 +69,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left Button (aligned to the left) -->
-            <Button Content="Vorige" FontSize="14" Command="{Binding ShowIntroductionViewCommand}" Width="200" Height="45" 
+            <Button Content="Vorige" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button (aligned to the right) -->

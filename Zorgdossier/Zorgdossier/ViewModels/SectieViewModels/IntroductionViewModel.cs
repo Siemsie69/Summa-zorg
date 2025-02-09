@@ -21,6 +21,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
             ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public IntroductionViewModel() { }
@@ -44,6 +45,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region Commands
         public ICommand ShowBasicInformationCommand { get; }
         public ICommand ShowDossiersCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -54,7 +56,23 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowDossiers(object? obj)
         {
-            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            var result = MessageBox.Show(
+                "Weet je zeker dat je wilt stoppen met het aanmaken van een dossier?",
+                "Bevestiging",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }

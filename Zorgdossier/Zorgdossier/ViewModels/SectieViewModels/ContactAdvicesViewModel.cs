@@ -21,6 +21,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowTreatmentCommand = new RelayCommand(ExecuteShowTreatment);
             ShowPolicyCommand = new RelayCommand(ExecuteShowPolicy);
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public ContactAdvicesViewModel() { }
@@ -44,6 +46,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region Commands
         public ICommand ShowTreatmentCommand { get; }
         public ICommand ShowPolicyCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -55,6 +59,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowPolicy(object? obj)
         {
             _appNavigation.ActiveViewModel = new PolicyViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowHome(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Geef de patiënt duidelijke zelfzorginstructies, inclusief advies over activiteiten die vermeden moeten worden. Informeer ook wanneer het noodzakelijk is om contact op te nemen, bijvoorbeeld bij verergering van de klachten of het optreden van nieuwe symptomen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }

@@ -60,16 +60,19 @@
         </StackPanel>
 
         <!-- Buttons Section -->
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,10,0,0">
             <Button Content="Summa ICT" FontSize="14" Width="200" Height="45"
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0"
-                    Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-ict"/>
+            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+            Margin="0,0,0,0"
+            Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-ict"/>
             <Button Content="Summa Zorg &amp; Welzijn" FontSize="14" Width="200" Height="45"
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0"
-                    Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-zorg-welzijn"/>
+            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+            Margin="0,10,0,0"
+            Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-zorg-welzijn"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0">
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
             <TextBlock Text="© 2025 Zorgdossier. Alle rechten voorbehouden." FontSize="14" FontStyle="Italic" Margin="0,20,0,0" HorizontalAlignment="Left"/>
         </StackPanel>
     </Grid>

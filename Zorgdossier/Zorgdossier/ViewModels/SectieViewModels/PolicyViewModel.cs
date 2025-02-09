@@ -21,6 +21,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvices);
             ShowResearchCommand = new RelayCommand(ExecuteShowResearch);
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public PolicyViewModel() { }
@@ -44,6 +46,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region Commands
         public ICommand ShowContactAdvicesCommand { get; }
         public ICommand ShowResearchCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -55,6 +59,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowResearch(object? obj)
         {
             _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowHome(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Op basis van de urgentie en de triagecriteria kunt u nu beslissen of het noodzakelijk is om direct een afspraak bij de dokter te plannen en welke tijd het beste past voor de patiënt.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }

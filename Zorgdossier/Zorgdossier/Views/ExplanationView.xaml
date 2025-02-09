@@ -39,6 +39,13 @@
                 <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
             </StackPanel>
 
+            <Button HorizontalAlignment="Right" Height="40" Width="60" Grid.Column="2"
+                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                </StackPanel>
+            </Button>
+
             <!-- Welcome Text -->
             <TextBlock Text="Hier kun je een uitgebreide uitleg vinden over hoe je zorgdossiers kunt aanmaken, beheren en optimaliseren. Deze applicatie biedt ondersteuning bij het werken met patiëntendossiers, medische analyses en diagnostische processen, zodat je efficiënter te werk kunt gaan en betere zorg kunt bieden."
                        FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
@@ -70,7 +77,8 @@
             <StackPanel Grid.Row="11" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Content="Maak een dossier" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45"
                         Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0"/>
-                <Button Content="Voorbeelddossier" FontSize="14" Command="{Binding ShowSampleDossierCommand}" Width="200" Height="45"
+                
+                <Button Content="Voorbeelddossier" FontSize="14" Width="200" Height="45"
                         Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0"/>
             </StackPanel>
         </Grid>

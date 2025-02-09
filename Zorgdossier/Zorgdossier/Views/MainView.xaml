@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}" mc:Ignorable="d"
-        Title="MainView" Height="540" Width="800">
+        Title="MainView" Height="540" Width="900">
     <d:Window.DataContext>
         <viewmodels:MainViewModel/>
     </d:Window.DataContext>

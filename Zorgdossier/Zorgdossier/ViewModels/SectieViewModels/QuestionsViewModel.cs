@@ -21,6 +21,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowOrgansCommand = new RelayCommand(ExecuteShowOrgans);
             ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public QuestionsViewModel() { }
@@ -44,6 +46,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region Commands
         public ICommand ShowOrgansCommand { get; }
         public ICommand ShowPhoneSummaryCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -55,6 +59,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowPhoneSummary(object? obj)
         {
             _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowHome(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Zorg ervoor dat je vragen stelt die zowel breed als specifiek zijn, zodat je het volledige spectrum van klachten en symptomen kunt begrijpen en het juiste behandelplan kunt opstellen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }

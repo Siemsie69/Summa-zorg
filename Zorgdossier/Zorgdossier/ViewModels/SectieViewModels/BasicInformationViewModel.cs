@@ -20,7 +20,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             _userMessage = userMessage;
 
             ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
-            ShowIntroductionViewCommand = new RelayCommand(ExecuteShowIntroduction);
+            ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
+            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
         }
 
         public BasicInformationViewModel() { }
@@ -43,7 +45,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         #region Commands
         public ICommand ShowPhoneSummaryCommand { get; }
-        public ICommand ShowIntroductionViewCommand { get; }
+        public ICommand ShowIntroductionCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowInfoCommand { get; }
         #endregion
 
         #region Methods
@@ -55,6 +59,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowIntroduction(object? obj)
         {
             _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage);
+        }
+
+        private void ExecuteShowHome(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            }
+        }
+
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("De basisinformatie van een patiënt omvat onder andere de naam, de klacht waarvoor de patiënt zich heeft aangemeld en het type patiënt waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de patiënt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
     }
