@@ -57,8 +57,33 @@
                        FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10" Grid.Row="1" Grid.ColumnSpan="3"/>
         </StackPanel>
 
-        <!-- Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3"/>
+        <!-- Content Spacer -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Title Section -->
+            <TextBlock Text="Vraagstelling:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
+
+            <!-- Instruction Label -->
+            <TextBlock Text="Vul hier de vragen &#10;in die je aan de &#10;patiënt zou stellen:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+               Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
+
+            <!-- Vragen stellen aan de Patiënt (TextBox) -->
+            <TextBox Text="{Binding Question.QuestionSummary, UpdateSourceTrigger=PropertyChanged}" 
+             Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
+             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+             materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextQuestionSummary}" />
+        </Grid>
 
         <!-- Buttons Section -->
         <Grid Grid.Row="3" Grid.ColumnSpan="3">

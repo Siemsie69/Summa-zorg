@@ -73,7 +73,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("De basisinformatie van een patiënt omvat onder andere de naam, de klacht waarvoor de patiënt zich heeft aangemeld en het type patiënt waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de patiënt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.",
+            MessageBox.Show("De basisinformatie van een patiënt omvat onder andere de naam, de klacht waarvoor de patiënt zich heeft aangemeld en de patiëntcategorie waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de patiënt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         #endregion
