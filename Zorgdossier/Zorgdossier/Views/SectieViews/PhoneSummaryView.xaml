@@ -8,9 +8,9 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Organs" Height="Auto" MaxWidth="900" Background="White">
+             Name="Phone" Height="Auto" MaxWidth="900" Background="White">
     <d:UserControl.DataContext>
-        <sectieviewmodels:OrgansViewModel/>
+        <sectieviewmodels:PhoneSummaryViewModel/>
     </d:UserControl.DataContext>
 
     <Grid Margin="20">

@@ -1,78 +1,72 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    public class IntroductionViewModel : ObservableObject
+    class IntroductionViewModel : ObservableObject
     {
-        #region Fields
+        #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private Dossier _dossier;
+        private DossierService _dossierService;
         #endregion
 
-        #region Constructors
-        public IntroductionViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        #region constructers
+        public IntroductionViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
-
-            ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
-            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
+            _dossierService = dossierService;
+            if (dossier != null)
+            {
+                _dossier = dossier;
+            }
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiersView);
+            ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
         }
 
-        public IntroductionViewModel() { }
+        public IntroductionViewModel()
+        {
+
+        }
         #endregion
 
-        public IAppNavigation AppNavigation
-        {
-            get => _appNavigation;
-        }
-
-        public UserMessage UserMessage
-        {
-            get => _userMessage;
-            set
-            {
-                _userMessage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #region Commands
-        public ICommand ShowBasicInformationCommand { get; }
-        public ICommand ShowDossiersCommand { get; }
-        public ICommand ShowInfoCommand { get; }
+        #region properties
         #endregion
 
-        #region Methods
-        private void ExecuteShowBasicInformation(object? obj)
-        {
-            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage);
+        #region commands
+        public ICommand ShowInfoCommand 
+        { 
+            get; 
         }
-
-        private void ExecuteShowDossiers(object? obj)
+        public ICommand ShowDossiersCommand
         {
-            var result = MessageBox.Show(
-                "Weet je zeker dat je wilt stoppen met het aanmaken van een dossier?",
-                "Bevestiging",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning
-            );
-
-            if (result == MessageBoxResult.Yes)
-            {
-                _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
-            }
+            get;
         }
+        public ICommand ShowBasicInformationCommand
+        {
+            get;
+        }
+        #endregion
 
+        #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.",
+            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void ExecuteShowDossiersView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+        }
+        private void ExecuteShowBasicInformation(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

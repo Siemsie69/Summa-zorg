@@ -1,29 +1,92 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Zorgdossier.Models;
 
 namespace Zorgdossier.Databases
 {
-    internal class AppDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public DbSet<UserMessage> Tests
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["localDb"].ConnectionString);
+        }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+
+        }
+
+        public ApplicationDbContext()
+        {
+
+        }
+
+        public DbSet<Student> Student
+        {
+            get; set;
+        }
+        public DbSet<Dossier> Dossier
+        {
+            get; set;
+        }
+        public DbSet<BasicInformation> BasicInformation
+        {
+            get; set;
+        }
+        public DbSet<Phone> Phone
+        {
+            get; set;
+        }
+        public DbSet<Question> Question
+        {
+            get; set;
+        }
+        public DbSet<ComplaintsSymptoms> ComplaintsSymptoms
+        {
+            get; set;
+        }
+        public DbSet<Research> Research
+        {
+            get; set;
+        }
+        public DbSet<Policy> Policy
+        {
+            get; set;
+        }
+        public DbSet<ContactAdvice> ContactAdvice
+        {
+            get; set;
+        }
+        public DbSet<Treatment> Treatment
+        {
+            get; set;
+        }
+        public DbSet<Organ> Organ
         {
             get; set;
         }
 
-        //Deze methode wordt gebruikt om MySQL te gebruiken met alle gegevens uit de connectionString die in app.config gespecificeerd is (met de naam 'MyConnStr').
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
         {
-            base.OnConfiguring(optionsBuilder);
+            public ApplicationDbContext CreateDbContext(string[] args)
+            {
+                // Lees de connection string uit de app.config
+                string connectionString = ConfigurationManager.ConnectionStrings["localDb"].ConnectionString;
 
-            string connstr = ConfigurationManager.ConnectionStrings["MyConnStr"].ConnectionString;
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            optionsBuilder.UseMySQL(connstr);
+                // Stel de SQLite provider in met de connection string
+                optionsBuilder.UseSqlite(connectionString);
+
+                return new ApplicationDbContext(optionsBuilder.Options);
+            }
         }
     }
 }

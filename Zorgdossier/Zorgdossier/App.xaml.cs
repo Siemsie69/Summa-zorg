@@ -1,26 +1,92 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using System;
+using System.Configuration;
+using System.Data.SQLite;
+using System.IO;
 using System.Windows;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.ViewModels;
 using Zorgdossier.Views;
+using Zorgdossier.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System.Security.Cryptography.X509Certificates;
+using Zorgdossier.ViewModels.SectieViewModels;
+using Zorgdossier.Views.SectieViews;
 
-namespace Zorgdossier
+namespace ZorgDossier
 {
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            AppNavigation _appNavigation = new();
-            UserMessage _userMessage = new();
-
             base.OnStartup(e);
-            MainWindow = new MainView()
+
+            try
             {
-                DataContext = new MainViewModel(_appNavigation, _userMessage)
-            };
-            MainWindow.Show();
+                // Verkrijg het apparaat-ID
+                var deviceName = GetDeviceName();
+
+                AppNavigation _appNavigation = new();
+                UserMessage _userMessage = new();
+
+                // Controleer of de database bestaat voor dit apparaat
+                if (DoesDatabaseExistForDevice(deviceName))
+                {
+                    MainWindow = new MainView()
+                    {
+                        DataContext = new MainViewModel(_appNavigation, _userMessage)
+                    };
+                    MainWindow.Show();
+                }
+                else
+                {
+                    MainWindow = new RegistrationView()
+                    {
+                        DataContext = new RegistrationViewModel(_appNavigation, _userMessage, deviceName)
+                    };
+                    MainWindow.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Toon foutmelding als er iets misgaat
+                MessageBox.Show($"Fout bij het opstarten van de applicatie: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+            }
+        }
+
+        // Verkrijg het apparaat-ID (bijv. machine naam)
+        private string GetDeviceName()
+        {
+            return Environment.MachineName; // Alternatief: een GUID genereren voor meer unieke identificatie
+        }
+
+        // Controleer of er al een database bestaat voor dit apparaat
+        private bool DoesDatabaseExistForDevice(string deviceName)
+        {
+            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Databases", "database.db");
+
+            if (File.Exists(databasePath))
+            {
+                try
+                {
+                    using (var context = new ApplicationDbContext())
+                    {
+                        var student = context.Student.FirstOrDefault(s => s.DeviceName == deviceName);
+                        return student != null; // Als er een student is gevonden, betekent dit dat de database bestaat voor dit apparaat
+                    }
+                }
+                catch (Exception)
+                {
+                    // Er is een fout opgetreden bij het openen van de database
+                    Console.WriteLine("Fout bij het openen van de database.");
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

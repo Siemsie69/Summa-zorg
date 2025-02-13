@@ -1,80 +1,196 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    public class BasicInformationViewModel : ObservableObject
+    class BasicInformationViewModel : ObservableObject
     {
-        #region Fields
+        #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private Dossier? _dossier;
+        private DossierService _dossierService;
+
+        private bool _isSampleMode;
+        private string _hintTextName = string.Empty;
+        private string _hintTextComplaint = string.Empty;
+        private string _hintTextType = string.Empty;
         #endregion
 
-        #region Constructors
-        public BasicInformationViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        #region constructers
+        public BasicInformationViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel? instance = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
-            ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
-            ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
-            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            BasicInformation = _dossierService.CentralDossier.BasicInformation;
+
+            if (dossier != null)
+            {
+                _dossier = dossier;
+
+                using (var context = new ApplicationDbContext())
+                {
+                    try
+                    {
+                        var basicInformationInDb = context.BasicInformation.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        BasicInformation.Name = basicInformationInDb.Name;
+                        BasicInformation.Complaint = basicInformationInDb.Complaint;
+                        BasicInformation.Gender = basicInformationInDb.Gender;
+                    }
+                    catch (Exception ex)
+                    {
+                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
+                    }
+                }
+            }
+            if (instance != null)
+            {
+                Instance = instance ?? throw new ArgumentNullException(nameof(instance));
+                IsSampleMode = Instance.IsSampleMode;
+            }
+
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
+            ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
+            ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroductionView);
+
+            HintTextName = IsSampleMode ? "Jan Jansen" : "Naam Patiënt";
+            HintTextComplaint = IsSampleMode ? "Buikpijn" : "Klacht Patiënt";
+            HintTextType = IsSampleMode ? "Man" : "Man";
         }
 
-        public BasicInformationViewModel() { }
+        public BasicInformationViewModel()
+        {
+
+        }
         #endregion
 
-        public IAppNavigation AppNavigation
+        #region properties
+        public DossierService.BasicInformation BasicInformation
         {
-            get => _appNavigation;
+            get;
         }
-
-        public UserMessage UserMessage
+        public bool IsSampleMode
         {
-            get => _userMessage;
+            get => _isSampleMode;
             set
             {
-                _userMessage = value;
-                OnPropertyChanged();
+                if (_isSampleMode != value)
+                {
+                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode)); OnPropertyChanged(nameof(IsNotSampleMode));
+                }
             }
         }
-
-        #region Commands
-        public ICommand ShowPhoneSummaryCommand { get; }
-        public ICommand ShowIntroductionCommand { get; }
-        public ICommand ShowHomeCommand { get; }
-        public ICommand ShowInfoCommand { get; }
+        public bool IsNotSampleMode => !IsSampleMode;
+        public string HintTextName
+        {
+            get => _hintTextName;
+            set
+            {
+                if (_hintTextName != value)
+                {
+                    _hintTextName = value;
+                    OnPropertyChanged(nameof(HintTextName));
+                }
+            }
+        }
+        public string HintTextComplaint
+        {
+            get => _hintTextComplaint;
+            set
+            {
+                if (_hintTextComplaint != value)
+                {
+                    _hintTextComplaint = value;
+                    OnPropertyChanged(nameof(HintTextComplaint));
+                }
+            }
+        }
+        public string HintTextType
+        {
+            get => _hintTextType;
+            set
+            {
+                if (_hintTextType != value)
+                {
+                    _hintTextType = value;
+                    OnPropertyChanged(nameof(HintTextType));
+                }
+            }
+        }
+        public SampleDossierViewModel Instance
+        {
+            get;
+        }
         #endregion
 
-        #region Methods
-        private void ExecuteShowPhoneSummary(object? obj)
+        #region commands
+        public ICommand ShowInfoCommand
         {
-            _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage);
+            get;
         }
-        
-        private void ExecuteShowIntroduction(object? obj)
+        public ICommand ShowHomeCommand
         {
-            _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage);
+            get;
         }
+        public ICommand ShowPhoneSummaryCommand
+        {
+            get;
+        }
+        public ICommand ShowIntroductionCommand
+        {
+            get;
+        }
+        #endregion
 
-        private void ExecuteShowHome(object? obj)
+        #region methods
+        private void ExecuteShowInfo(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void ExecuteShowMainView(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
-
-        private void ExecuteShowInfo(object? obj)
+        private void ExecuteShowPhoneSummaryView(object? obj)
         {
-            MessageBox.Show("De basisinformatie van een patiënt omvat onder andere de naam, de klacht waarvoor de patiënt zich heeft aangemeld en de patiëntcategorie waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de patiënt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (IsSampleMode != true)
+            {
+                if (string.IsNullOrWhiteSpace(BasicInformation.Name) || string.IsNullOrWhiteSpace(BasicInformation.Complaint) || BasicInformation.Gender == null)
+                {
+                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    return;
+                }
+                else
+                {
+                    _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            }
+        }
+        private void ExecuteShowIntroductionView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

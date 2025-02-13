@@ -1,80 +1,169 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    public class QuestionsViewModel : ObservableObject
+    class QuestionsViewModel : ObservableObject
     {
-        #region Fields
+        #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private DossierService _dossierService;
+        private Dossier? _dossier;
+
+        private bool _isSampleMode;
+        private string _hintTextQuestionSummary = string.Empty;
         #endregion
 
-        #region Constructors
-        public QuestionsViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        #region constructers
+        public QuestionsViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel? instance = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
-            ShowOrgansCommand = new RelayCommand(ExecuteShowOrgans);
-            ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
-            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            Question = _dossierService.CentralDossier.Question;
+
+            if (dossier != null)
+            {
+                _dossier = dossier;
+
+                using (var context = new ApplicationDbContext())
+                {
+                    try
+                    {
+                        var questionInDb = context.Question.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Question.QuestionSummary = questionInDb.QuestionSummary;
+                    }
+                    catch (Exception ex)
+                    {
+                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
+                    }
+                }
+            }
+            if (instance != null)
+            {
+                Instance = instance;
+                IsSampleMode = Instance.IsSampleMode;
+            }
+
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
+            ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
+            ShowPhoneSummaryViewCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
+
+            HintTextQuestionSummary = IsSampleMode
+                ? "•\tHeeft u een katheter? Loopt deze nog goed door?\n" +
+                  "•\tHeeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
+                  "•\tHerkent u de klachten van een eerdere urineweginfectie?"
+                : "Schrijf hier de vragen op die je gaat stellen.";
         }
 
-        public QuestionsViewModel() { }
+        public QuestionsViewModel()
+        {
+
+        }
         #endregion
 
-        public IAppNavigation AppNavigation
+        #region properties
+        public DossierService.Question Question
         {
-            get => _appNavigation;
+            get;
         }
-
-        public UserMessage UserMessage
+        public bool IsSampleMode
         {
-            get => _userMessage;
+            get => _isSampleMode;
             set
             {
-                _userMessage = value;
-                OnPropertyChanged();
+                if (_isSampleMode != value)
+                {
+                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode)); OnPropertyChanged(nameof(IsNotSampleMode));
+                }
             }
         }
-
-        #region Commands
-        public ICommand ShowOrgansCommand { get; }
-        public ICommand ShowPhoneSummaryCommand { get; }
-        public ICommand ShowHomeCommand { get; }
-        public ICommand ShowInfoCommand { get; }
+        public bool IsNotSampleMode => !IsSampleMode;
+        public string HintTextQuestionSummary
+        {
+            get => _hintTextQuestionSummary;
+            set
+            {
+                if (_hintTextQuestionSummary != value)
+                {
+                    _hintTextQuestionSummary = value;
+                    OnPropertyChanged(nameof(HintTextQuestionSummary));
+                }
+            }
+        }
+        public SampleDossierViewModel Instance
+        {
+            get;
+        }
         #endregion
 
-        #region Methods
-        private void ExecuteShowOrgans(object? obj)
+        #region commands
+        public ICommand ShowInfoCommand
         {
-            _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage);
+            get;
         }
-        
-        private void ExecuteShowPhoneSummary(object? obj)
+        public ICommand ShowHomeCommand
         {
-            _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage);
+            get;
         }
+        public ICommand ShowOrgansCommand
+        {
+            get;
+        }
+        public ICommand ShowPhoneSummaryViewCommand
+        {
+            get;
+        }
+        #endregion
 
-        private void ExecuteShowHome(object? obj)
+        #region methods
+        private void ExecuteShowInfo(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void ExecuteShowMainView(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
-
-        private void ExecuteShowInfo(object? obj)
+        private void ExecuteShowOrganSelectionView(object? obj)
         {
-            MessageBox.Show("Zorg ervoor dat je vragen stelt die zowel breed als specifiek zijn, zodat je het volledige spectrum van klachten en symptomen kunt begrijpen en het juiste behandelplan kunt opstellen.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (IsSampleMode != true)
+            {
+                if (string.IsNullOrWhiteSpace(Question.QuestionSummary))
+                {
+                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    return;
+                }
+                else
+                {
+                    _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            }
+        }
+        private void ExecuteShowPhoneSummaryView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

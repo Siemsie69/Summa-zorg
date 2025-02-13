@@ -1,80 +1,180 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    public class ComplaintsAndSymptomsViewModel : ObservableObject
+    class ComplaintsAndSymptomsViewModel : ObservableObject
     {
-        #region Fields
+        #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private DossierService _dossierService;
+        private Dossier? _dossier;
+
+        private bool _isSampleMode;
+        private string _hintTextComplaintsSymptomsSummary = string.Empty;
         #endregion
 
-        #region Constructors
-        public ComplaintsAndSymptomsViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        #region constructers
+        public ComplaintsAndSymptomsViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel? instance = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
-            ShowResearchCommand = new RelayCommand(ExecuteShowResearch);
-            ShowOrgansCommand = new RelayCommand(ExecuteShowOrgans);
-            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
-            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
+
+            if (dossier != null)
+            {
+                _dossier = dossier;
+
+                using (var context = new ApplicationDbContext())
+                {
+                    try
+                    {
+                        var complaintsSymptomsInDb = context.ComplaintsSymptoms.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        ComplaintsSymptoms.ComplaintsSymptomsSummary = complaintsSymptomsInDb.ComplaintsSymptomsSummary;
+                    }
+                    catch (Exception ex)
+                    {
+                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
+                    }
+                }
+            }
+            if (instance != null)
+            {
+                Instance = instance;
+                IsSampleMode = Instance.IsSampleMode;
+            }
+
+            ShowMainViewCommand = new RelayCommand(ExecuteShowMainView);
+            ShowResearchViewCommand = new RelayCommand(ExecuteShowResearchView);
+            ShowOrganSelectionViewCommand = new RelayCommand(ExecuteShowOrganSelectionView);
+
+            HintTextComplaintsSymptomsSummary = IsSampleMode
+                ? "•\tPijn bij het plassen\n" +
+                  "•\tBranderig gevoel bij het plassen\n" +
+                  "•\tKleine beetjes plassen"
+                : "Welke klachten en symptomen ervaart de patiënt?";
         }
 
-        public ComplaintsAndSymptomsViewModel() { }
+        public ComplaintsAndSymptomsViewModel()
+        {
+
+        }
         #endregion
 
-        public IAppNavigation AppNavigation
+        #region properties
+        public DossierService.ComplaintsSymptoms ComplaintsSymptoms
         {
-            get => _appNavigation;
+            get;
         }
-
-        public UserMessage UserMessage
+        public bool IsSampleMode
         {
-            get => _userMessage;
+            get => _isSampleMode;
             set
             {
-                _userMessage = value;
-                OnPropertyChanged();
+                if (_isSampleMode != value)
+                {
+                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode)); OnPropertyChanged(nameof(IsNotSampleMode));
+                }
             }
         }
-
-        #region Commands
-        public ICommand ShowResearchCommand { get; }
-        public ICommand ShowOrgansCommand { get; }
-        public ICommand ShowHomeCommand { get; }
-        public ICommand ShowInfoCommand { get; }
+        public bool IsNotSampleMode => !IsSampleMode;
+        public string HintTextComplaintsSymptomsSummary
+        {
+            get => _hintTextComplaintsSymptomsSummary;
+            set
+            {
+                if (_hintTextComplaintsSymptomsSummary != value)
+                {
+                    _hintTextComplaintsSymptomsSummary = value;
+                    OnPropertyChanged(nameof(HintTextComplaintsSymptomsSummary));
+                }
+            }
+        }
+        public SampleDossierViewModel Instance
+        {
+            get;
+        }
         #endregion
 
-        #region Methods
-        private void ExecuteShowResearch(object? obj)
+        #region commands
+        public ICommand ShowMainViewCommand
         {
-            _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage);
+            get;
         }
-
-        private void ExecuteShowOrgans(object? obj)
+        public ICommand ShowResearchViewCommand
         {
-            _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage);
+            get;
         }
-
-        private void ExecuteShowHome(object? obj)
+        public ICommand ShowOrganSelectionViewCommand
         {
-            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            get;
+        }
+        #endregion
+
+        #region methods
+        private void ExecuteShowMainView(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
-
-        private void ExecuteShowInfo(object? obj)
+        private void ExecuteShowResearchView(object? obj)
         {
-            MessageBox.Show("Denk hierbij aan zowel fysieke als mentale klachten en symptomen, zoals pijn, specifiek gedrag, stemmingswisselingen of een combinatie van deze factoren. Deze informatie helpt om het ziektebeeld in zijn geheel te begrijpen en een passende behandeling voor te stellen.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (IsSampleMode != true)
+            {
+                if (string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary))
+                {
+                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    return;
+                }
+                else
+                {
+                    if (_dossier != null)
+                    {
+                        _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                    }
+                    else
+                    {
+                        _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                    }
+                }
+            }
+            else
+            {
+                if (_dossier != null)
+                {
+                    _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                }
+                else
+                {
+                    _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+                }
+            }
+        }
+        private void ExecuteShowOrganSelectionView(object? obj)
+        {
+            if (_dossier != null)
+            {
+                _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            }
         }
         #endregion
     }

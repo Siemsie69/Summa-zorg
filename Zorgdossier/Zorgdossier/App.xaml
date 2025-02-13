@@ -23,10 +23,9 @@
             <SolidColorBrush x:Key="MaterialDesignPrimaryColor" Color="#240d68" />
             <SolidColorBrush x:Key="MaterialDesignSecondaryColor" Color="White" />
 
-            <!-- DataTemplates for ViewModels -->
-            <!-- <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
+             <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
                 <views:RegistrationView />
-            </DataTemplate> -->
+            </DataTemplate> 
 
             <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
                 <views:MainView />
