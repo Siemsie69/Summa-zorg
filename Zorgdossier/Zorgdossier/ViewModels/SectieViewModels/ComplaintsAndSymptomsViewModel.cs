@@ -55,9 +55,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 IsSampleMode = Instance.IsSampleMode;
             }
 
-            ShowMainViewCommand = new RelayCommand(ExecuteShowMainView);
-            ShowResearchViewCommand = new RelayCommand(ExecuteShowResearchView);
-            ShowOrganSelectionViewCommand = new RelayCommand(ExecuteShowOrganSelectionView);
+            ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
+            ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
+            ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
 
             HintTextComplaintsSymptomsSummary = IsSampleMode
                 ? "•\tPijn bij het plassen\n" +
@@ -108,21 +109,30 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #endregion
 
         #region commands
-        public ICommand ShowMainViewCommand
+        public ICommand ShowInfoCommand
         {
             get;
         }
-        public ICommand ShowResearchViewCommand
+        public ICommand ShowHomeCommand
         {
             get;
         }
-        public ICommand ShowOrganSelectionViewCommand
+        public ICommand ShowResearchCommand
+        {
+            get;
+        }
+        public ICommand ShowOrgansCommand
         {
             get;
         }
         #endregion
 
         #region methods
+        private void ExecuteShowInfo(object? obj)
+        {
+            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -143,38 +153,17 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
                 else
                 {
-                    if (_dossier != null)
-                    {
-                        _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-                    }
-                    else
-                    {
-                        _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-                    }
+                    _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
                 }
             }
             else
             {
-                if (_dossier != null)
-                {
-                    _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-                }
-                else
-                {
-                    _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-                }
+                _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
         private void ExecuteShowOrganSelectionView(object? obj)
         {
-            if (_dossier != null)
-            {
-                _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-            }
-            else
-            {
-                _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-            }
+            _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

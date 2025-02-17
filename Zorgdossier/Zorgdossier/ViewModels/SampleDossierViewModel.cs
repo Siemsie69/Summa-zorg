@@ -52,7 +52,7 @@ namespace Zorgdossier.ViewModels
             {
                 if (_isSampleMode != value)
                 {
-                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode));   
+                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode));
                 }
             }
         }

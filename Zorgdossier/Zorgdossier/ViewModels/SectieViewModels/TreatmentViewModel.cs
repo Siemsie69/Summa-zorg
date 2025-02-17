@@ -1,80 +1,168 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    public class TreatmentViewModel : ObservableObject
+    class TreatmentViewModel : ObservableObject
     {
-        #region Fields
+        #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private DossierService _dossierService;
+        private Dossier? _dossier;
+
+        private bool _isSampleMode;
+        private string _hintTextTreatmentSummary = string.Empty;
         #endregion
 
-        #region Constructors
-        public TreatmentViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        #region constructers
+        public TreatmentViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel? instance = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
-            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishProgress);
-            ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvices);
-            ShowHomeCommand = new RelayCommand(ExecuteShowHome);
+            Treatment = _dossierService.CentralDossier.Treatment;
+
+            if (dossier != null)
+            {
+                _dossier = dossier;
+
+                using (var context = new ApplicationDbContext())
+                {
+                    try
+                    {
+                        var treatmentInDb = context.Treatment.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Treatment.TreatmentSummary = treatmentInDb.TreatmentSummary;
+                    }
+                    catch (Exception ex)
+                    {
+                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
+                    }
+                }
+            }
+            if (instance != null)
+            {
+                Instance = instance;
+                IsSampleMode = Instance.IsSampleMode;
+            }
+
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
+            ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
+            ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvicesView);
+
+            HintTextTreatmentSummary = IsSampleMode
+                ? "Er wordt een antibioticakuur voorgeschreven, zoals nitrofurantoïne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.\n" +
+                "De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten."
+                : "Schrijf hier de behandeling op die de patiënt krijgt.";
         }
 
-        public TreatmentViewModel() { }
+        public TreatmentViewModel()
+        {
+
+        }
         #endregion
 
-        public IAppNavigation AppNavigation
+        #region properties
+        public DossierService.Treatment Treatment
         {
-            get => _appNavigation;
+            get;
         }
-
-        public UserMessage UserMessage
+        public bool IsSampleMode
         {
-            get => _userMessage;
+            get => _isSampleMode;
             set
             {
-                _userMessage = value;
-                OnPropertyChanged();
+                if (_isSampleMode != value)
+                {
+                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode)); OnPropertyChanged(nameof(IsNotSampleMode));
+                }
             }
         }
-
-        #region Commands
-        public ICommand ShowFinishProgressCommand { get; }
-        public ICommand ShowContactAdvicesCommand { get; }
-        public ICommand ShowHomeCommand { get; }
-        public ICommand ShowInfoCommand { get; }
+        public bool IsNotSampleMode => !IsSampleMode;
+        public string HintTextTreatmentSummary
+        {
+            get => _hintTextTreatmentSummary;
+            set
+            {
+                if (_hintTextTreatmentSummary != value)
+                {
+                    _hintTextTreatmentSummary = value;
+                    OnPropertyChanged(nameof(HintTextTreatmentSummary));
+                }
+            }
+        }
+        public SampleDossierViewModel Instance
+        {
+            get;
+        }
         #endregion
 
-        #region Methods
-        private void ExecuteShowFinishProgress(object? obj)
+        #region commands
+        public ICommand ShowInfoCommand
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage);
+            get;
         }
-        
-        private void ExecuteShowContactAdvices(object? obj)
+        public ICommand ShowHomeCommand
         {
-            _appNavigation.ActiveViewModel = new ContactAdvicesViewModel(_appNavigation, _userMessage);
+            get;
         }
+        public ICommand ShowFinishProgressCommand
+        {
+            get;
+        }
+        public ICommand ShowContactAdvicesCommand
+        {
+            get;
+        }
+        #endregion
 
-        private void ExecuteShowHome(object? obj)
+        #region methods
+        private void ExecuteShowInfo(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Ben je zeker dat je wilt afsluiten en terugkeren naar de homepagina? Je voortgang in dit dossier gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        private void ExecuteShowMainView(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
-
-        private void ExecuteShowInfo(object? obj)
+        private void ExecuteShowFinishedView(object? obj)
         {
-            MessageBox.Show("Bepaal de behandelingen die passen bij de diagnose en de ernst van de klachten, zodat de patiënt de juiste zorg ontvangt.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (IsSampleMode != true)
+            {
+                if (string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+                {
+                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    return;
+                }
+                else
+                {
+                    _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+            }
+        }
+        private void ExecuteShowContactAdvicesView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new ContactAdvicesViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }
