@@ -9,13 +9,27 @@
              mc:Ignorable="d"
              Name="SampleDossierWindow"
              MinHeight="450" MinWidth="640" Width="Auto" Background="White">
+    <d:UserControl.DataContext>
+        <viewmodels:SampleDossierViewModel />
+    </d:UserControl.DataContext>
+
     <Grid>
-        <Button Command="{Binding CloseCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                Content="X" FontSize="16"
-                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Background="Gray" Foreground="White" FontWeight="Bold" Panel.ZIndex="1"/>
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
+            <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                </StackPanel>
+            </Button>
+
+            <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                        Visibility="{Binding IsNotSampleMode,
+                        Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
 
         <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>

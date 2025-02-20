@@ -13,6 +13,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private UserMessage _userMessage;
         private Dossier _dossier;
         private DossierService _dossierService;
+        private string _introductionText;
         #endregion
 
         #region constructers
@@ -21,28 +22,43 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             _appNavigation = appNavigation;
             _userMessage = userMessage;
             _dossierService = dossierService;
-            if (dossier != null)
+            if(dossier != null)
             {
                 _dossier = dossier;
+                IntroductionText = "Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een Pdf-bestand.";
+            }
+            else
+            {
+                IntroductionText = "Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les.Deze stap helpt je om het proces van het invullen van patiëntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.";
             }
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
             ShowDossiersCommand = new RelayCommand(ExecuteShowDossiersView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
         }
-
         public IntroductionViewModel()
         {
-
         }
         #endregion
 
         #region properties
+        public string IntroductionText
+        {
+            get => _introductionText;
+            set
+            {
+                if (_introductionText != value)
+                {
+                    _introductionText = value;
+                    OnPropertyChanged(nameof(IntroductionText));
+                }
+            }
+        }
         #endregion
 
         #region commands
-        public ICommand ShowInfoCommand 
-        { 
-            get; 
+        public ICommand ShowInfoCommand
+        {
+            get;
         }
         public ICommand ShowDossiersCommand
         {

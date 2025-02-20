@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zorgdossier.Helpers;
+﻿using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 
 namespace Zorgdossier.ViewModels

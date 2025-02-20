@@ -82,7 +82,7 @@
             <TextBox Text="{Binding ComplaintsSymptoms.ComplaintsSymptomsSummary, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextComplaintsSymptomsSummary}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke klachten en symptomen ervaart de patiënt?" />
         </Grid>
 
         <!-- Buttons Section -->

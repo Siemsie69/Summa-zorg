@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,7 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextPhoneSummary = string.Empty;
         #endregion
 
         #region constructers
@@ -60,7 +54,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformationView);
 
-            HintTextPhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "Samenvatting telefoongesprek";
+            Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "";
         }
 
         public PhoneSummaryViewModel()
@@ -86,18 +80,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextPhoneSummary
-        {
-            get => _hintTextPhoneSummary;
-            set
-            {
-                if (_hintTextPhoneSummary != value)
-                {
-                    _hintTextPhoneSummary = value;
-                    OnPropertyChanged(nameof(HintTextPhoneSummary));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

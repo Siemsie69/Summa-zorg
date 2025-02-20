@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,7 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextQuestionSummary = string.Empty;
         #endregion
 
         #region constructers
@@ -60,11 +54,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
             ShowPhoneSummaryViewCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
 
-            HintTextQuestionSummary = IsSampleMode
+            Question.QuestionSummary = IsSampleMode
                 ? "•\tHeeft u een katheter? Loopt deze nog goed door?\n" +
                   "•\tHeeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
                   "•\tHerkent u de klachten van een eerdere urineweginfectie?"
-                : "Schrijf hier de vragen op die je gaat stellen.";
+                : "";
         }
 
         public QuestionsViewModel()
@@ -90,18 +84,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextQuestionSummary
-        {
-            get => _hintTextQuestionSummary;
-            set
-            {
-                if (_hintTextQuestionSummary != value)
-                {
-                    _hintTextQuestionSummary = value;
-                    OnPropertyChanged(nameof(HintTextQuestionSummary));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

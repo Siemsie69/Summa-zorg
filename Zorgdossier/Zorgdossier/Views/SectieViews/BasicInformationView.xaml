@@ -82,21 +82,21 @@
                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,10,10,0"/>
             <TextBox Text="{Binding BasicInformation.Name, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextName}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Naam Patiënt" />
 
             <!-- Klacht(en) van Patiënt -->
             <TextBlock Text="Klacht(en) van Patiënt:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
                        Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,20,10,0"/>
             <TextBox Text="{Binding BasicInformation.Complaint, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,20,20,0"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextComplaint}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Klacht Patiënt" />
 
             <!-- Patiëntcategorie -->
             <TextBlock Text="Selecteer Patiëntcategorie:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
                        Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,20,10,10"/>
             <ComboBox SelectedItem="{Binding BasicInformation.Gender, UpdateSourceTrigger=PropertyChanged}" 
                        Grid.Row="3" Grid.Column="1" Width="200px" Height="40" Margin="30,20,20,10" HorizontalAlignment="Left"
-                       Background="White" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+                       Background="White" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1" FontSize="16" SelectedIndex="0">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>Man</sys:String>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,7 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextResearchSummary = string.Empty;
         #endregion
 
         #region constructers
@@ -60,7 +54,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowPolicyCommand = new RelayCommand(ExecuteShowPolicyView);
             ShowComplaintsAndSymptomsCommand = new RelayCommand(ExecuteShowComplaintsAndSymptomsView);
 
-            HintTextResearchSummary = IsSampleMode ? "Urineonderzoek " : "Welke onderzoeken moeten er worden uitgevoerd?";
+            Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : "";
         }
 
         public ResearchViewModel()
@@ -86,18 +80,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextResearchSummary
-        {
-            get => _hintTextResearchSummary;
-            set
-            {
-                if (_hintTextResearchSummary != value)
-                {
-                    _hintTextResearchSummary = value;
-                    OnPropertyChanged(nameof(HintTextResearchSummary));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

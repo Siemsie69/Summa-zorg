@@ -84,8 +84,8 @@
             <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Kies de urgentie:" FontSize="18" FontWeight="Bold" 
            Foreground="{StaticResource PrimaryBrush}"
            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
-            <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" Margin="15,10,15,200" FontSize="16"
-          materialDesign:HintAssist.Hint="{Binding HintTextUrgencyChoice}">
+            <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" 
+                      Margin="15,10,15,200" FontSize="16" SelectedIndex="0">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>U1 Levensbedreigend</sys:String>
@@ -109,13 +109,13 @@
      TextWrapping="Wrap" 
      AcceptsReturn="True" 
      materialDesign:TextFieldAssist.HasClearButton="True"
-     materialDesign:HintAssist.Hint="{Binding HintTextTriageCriteria}"/>
+     materialDesign:HintAssist.Hint="Vul hier het triagecriterium in (optioneel)"/>
 
             <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Kies de beleidskeuze:" FontSize="18" FontWeight="Bold" 
            Foreground="{StaticResource PrimaryBrush}"
            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
             <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,60" FontSize="16"
-          materialDesign:HintAssist.Hint="{Binding HintTextPolicyChoice}">
+                      SelectedIndex="0">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>Afspraak</sys:String>
@@ -129,8 +129,7 @@
                      Value="{Binding Policy.PolicyDateTime,
                 UpdateSourceTrigger=PropertyChanged}"
                      Visibility="{Binding Appointment,
-                Converter={StaticResource BooleanToVisibilityConverter}}"
-                     DefaultValue="{Binding HintTextPolicyDateTime}"/>
+                Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
 
         <!-- Buttons Section -->

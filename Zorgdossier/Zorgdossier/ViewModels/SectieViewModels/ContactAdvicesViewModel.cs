@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,8 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextAdvice = string.Empty;
-        private string _hintTextContactAdvice = string.Empty;
         #endregion
 
         #region constructers
@@ -62,8 +55,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowTreatmentCommand = new RelayCommand(ExecuteShowTreatmentView);
             ShowPolicyCommand = new RelayCommand(ExecuteShowPolicyView);
 
-            HintTextAdvice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : "Welke adviezen geef je aan de patiënt?";
-            HintTextContactAdvice = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : "Welke contact adviezen geef je aan de patiënt? (optioneel)";
+            ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : "";
+            ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : "";
         }
 
         public ContactAdvicesViewModel()
@@ -89,30 +82,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextAdvice
-        {
-            get => _hintTextAdvice;
-            set
-            {
-                if (_hintTextAdvice != value)
-                {
-                    _hintTextAdvice = value;
-                    OnPropertyChanged(nameof(HintTextAdvice));
-                }
-            }
-        }
-        public string HintTextContactAdvice
-        {
-            get => _hintTextContactAdvice;
-            set
-            {
-                if (_hintTextContactAdvice != value)
-                {
-                    _hintTextContactAdvice = value;
-                    OnPropertyChanged(nameof(HintTextContactAdvice));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

@@ -82,7 +82,7 @@
             <TextBox Text="{Binding Phone.PhoneSummary, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextPhoneSummary}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Samenvatting telefoongesprek" />
         </Grid>
 
         <!-- Buttons Section -->
@@ -98,7 +98,7 @@
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button -->
-            <Button Content="Volgende" FontSize="14" Command="{Binding ShowQuestionsCommand}" Width="200" Height="45" 
+            <Button Content="Volgende" FontSize="14" Command="{Binding  xzcxzc ShowQuestionsCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>

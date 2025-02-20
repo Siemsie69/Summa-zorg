@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
-using Zorgdossier.Views;
-using System.Diagnostics;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using System.IO;
 using Microsoft.Win32;
 using iText.IO.Font.Constants;
 using iText.Kernel.Font;
-using iText.IO.Image;
 using iText.Kernel.Colors;
 
 namespace Zorgdossier.ViewModels

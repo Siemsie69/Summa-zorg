@@ -53,7 +53,7 @@
                 <DataGridTemplateColumn Header="Bewerken" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Bewerken" HorizontalAlignment="Left" Command="{Binding DataContext.ShowIntroductionViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" 
+                            <Button Content="Bewerken" HorizontalAlignment="Left" Command="{Binding DataContext.ShowIntroductionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" 
                                     Width="105" Height="30" Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

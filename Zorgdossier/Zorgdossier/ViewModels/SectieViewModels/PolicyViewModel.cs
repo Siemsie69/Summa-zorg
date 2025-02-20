@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
@@ -21,10 +16,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextUrgencyChoice = string.Empty;
-        private string _hintTextTriageCriteria = string.Empty;
-        private string _hintTextPolicyChoice = string.Empty;
-        private DateTime _hintTextPolicyDateTime;
         #endregion
 
         #region constructers
@@ -67,8 +58,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvicesView);
             ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
 
-            HintTextUrgencyChoice = IsSampleMode ? "U3 Dringend" : "U1 Levensbedreigend";
-            HintTextTriageCriteria = IsSampleMode
+            Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : "";
+            Policy.TriageCriteria = IsSampleMode
                 ? "Categorie: Urologie | " +
                 "Hoofdklacht: Pijn bij het plassen (dysurie) | " +
                 "Leeftijd: 23 jaar\n" +
@@ -76,9 +67,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 "Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. " +
                 "Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).\n" +
                 "Aanvullend: Patiënt vraagt specifiek om een afspraak."
-                : "Vul hier het triagecriterium in (optioneel).";
-            HintTextPolicyChoice = IsSampleMode ? "Afspraak" : "Afspraak";
-            HintTextPolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
+                : "";
+            Policy.PolicyChoice = IsSampleMode ? "Afspraak" : "";
+            Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
 
             if (Policy != null)
             {
@@ -109,54 +100,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextUrgencyChoice
-        {
-            get => _hintTextUrgencyChoice;
-            set
-            {
-                if (_hintTextUrgencyChoice != value)
-                {
-                    _hintTextUrgencyChoice = value;
-                    OnPropertyChanged(nameof(HintTextUrgencyChoice));
-                }
-            }
-        }
-        public string HintTextTriageCriteria
-        {
-            get => _hintTextTriageCriteria;
-            set
-            {
-                if (_hintTextTriageCriteria != value)
-                {
-                    _hintTextTriageCriteria = value;
-                    OnPropertyChanged(nameof(HintTextTriageCriteria));
-                }
-            }
-        }
-        public string HintTextPolicyChoice
-        {
-            get => _hintTextPolicyChoice;
-            set
-            {
-                if (_hintTextPolicyChoice != value)
-                {
-                    _hintTextPolicyChoice = value;
-                    OnPropertyChanged(nameof(HintTextPolicyChoice));
-                }
-            }
-        }
-        public DateTime HintTextPolicyDateTime
-        {
-            get => _hintTextPolicyDateTime;
-            set
-            {
-                if (_hintTextPolicyDateTime != value)
-                {
-                    _hintTextPolicyDateTime = value;
-                    OnPropertyChanged(nameof(HintTextPolicyDateTime));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

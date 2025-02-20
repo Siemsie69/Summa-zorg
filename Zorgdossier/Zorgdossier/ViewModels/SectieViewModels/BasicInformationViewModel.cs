@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -21,9 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private DossierService _dossierService;
 
         private bool _isSampleMode;
-        private string _hintTextName = string.Empty;
-        private string _hintTextComplaint = string.Empty;
-        private string _hintTextType = string.Empty;
         #endregion
 
         #region constructers
@@ -65,9 +56,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
             ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroductionView);
 
-            HintTextName = IsSampleMode ? "Jan Jansen" : "Naam Patiënt";
-            HintTextComplaint = IsSampleMode ? "Buikpijn" : "Klacht Patiënt";
-            HintTextType = IsSampleMode ? "Man" : "Man";
+            BasicInformation.Name = IsSampleMode ? "Jan Jansen" : "";
+            BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : "";
+            BasicInformation.Gender = IsSampleMode ? "Man" : "";
         }
 
         public BasicInformationViewModel()
@@ -93,42 +84,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextName
-        {
-            get => _hintTextName;
-            set
-            {
-                if (_hintTextName != value)
-                {
-                    _hintTextName = value;
-                    OnPropertyChanged(nameof(HintTextName));
-                }
-            }
-        }
-        public string HintTextComplaint
-        {
-            get => _hintTextComplaint;
-            set
-            {
-                if (_hintTextComplaint != value)
-                {
-                    _hintTextComplaint = value;
-                    OnPropertyChanged(nameof(HintTextComplaint));
-                }
-            }
-        }
-        public string HintTextType
-        {
-            get => _hintTextType;
-            set
-            {
-                if (_hintTextType != value)
-                {
-                    _hintTextType = value;
-                    OnPropertyChanged(nameof(HintTextType));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

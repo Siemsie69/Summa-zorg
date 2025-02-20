@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,7 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextComplaintsSymptomsSummary = string.Empty;
         #endregion
 
         #region constructers
@@ -60,11 +54,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
             ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
 
-            HintTextComplaintsSymptomsSummary = IsSampleMode
+            ComplaintsSymptoms.ComplaintsSymptomsSummary = IsSampleMode
                 ? "•\tPijn bij het plassen\n" +
                   "•\tBranderig gevoel bij het plassen\n" +
                   "•\tKleine beetjes plassen"
-                : "Welke klachten en symptomen ervaart de patiënt?";
+                : "";
         }
 
         public ComplaintsAndSymptomsViewModel()
@@ -90,18 +84,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextComplaintsSymptomsSummary
-        {
-            get => _hintTextComplaintsSymptomsSummary;
-            set
-            {
-                if (_hintTextComplaintsSymptomsSummary != value)
-                {
-                    _hintTextComplaintsSymptomsSummary = value;
-                    OnPropertyChanged(nameof(HintTextComplaintsSymptomsSummary));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

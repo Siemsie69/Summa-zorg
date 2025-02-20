@@ -84,7 +84,7 @@
             <TextBox Text="{Binding Question.QuestionSummary, UpdateSourceTrigger=PropertyChanged}" 
              Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-             materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextQuestionSummary}" />
+             materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Schrijf hier de vragen op die je gaat stellen" />
         </Grid>
 
         <!-- Buttons Section -->

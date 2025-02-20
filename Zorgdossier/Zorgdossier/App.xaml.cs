@@ -1,7 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Data.SQLite;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;

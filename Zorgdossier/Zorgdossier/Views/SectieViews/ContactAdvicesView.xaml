@@ -82,7 +82,7 @@
             <TextBox Text="{Binding ContactAdvice.Advice, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextAdvice}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke adviezen geef je aan de patiënt?" />
 
             <!-- Instruction Label -->
             <TextBlock Text="Vul hier in wanneer &#10;de patiënt contact &#10;op zou moeten &#10; nemen volgens jou:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
@@ -92,7 +92,7 @@
             <TextBox Text="{Binding ContactAdvice.ContactAdviceText, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextContactAdvice}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke contact adviezen geef je aan de patiënt? (optioneel)" />
         </Grid>
 
 

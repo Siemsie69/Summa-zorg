@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
@@ -20,7 +15,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private Dossier? _dossier;
 
         private bool _isSampleMode;
-        private string _hintTextTreatmentSummary = string.Empty;
         #endregion
 
         #region constructers
@@ -60,10 +54,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
             ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvicesView);
 
-            HintTextTreatmentSummary = IsSampleMode
+            Treatment.TreatmentSummary = IsSampleMode
                 ? "Er wordt een antibioticakuur voorgeschreven, zoals nitrofurantoïne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.\n" +
                 "De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten."
-                : "Schrijf hier de behandeling op die de patiënt krijgt.";
+                : "";
         }
 
         public TreatmentViewModel()
@@ -89,18 +83,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
         public bool IsNotSampleMode => !IsSampleMode;
-        public string HintTextTreatmentSummary
-        {
-            get => _hintTextTreatmentSummary;
-            set
-            {
-                if (_hintTextTreatmentSummary != value)
-                {
-                    _hintTextTreatmentSummary = value;
-                    OnPropertyChanged(nameof(HintTextTreatmentSummary));
-                }
-            }
-        }
         public SampleDossierViewModel Instance
         {
             get;

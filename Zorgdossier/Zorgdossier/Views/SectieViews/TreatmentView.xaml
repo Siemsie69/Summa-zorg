@@ -82,7 +82,7 @@
             <TextBox Text="{Binding Treatment.TreatmentSummary, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextTreatmentSummary}" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke behandeling(en) krijgt de patiënt?" />
         </Grid>
 
         <!-- Buttons Section -->
