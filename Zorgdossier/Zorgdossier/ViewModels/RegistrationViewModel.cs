@@ -64,13 +64,13 @@ namespace Zorgdossier.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Student.StudentNumber) || string.IsNullOrWhiteSpace(Student.Name))
             {
-                _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                _userMessage.Text = "Voer alle invoervelden in.";
                 return;
             }
 
             if (Student.StudentNumber.Length != 8)
             {
-                _userMessage.Text = "Het studentnummer moet precies 8 karakters lang zijn.";
+                _userMessage.Text = "Het studentnummer moet 8 karakters lang zijn. (PS123456)";
                 return;
             }
 

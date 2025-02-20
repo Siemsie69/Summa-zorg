@@ -71,6 +71,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool IsSampleMode
         {
             get => _isSampleMode;
@@ -82,6 +83,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotSampleMode => !IsSampleMode;
         public SampleDossierViewModel Instance
         {
@@ -94,14 +96,17 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;
         }
+
         public ICommand ShowFinishProgressCommand
         {
             get;
         }
+
         public ICommand ShowContactAdvicesCommand
         {
             get;
@@ -111,9 +116,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Bepaal de behandelingen die passen bij de diagnose en de ernst van de klachten, zodat de patiënt de juiste zorg ontvangt.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -123,6 +129,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowFinishedView(object? obj)
         {
             if (IsSampleMode != true)
@@ -142,6 +149,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
             }
         }
+
         private void ExecuteShowContactAdvicesView(object? obj)
         {
             _appNavigation.ActiveViewModel = new ContactAdvicesViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);

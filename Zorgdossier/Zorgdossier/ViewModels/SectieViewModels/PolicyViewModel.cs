@@ -57,6 +57,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvicesView);
             ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : "";
             Policy.TriageCriteria = IsSampleMode
@@ -112,15 +113,23 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;
         }
+
         public ICommand ShowContactAdvicesCommand
         {
             get;
         }
+
         public ICommand ShowResearchCommand
+        {
+            get;
+        }
+
+        public ICommand ShowFinishProgressCommand
         {
             get;
         }
@@ -129,9 +138,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Op basis van de urgentie en de triagecriteria kunt u nu beslissen of het noodzakelijk is om direct een afspraak bij de dokter te plannen en welke tijd het beste past voor de patiënt.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -141,6 +151,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowContactAdvicesView(object? obj)
         {
             if (IsSampleMode != true)
@@ -160,16 +171,23 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new ContactAdvicesViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
+
         private void ExecuteShowResearchView(object? obj)
         {
             _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
+
         private void Policy_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Policy.PolicyChoice))
             {
                 OnPropertyChanged(nameof(Appointment));
             }
+        }
+
+        private void ExecuteShowFinishedView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

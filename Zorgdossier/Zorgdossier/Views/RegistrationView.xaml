@@ -49,7 +49,7 @@
                  Grid.Row="3" Grid.ColumnSpan="2" FontSize="16" Margin="15,10,15,10" 
                  VerticalContentAlignment="Top"
                  materialDesign:TextFieldAssist.HasClearButton="True"
-                 materialDesign:HintAssist.Hint="Vul hier je persoonlijke studentnummer in."/>
+                 materialDesign:HintAssist.Hint="Persoonlijke studentnummer (PS123456)"/>
 
             <!-- Triage Criteria Section -->
             <TextBlock Grid.Row="4" Text="Naam:" FontSize="18" FontWeight="Bold" 
@@ -60,7 +60,7 @@
                  Grid.Row="5" Grid.ColumnSpan="2" FontSize="16" Margin="15,10,15,10" 
                  VerticalContentAlignment="Top"
                  materialDesign:TextFieldAssist.HasClearButton="True"
-                 materialDesign:HintAssist.Hint="Vul hier je voor- en achternaam in."/>
+                 materialDesign:HintAssist.Hint="Je voor- en achternaam (Jan Jansen/Anne Modaal)"/>
 
             <Button Grid.Row="6" Grid.ColumnSpan="2" Background="{StaticResource PrimaryBrush}"
                     Content="Registreren" Foreground="{StaticResource SecondaryBrush}"
@@ -69,8 +69,7 @@
                     Command="{Binding RegisterCommand}" FontSize="20" />
 
             <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="{Binding UserMessage.Text}"
-                   Visibility="{Binding UserMessage.Text,
-            Converter={StaticResource StringIsEmptyVisibilityConverter}}"
+                   Visibility="{Binding UserMessage.Text, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
                    FontSize="16"
                    TextAlignment="Center"
                    Padding="0,10,0,10"

@@ -41,7 +41,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #endregion
 
         #region constructers
-        public FinishProgressViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null)
+        public FinishProgressViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel instance = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
@@ -437,7 +437,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Ben je zeker dat je alles hebt gecontroleerd en klaar bent met invullen? Zorg ervoor dat je alle benodigde informatie hebt ingevuld. Je kunt hieronder de voortgang van het invullen bekijken om te zien of je alles hebt afgerond.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void ExecuteCreateDossier(object? obj)
