@@ -41,7 +41,7 @@ namespace Zorgdossier.ViewModels
             _userMessage = userMessage;
 
             ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
-            ShowSampleDossierViewCommand = new RelayCommand(ExecuteShowSampleDossier);
+            ShowSampleDossierCommand = new RelayCommand(ExecuteShowSampleDossier);
             ExportDossierCommand = new RelayCommand(ExportDossier, CanExportDossier);
 
             using (var context = new ApplicationDbContext())
@@ -71,7 +71,7 @@ namespace Zorgdossier.ViewModels
         {
             get;
         }
-        public ICommand ShowSampleDossierViewCommand
+        public ICommand ShowSampleDossierCommand
         {
             get;
         }

@@ -13,6 +13,31 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private UserMessage _userMessage;
         private DossierService _dossierService;
         private Dossier? _dossier;
+        private bool _isEditMode;
+
+        private bool _basicInfoName;
+        private bool _basicInfoComplaint;
+        private bool _basicInfoType;
+
+        private bool _phoneSummary;
+
+        private bool _questionSummary;
+
+        private bool _organs;
+
+        private bool _complaintsSymptomsSummary;
+
+        private bool _researchSummary;
+
+        private bool _policyUrgency;
+        private bool _policyTriagecriterium;
+        private bool _policyChoice;
+        private bool _policyDateTime;
+
+        private bool _advice;
+        private bool _adviceForContact;
+
+        private bool _treatmentSummary;
         #endregion
 
         #region constructers
@@ -21,22 +46,61 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             _appNavigation = appNavigation;
             _userMessage = userMessage;
             _dossierService = dossierService;
-            _dossier = dossier;
+            if(dossier != null)
+            {
+                _dossier = dossier;
+                IsEditMode = true;
+            }
+            else
+            {
+                IsEditMode = false;
+            }
+
+            BasicInformation = _dossierService.CentralDossier.BasicInformation;
+            _basicInfoName = !string.IsNullOrEmpty(BasicInformation.Name);
+            _basicInfoComplaint = !string.IsNullOrEmpty(BasicInformation.Complaint);
+            _basicInfoType = !string.IsNullOrEmpty(BasicInformation.Gender);
+
+            Phone = _dossierService.CentralDossier.Phone;
+            _phoneSummary = !string.IsNullOrEmpty(Phone.PhoneSummary);
+
+            Question = _dossierService.CentralDossier.Question;
+            _questionSummary = !string.IsNullOrEmpty(Question.QuestionSummary);
+
+            Organ = _dossierService.CentralDossier.Organ;
+            _organs = !string.IsNullOrEmpty(Organ.Organs);
+
+            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
+            _complaintsSymptomsSummary = !string.IsNullOrEmpty(ComplaintsSymptoms.ComplaintsSymptomsSummary);
+
+            Research = _dossierService.CentralDossier.Research;
+            _researchSummary = !string.IsNullOrEmpty(Research.ResearchSummary);
+
+            Policy = _dossierService.CentralDossier.Policy;
+            _policyUrgency = !string.IsNullOrEmpty(Policy.Urgency);
+            _policyTriagecriterium = !string.IsNullOrEmpty(Policy.TriageCriteria);
+            _policyChoice = !string.IsNullOrEmpty(Policy.PolicyChoice);
+            _policyDateTime = Policy.PolicyDateTime.HasValue;
+
+            ContactAdvice = _dossierService.CentralDossier.ContactAdvice;
+            _advice = !string.IsNullOrEmpty(ContactAdvice.Advice);
+            _adviceForContact = !string.IsNullOrEmpty(ContactAdvice.ContactAdviceText);
+
+            Treatment = _dossierService.CentralDossier.Treatment;
+            _treatmentSummary = !string.IsNullOrEmpty(Treatment.TreatmentSummary);
 
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
-            ShowTreatmentCommand = new RelayCommand(ExecuteShowTreatmentView);
             CreateDossierCommand = new RelayCommand(ExecuteCreateDossier);
-
-            Dossier = _dossierService.CentralDossier.Dossier;
-            BasicInformation = _dossierService.CentralDossier.BasicInformation;
-            Phone = _dossierService.CentralDossier.Phone;
-            Question = _dossierService.CentralDossier.Question;
-            Organ = _dossierService.CentralDossier.Organ;
-            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
-            Research = _dossierService.CentralDossier.Research;
-            Policy = _dossierService.CentralDossier.Policy;
-            ContactAdvice = _dossierService.CentralDossier.ContactAdvice;
-            Treatment = _dossierService.CentralDossier.Treatment;
+            EditDossierCommand = new RelayCommand(ExecuteEditDossier, CanExecuteEditDossier);
+            ShowBasicInfoCommand = new RelayCommand(ExecuteShowBasicInfo);
+            ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummary);
+            ShowQuestionCommand = new RelayCommand(ExecuteShowQuestion);
+            ShowOrgansCommand = new RelayCommand(ExecuteShowOrgans);
+            ShowComplaintsSymptomsCommand = new RelayCommand(ExecuteShowComplaintsSymptoms);
+            ShowResearchCommand = new RelayCommand(ExecuteShowResearch);
+            ShowPolicyCommand = new RelayCommand(ExecuteShowPolicy);
+            ShowContactCommand = new RelayCommand(ExecuteShowContact);
+            ShowTreatmentCommand = new RelayCommand(ExecuteShowTreatment);
         }
 
         public FinishProgressViewModel()
@@ -54,38 +118,269 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+        public bool BasicInfoName
+        {
+            get
+            {
+                return _basicInfoName;
+            }
+            set
+            {
+                if (_basicInfoName != value)
+                {
+                    _basicInfoName = value; OnPropertyChanged();
+                }
+            }
+        }
+        public bool BasicInfoComplaint
+        {
+            get
+            {
+                return _basicInfoComplaint;
+            }
+            set
+            {
+                if (_basicInfoComplaint != value)
+                {
+                    _basicInfoComplaint = value; OnPropertyChanged();
+                }
+            }
+        }
+        public bool BasicInfoType
+        {
+            get
+            {
+                return _basicInfoType;
+            }
+            set
+            {
+                if (_basicInfoType != value)
+                {
+                    _basicInfoType = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Phone Phone
         {
             get;
         }
+        public bool PhoneSummary
+        {
+            get
+            {
+                return _phoneSummary;
+            }
+            set
+            {
+                if (_phoneSummary != value)
+                {
+                    _phoneSummary = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Question Question
         {
             get;
         }
+        public bool QuestionSummary
+        {
+            get
+            {
+                return _questionSummary;
+            }
+            set
+            {
+                if (_questionSummary != value)
+                {
+                    _questionSummary = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Organ Organ
         {
             get;
         }
+        public bool Organs
+        {
+            get
+            {
+                return _organs;
+            }
+            set
+            {
+                if (_organs != value)
+                {
+                    _organs = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.ComplaintsSymptoms ComplaintsSymptoms
         {
             get;
         }
+        public bool ComplaintsSymptomsSummary
+        {
+            get
+            {
+                return _complaintsSymptomsSummary;
+            }
+            set
+            {
+                if (_complaintsSymptomsSummary != value)
+                {
+                    _complaintsSymptomsSummary = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Research Research
         {
             get;
         }
+        public bool ResearchSummary
+        {
+            get
+            {
+                return _researchSummary;
+            }
+            set
+            {
+                if (_researchSummary != value)
+                {
+                    _researchSummary = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Policy Policy
         {
             get;
+        }
+        public bool PolicyUrgency
+        {
+            get
+            {
+                return _policyUrgency;
+            }
+            set
+            {
+                if (_policyUrgency != value)
+                {
+                    _policyUrgency = value; OnPropertyChanged();
+                }
+            }
+        }
+        public bool PolicyTriagecriterium
+        {
+            get
+            {
+                return _policyTriagecriterium;
+            }
+            set
+            {
+                if (_policyTriagecriterium != value)
+                {
+                    _policyTriagecriterium = value; OnPropertyChanged();
+                }
+            }
+        }
+        public bool PolicyChoice
+        {
+            get
+            {
+                return _policyChoice;
+            }
+            set
+            {
+                if (_policyChoice != value)
+                {
+                    _policyChoice = value; OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool PolicyDateTime
+        {
+            get
+            {
+                return _policyDateTime;
+            }
+            set
+            {
+                if (_policyDateTime != value)
+                {
+                    _policyDateTime = value; OnPropertyChanged();
+                }
+            }
         }
         public DossierService.ContactAdvice ContactAdvice
         {
             get;
         }
+        public bool Advice
+        {
+            get
+            {
+                return _advice;
+            }
+            set
+            {
+                if (_advice != value)
+                {
+                    _advice = value; OnPropertyChanged();
+                }
+            }
+        }
+        public bool AdviceForContact
+        {
+            get
+            {
+                return _adviceForContact;
+            }
+            set
+            {
+                if (_adviceForContact != value)
+                {
+                    _adviceForContact = value; OnPropertyChanged();
+                }
+            }
+        }
+
         public DossierService.Treatment Treatment
         {
             get;
         }
+        public bool TreatmentSummary
+        {
+            get
+            {
+                return _treatmentSummary;
+            }
+            set
+            {
+                if (_treatmentSummary != value)
+                {
+                    _treatmentSummary = value; OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set
+            {
+                if (_isEditMode != value)
+                {
+                    _isEditMode = value; OnPropertyChanged(nameof(IsEditMode)); OnPropertyChanged(nameof(IsNotEditMode));
+                }
+            }
+        }
+        public bool IsNotEditMode => !IsEditMode;
         #endregion
 
         #region commands
@@ -93,11 +388,47 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
-        public ICommand ShowTreatmentCommand
+        public ICommand CreateDossierCommand
         {
             get;
         }
-        public ICommand CreateDossierCommand
+        public ICommand EditDossierCommand
+        {
+            get;
+        }
+        public ICommand ShowBasicInfoCommand
+        {
+            get;
+        }
+        public ICommand ShowPhoneSummaryCommand
+        {
+            get;
+        }
+        public ICommand ShowQuestionCommand
+        {
+            get;
+        }
+        public ICommand ShowOrgansCommand
+        {
+            get;
+        }
+        public ICommand ShowComplaintsSymptomsCommand
+        {
+            get;
+        }
+        public ICommand ShowResearchCommand
+        {
+            get;
+        }
+        public ICommand ShowPolicyCommand
+        {
+            get;
+        }
+        public ICommand ShowContactCommand
+        {
+            get;
+        }
+        public ICommand ShowTreatmentCommand
         {
             get;
         }
@@ -108,10 +439,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        private void ExecuteShowTreatmentView(object? obj)
-        {
-            _appNavigation.ActiveViewModel = new TreatmentViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         private void ExecuteCreateDossier(object? obj)
         {
@@ -210,9 +537,112 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+        private bool CanExecuteEditDossier(object? obj)
+        {
+            return _dossier != null;
+        }
+        private void ExecuteEditDossier(object? obj)
+        {
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je het dossier wilt weizigen?", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                using (var context = new ApplicationDbContext())
+                {
+                    try
+                    {
+                        if (_dossier != null)
+                        {
+                            Dossier? dossierInDb = context.Dossier.FirstOrDefault(x => x.Id == _dossier.Id);
+                            dossierInDb.Title = BasicInformation.Complaint + " - " + BasicInformation.Name;
+                            dossierInDb.UpdatedAt = DateOnly.FromDateTime(DateTime.Today);
+
+                            BasicInformation? basicInformationInDb = context.BasicInformation.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(basicInformationInDb).CurrentValues.SetValues(BasicInformation);
+                            basicInformationInDb.DossierId = dossierInDb.Id;
+
+                            Phone? phoneInDb = context.Phone.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(phoneInDb).CurrentValues.SetValues(Phone);
+                            phoneInDb.DossierId = dossierInDb.Id;
+
+                            Question? questionInDb = context.Question.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(questionInDb).CurrentValues.SetValues(Question);
+                            questionInDb.DossierId = dossierInDb.Id;
+
+                            Organ? organInDb = context.Organ.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(organInDb).CurrentValues.SetValues(Organ);
+                            organInDb.DossierId = dossierInDb.Id;
+
+                            ComplaintsSymptoms? complaintsSymptomsInDb = context.ComplaintsSymptoms.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(complaintsSymptomsInDb).CurrentValues.SetValues(ComplaintsSymptoms);
+                            complaintsSymptomsInDb.DossierId = dossierInDb.Id;
+
+                            Research? researchInDb = context.Research.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(researchInDb).CurrentValues.SetValues(Research);
+                            researchInDb.DossierId = dossierInDb.Id;
+
+                            Policy? policyInDb = context.Policy.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(policyInDb).CurrentValues.SetValues(Policy);
+                            policyInDb.DossierId = dossierInDb.Id;
+
+                            ContactAdvice? contactAdviceInDb = context.ContactAdvice.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(contactAdviceInDb).CurrentValues.SetValues(ContactAdvice);
+                            contactAdviceInDb.DossierId = dossierInDb.Id;
+
+                            Treatment? treatmentInDb = context.Treatment.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                            context.Entry(treatmentInDb).CurrentValues.SetValues(Treatment);
+                            treatmentInDb.DossierId = dossierInDb.Id;
+
+                            context.SaveChanges();
+                            RedirectToDossierView();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _userMessage.Text = ("Fout met het wijzigen van het dossier: " + ex.Message);
+                    }
+                }
+            }
+        }
         private void RedirectToDossierView()
         {
             _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+        }
+        private void ExecuteShowBasicInfo(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowPhoneSummary(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowQuestion(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowOrgans(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowComplaintsSymptoms(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowResearch(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowPolicy(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowContact(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+        private void ExecuteShowTreatment(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

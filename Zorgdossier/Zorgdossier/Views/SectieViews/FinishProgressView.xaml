@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Zorgdossier.Views.SectieViews"
+             xmlns:localBrushConverter="clr-namespace:Zorgdossier.Helpers"
              xmlns:sectieviewmodels="clr-namespace:Zorgdossier.ViewModels.SectieViewModels"
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -12,19 +13,34 @@
     <d:UserControl.DataContext>
         <sectieviewmodels:FinishProgressViewModel/>
     </d:UserControl.DataContext>
+    <UserControl.Resources>
+        <localBrushConverter:BooleanToBrushConverter x:Key="BooleanToBrushConverter" />
+    </UserControl.Resources>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Title Section with Buttons -->
@@ -49,11 +65,109 @@
         <TextBlock Text="Controleer de status van het dossier en geef aan of het dossier klaar is. Het is essentieel om te verifiëren of alle informatie correct en volledig is ingevuld voordat je het dossier afrondt. Neem even de tijd om alle details na te lopen en zorg ervoor dat je geen belangrijke gegevens hebt gemist. Dit helpt om eventuele fouten te voorkomen en het dossier correct af te sluiten." 
                   FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-        <!-- Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3"/>
+        <!-- Text Section -->
+        <TextBlock Text="Klik op de namen van de dossiersecties om er heen te gaan. Alle invoer blijft tussentijds gewoon opgeslagen."
+          FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="2" Grid.ColumnSpan="3"/>
+
+        <Button Grid.Row="3" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowBasicInfoCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Basisinformatie" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="4" Background="{Binding BasicInfoName, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Naam Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="5" Background="{Binding BasicInfoComplaint, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Klacht Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="6" Background="{Binding BasicInfoType, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Type Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowPhoneSummaryCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Telefoonsamenvatting" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="4" Grid.Column="1" Background="{Binding PhoneSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Samenvatting telefoongesprek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowQuestionCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Vragen stellen" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="4" Grid.Column="2" Background="{Binding QuestionSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Vragen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="7" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowOrgansCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Organen selecteren" FontSize="14" FontWeight="Bold" />
+        </Button>
+        <Border Grid.Row="8" Background="{Binding Organs, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Organen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowComplaintsSymptomsCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Klachten en symptomen" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="8" Grid.Column="1" Background="{Binding ComplaintsSymptomsSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Klachten die de patiënt ervaart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowResearchCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Onderzoeken" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="8" Grid.Column="2" Background="{Binding ResearchSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Uit te voeren onderzoeken" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="9" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowPolicyCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Grid.Row="6" Text="Beleid en urgenties" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="10" Background="{Binding PolicyUrgency, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Urgentie" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="11" Background="{Binding PolicyTriagecriterium, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Triagecriterium" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="12" Background="{Binding PolicyChoice, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Beleidskeuze" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="13" Background="{Binding PolicyDateTime, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Moment van afspraak" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowContactCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="(Contact-) adviezen" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="10" Grid.Column="1" Background="{Binding Advice, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Adviezen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+        <Border Grid.Row="11" Grid.Column="1" Background="{Binding AdviceForContact, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Contact adviezen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Button Grid.Row="9" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowTreatmentCommand}" Background="{StaticResource SecondaryBrush}" BorderThickness="0">
+            <TextBlock Text="Behandeling" FontSize="14" FontWeight="Bold"/>
+        </Button>
+        <Border Grid.Row="10" Grid.Column="2" Background="{Binding TreatmentSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+            <TextBlock Text="Behandeling voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+        </Border>
+
+        <Border Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" Padding="10" HorizontalAlignment="Stretch" Margin="10,20,10,0">
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Legenda" FontSize="18" FontWeight="Bold" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"
+                                 Visibility="{Binding IsNotSampleMode,
+                    Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Rectangle Width="20" Height="20" Fill="Red" Stroke="Black" Margin="0,0,5,0" />
+                    <TextBlock Text="Niet ingevuld" VerticalAlignment="Center" FontSize="14" />
+                    <Rectangle Width="20" Height="20" Fill="Green" Stroke="Black" Margin="20,0,5,0" />
+                    <TextBlock Text="Wel ingevuld" VerticalAlignment="Center" FontSize="14" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
 
         <!-- Buttons Section -->
-        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+        <Grid Grid.Row="15" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -62,11 +176,17 @@
 
             <!-- Left Button (Vorige) -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
-            <!-- Right Button (Dossier Aanmaken NOG NIET GEBIND VOOR AANMAKEN) -->
+            <!-- Right Button  -->
             <Button Content="Dossier aanmaken" FontSize="14" Command="{Binding CreateDossierCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right"/>
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Visibility="{Binding IsNotEditMode,
+                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button Content="Dossier wijzigen" FontSize="14" Command="{Binding EditDossierCommand}" Width="200" Height="45" 
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Visibility="{Binding IsEditMode,
+                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 </UserControl>

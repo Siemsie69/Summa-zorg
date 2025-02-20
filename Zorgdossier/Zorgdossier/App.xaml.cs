@@ -8,12 +8,8 @@ using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 using Zorgdossier.Views;
 using Zorgdossier.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using System.Security.Cryptography.X509Certificates;
-using Zorgdossier.ViewModels.SectieViewModels;
-using Zorgdossier.Views.SectieViews;
 
-namespace ZorgDossier
+namespace Zorgdossier
 {
     public partial class App : Application
     {

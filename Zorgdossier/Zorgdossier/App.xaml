@@ -50,7 +50,11 @@
             <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
                 <views:SettingsView />
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewModels:SampleDossierViewModel}">
+                <views:SampleDossierView />
+            </DataTemplate>
+
             <!-- Dossier Navigatie -->
             <DataTemplate DataType="{x:Type sectieViewModels:IntroductionViewModel}">
                 <sectieViews:IntroductionView />

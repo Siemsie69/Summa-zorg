@@ -45,7 +45,9 @@
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}">
+                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                        Visibility="{Binding IsNotSampleMode,
+                        Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                     </StackPanel>
@@ -116,7 +118,9 @@
 
             <!-- Left Button (aligned to the left) -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"
+                    Visibility="{Binding IsNotSampleMode,
+                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <!-- Right Button (aligned to the right) -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowPhoneSummaryCommand}" Width="200" Height="45" 

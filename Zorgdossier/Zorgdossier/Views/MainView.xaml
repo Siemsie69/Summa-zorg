@@ -125,14 +125,18 @@
 
         <!-- Main Content Area (this is where your views will be displayed) -->
         <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <!-- Content control binds to the active view model -->
             <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
             <!-- User Message (this TextBlock shows a message when there is text to display) -->
-            <TextBlock Text="{Binding UserMessage.Text}" 
+            <TextBlock Grid.Row="1" Text="{Binding UserMessage.Text}" 
                        Visibility="{Binding UserMessage.Text, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
-                       FontSize="16" TextAlignment="Center" HorizontalAlignment="Stretch"
-                       Padding="0,10,0,10" Foreground="Red"/>
+                       FontSize="16" TextAlignment="Left" HorizontalAlignment="Stretch"
+                       Padding="20,0,0,10" Foreground="Red"/>
         </Grid>
     </Grid>
 </Window>

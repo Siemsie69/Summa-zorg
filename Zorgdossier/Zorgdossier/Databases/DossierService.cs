@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zorgdossier.Models;
-using Zorgdossier.Migrations;
 using Zorgdossier.Helpers;
 using System.ComponentModel;
 

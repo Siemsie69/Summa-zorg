@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ZorgDossier.Databases;
+using Zorgdossier.Databases;
 
 #nullable disable
 
-namespace ZorgDossier.Migrations
+namespace Zorgdossier.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241219105345_ComplaintsSymptoms")]
-    partial class ComplaintsSymptoms
+    [Migration("20250220105726_Treatment")]
+    partial class Treatment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("ZorgDossier.Models.BasicInformation", b =>
+            modelBuilder.Entity("Zorgdossier.Models.BasicInformation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("BasicInformation");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.ComplaintsSymptoms", b =>
+            modelBuilder.Entity("Zorgdossier.Models.ComplaintsSymptoms", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("ComplaintsSymptoms");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.ContactAdvice", b =>
+            modelBuilder.Entity("Zorgdossier.Models.ContactAdvice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,7 +86,6 @@ namespace ZorgDossier.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ContactAdviceText")
-                        .IsRequired()
                         .HasMaxLength(320)
                         .HasColumnType("TEXT");
 
@@ -101,13 +100,13 @@ namespace ZorgDossier.Migrations
                     b.ToTable("ContactAdvice");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Dossier", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Dossier", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("StudentId")
@@ -118,6 +117,9 @@ namespace ZorgDossier.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
+                    b.Property<DateOnly>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StudentId");
@@ -125,7 +127,27 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Phone", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Organ", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DossierId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Organs")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DossierId");
+
+                    b.ToTable("Organ");
+                });
+
+            modelBuilder.Entity("Zorgdossier.Models.Phone", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,7 +169,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Phone");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Policy", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Policy", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -161,14 +183,10 @@ namespace ZorgDossier.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("PolicyDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeSpan>("PolicyTime")
+                    b.Property<DateTime?>("PolicyDateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TriageCriteria")
-                        .IsRequired()
                         .HasMaxLength(320)
                         .HasColumnType("TEXT");
 
@@ -185,7 +203,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Policy");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Question", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -207,7 +225,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Question");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Research", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Research", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -229,13 +247,13 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Research");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Student", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DeviceName")
@@ -258,7 +276,7 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Treatment", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Treatment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,42 +298,42 @@ namespace ZorgDossier.Migrations
                     b.ToTable("Treatment");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.BasicInformation", b =>
+            modelBuilder.Entity("Zorgdossier.Models.BasicInformation", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("BasicInformation")
-                        .HasForeignKey("ZorgDossier.Models.BasicInformation", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.BasicInformation", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.ComplaintsSymptoms", b =>
+            modelBuilder.Entity("Zorgdossier.Models.ComplaintsSymptoms", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("ComplaintsSymptoms")
-                        .HasForeignKey("ZorgDossier.Models.ComplaintsSymptoms", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.ComplaintsSymptoms", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.ContactAdvice", b =>
+            modelBuilder.Entity("Zorgdossier.Models.ContactAdvice", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("ContactAdvice")
-                        .HasForeignKey("ZorgDossier.Models.ContactAdvice", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.ContactAdvice", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Dossier", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Dossier", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Student", "Student")
+                    b.HasOne("Zorgdossier.Models.Student", "Student")
                         .WithMany("Dossiers")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -324,62 +342,73 @@ namespace ZorgDossier.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Phone", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Organ", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
+                        .WithMany()
+                        .HasForeignKey("DossierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dossier");
+                });
+
+            modelBuilder.Entity("Zorgdossier.Models.Phone", b =>
+                {
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("Phone")
-                        .HasForeignKey("ZorgDossier.Models.Phone", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.Phone", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Policy", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Policy", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("Policy")
-                        .HasForeignKey("ZorgDossier.Models.Policy", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.Policy", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Question", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Question", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("Question")
-                        .HasForeignKey("ZorgDossier.Models.Question", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.Question", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Research", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Research", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("Research")
-                        .HasForeignKey("ZorgDossier.Models.Research", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.Research", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Treatment", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Treatment", b =>
                 {
-                    b.HasOne("ZorgDossier.Models.Dossier", "Dossier")
+                    b.HasOne("Zorgdossier.Models.Dossier", "Dossier")
                         .WithOne("Treatment")
-                        .HasForeignKey("ZorgDossier.Models.Treatment", "DossierId")
+                        .HasForeignKey("Zorgdossier.Models.Treatment", "DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Dossier");
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Dossier", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Dossier", b =>
                 {
                     b.Navigation("BasicInformation")
                         .IsRequired();
@@ -406,7 +435,7 @@ namespace ZorgDossier.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ZorgDossier.Models.Student", b =>
+            modelBuilder.Entity("Zorgdossier.Models.Student", b =>
                 {
                     b.Navigation("Dossiers");
                 });

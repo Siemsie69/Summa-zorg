@@ -28,17 +28,17 @@ namespace Zorgdossier.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-            name: "IX_Student_StudentNumber",
-            table: "Student",
-            column: "StudentNumber",
-            unique: true);
+                name: "IX_Student_StudentNumber",
+                table: "Student",
+                column: "StudentNumber",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-            name: "Student");
+                name: "Student");
         }
     }
 }

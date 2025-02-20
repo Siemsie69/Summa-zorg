@@ -43,7 +43,9 @@
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}">
+                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                        Visibility="{Binding IsNotSampleMode,
+                        Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                     </StackPanel>
@@ -55,8 +57,44 @@
         <TextBlock Text="Vul hier de contact- en behandeladviezen in voor het dossier. Het is belangrijk om de patiënt duidelijke richtlijnen te geven over zelfzorg, activiteiten die vermeden moeten worden, en wanneer het nodig is om contact op te nemen met een zorgverlener. Dit zorgt ervoor dat de patiënt weet hoe hij of zij de situatie het beste kan beheren en wanneer verdere actie nodig is." 
                FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-        <!-- Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3"/>
+        <!-- Content Spacer -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Title Section -->
+            <TextBlock Text="Adviezen:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
+
+            <!-- Instruction Label -->
+            <TextBlock Text="Vul hier in welke &#10;adviezen je aan de &#10;patiënt zou geven:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+                       Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
+
+            <!-- Onderzoeken die gedaan moeten worden (TextBox) -->
+            <TextBox Text="{Binding ContactAdvice.Advice, UpdateSourceTrigger=PropertyChanged}" 
+                     Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextAdvice}" />
+
+            <!-- Instruction Label -->
+            <TextBlock Text="Vul hier in wanneer &#10;de patiënt contact &#10;op zou moeten &#10; nemen volgens jou:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+                       Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
+
+            <!-- Onderzoeken die gedaan moeten worden (TextBox) -->
+            <TextBox Text="{Binding ContactAdvice.ContactAdviceText, UpdateSourceTrigger=PropertyChanged}" 
+                     Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{Binding HintTextContactAdvice}" />
+        </Grid>
+
 
         <!-- Buttons Section -->
         <Grid Grid.Row="3" Grid.ColumnSpan="3">

@@ -5,7 +5,7 @@
 namespace Zorgdossier.Migrations
 {
     /// <inheritdoc />
-    public partial class AddOrganTable : Migration
+    public partial class Organ : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,21 +19,22 @@ namespace Zorgdossier.Migrations
                     DossierId = table.Column<int>(type: "INTEGER", nullable: false),
                     Organs = table.Column<string>(type: "TEXT", nullable: false)
                 },
-            constraints: table =>
-            {
-                table.PrimaryKey("PK_Organ", x => x.Id);
-                table.ForeignKey(
-                    name: "FK_Organ_Dossier_DossierId",
-                    column: x => x.DossierId,
-                    principalTable: "Dossier",
-                    principalColumn: "Id",
-                    onDelete: ReferentialAction.Cascade);
-            });
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organ", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Organ_Dossier_DossierId",
+                        column: x => x.DossierId,
+                        principalTable: "Dossier",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-            name: "IX_Organ_DossierId",
-            table: "Organ",
-            column: "DossierId",
-            unique: true);
+                name: "IX_Organ_DossierId",
+                table: "Organ",
+                column: "DossierId",
+                unique: true);
         }
 
         /// <inheritdoc />

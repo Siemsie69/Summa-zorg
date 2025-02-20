@@ -57,7 +57,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
-            ShowQuestionsViewCommand = new RelayCommand(ExecuteShowQuestionsView);
+            ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformationView);
 
             HintTextPhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "Samenvatting telefoongesprek";
@@ -113,7 +113,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
-        public ICommand ShowQuestionsViewCommand
+        public ICommand ShowQuestionsCommand
         {
             get;
         }

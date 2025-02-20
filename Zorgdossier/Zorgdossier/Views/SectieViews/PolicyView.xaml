@@ -18,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -44,7 +44,9 @@
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}">
+                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                        Visibility="{Binding IsNotSampleMode,
+                        Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                     </StackPanel>
@@ -62,16 +64,73 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- Title Section -->
             <TextBlock Text="Beleid + Urgenties:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
+
+            <!-- Urgency Selection Dropdown -->
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Kies de urgentie:" FontSize="18" FontWeight="Bold" 
+           Foreground="{StaticResource PrimaryBrush}"
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+            <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" Margin="15,10,15,200" FontSize="16"
+          materialDesign:HintAssist.Hint="{Binding HintTextUrgencyChoice}">
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <sys:String>U1 Levensbedreigend</sys:String>
+                        <sys:String>U2 Spoed</sys:String>
+                        <sys:String>U3 Dringend</sys:String>
+                        <sys:String>U4 Niet dringend</sys:String>
+                        <sys:String>U5 Advies</sys:String>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+
+            <!-- Triage Criteria Section -->
+            <TextBlock Grid.Row="3" Text="Triagecriterium:" FontSize="18" FontWeight="Bold" 
+           Foreground="{StaticResource PrimaryBrush}"
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+            <TextBox Text="{Binding Policy.TriageCriteria,
+    UpdateSourceTrigger=PropertyChanged}"
+     Grid.Row="4" Grid.ColumnSpan="4" FontSize="16" Margin="15,10,15,10" 
+     Height="80" VerticalContentAlignment="Top"
+     VerticalScrollBarVisibility="Auto"
+     TextWrapping="Wrap" 
+     AcceptsReturn="True" 
+     materialDesign:TextFieldAssist.HasClearButton="True"
+     materialDesign:HintAssist.Hint="{Binding HintTextTriageCriteria}"/>
+
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Kies de beleidskeuze:" FontSize="18" FontWeight="Bold" 
+           Foreground="{StaticResource PrimaryBrush}"
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+            <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,60" FontSize="16"
+          materialDesign:HintAssist.Hint="{Binding HintTextPolicyChoice}">
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <sys:String>Afspraak</sys:String>
+                        <sys:String>Visite</sys:String>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+
+            <xctk:DateTimePicker Grid.Row="6" Grid.Column="2"
+                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,9,15,0" Width="200" Height="35"
+                     Value="{Binding Policy.PolicyDateTime,
+                UpdateSourceTrigger=PropertyChanged}"
+                     Visibility="{Binding Appointment,
+                Converter={StaticResource BooleanToVisibilityConverter}}"
+                     DefaultValue="{Binding HintTextPolicyDateTime}"/>
         </Grid>
 
         <!-- Buttons Section -->
