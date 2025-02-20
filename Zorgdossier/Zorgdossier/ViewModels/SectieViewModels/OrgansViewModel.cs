@@ -75,6 +75,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowComplaintsAndSymptomsCommand = new RelayCommand(ExecuteShowComplaintsAndSymptomsView);
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             HintTextOrganChoice = IsSampleMode ? "Kies hier de organen." : "Kies hier de organen.";
 
@@ -159,6 +160,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool IsSampleMode
         {
             get => _isSampleMode;
@@ -170,7 +172,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotSampleMode => !IsSampleMode;
+
         public string HintTextOrganChoice
         {
             get => _hintTextOrganChoice;
@@ -183,11 +187,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public SampleDossierViewModel Instance
         {
             get;
         }
+
         public ObservableCollection<string> AvailableOrgans { get; } = new();
+
         public ObservableCollection<string> SelectedOrgans { get; } = new();
 
         private string? _selectedOrgan;
@@ -203,23 +210,33 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;
         }
+
         public ICommand ShowComplaintsAndSymptomsCommand
         {
             get;
         }
+
         public ICommand ShowQuestionsCommand
         {
             get;
         }
+
         public ICommand AddToListCommand
         {
             get;
         }
+
         public ICommand RemoveFromListCommand
+        {
+            get;
+        }
+
+        public ICommand ShowFinishProgressCommand
         {
             get;
         }
@@ -228,9 +245,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Kies de organen die direct gerelateerd zijn aan de klachten en symptomen die de patiënt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -240,11 +258,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowComplaintsAndSymptomsView(object? obj)
         {
             if (IsSampleMode != true)
             {
-                //Validatie?
                 _appNavigation.ActiveViewModel = new ComplaintsAndSymptomsViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
             else
@@ -252,16 +270,18 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new ComplaintsAndSymptomsViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
+
         private void ExecuteShowQuestionsView(object? obj)
         {
             _appNavigation.ActiveViewModel = new QuestionsViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
+
         private void AddToList(object? obj = null)
         {
             if (SelectedOrgan != null && !SelectedOrgans.Contains(SelectedOrgan))
             {
-                SelectedOrgans.Add(SelectedOrgan); // This triggers CollectionChanged
-                SaveOrgans(); // Ensure changes are persisted
+                SelectedOrgans.Add(SelectedOrgan); 
+                SaveOrgans(); 
             }
         }
 
@@ -270,13 +290,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             return SelectedOrgan != null && !SelectedOrgans.Contains(SelectedOrgan);
         }
 
-        // Modified RemoveFromList method
         private void RemoveFromList(object? obj = null)
         {
             if (SelectedOrgan != null && SelectedOrgans.Contains(SelectedOrgan))
             {
-                SelectedOrgans.Remove(SelectedOrgan); // This triggers CollectionChanged
-                SaveOrgans(); // Ensure changes are persisted
+                SelectedOrgans.Remove(SelectedOrgan);
+                SaveOrgans(); 
             }
         }
 
@@ -284,6 +303,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             return SelectedOrgan != null && SelectedOrgans.Contains(SelectedOrgan);
         }
+
         private async Task<bool> FileExistsAsync(string path)
         {
             return await Task.Run(() => File.Exists(path));
@@ -311,7 +331,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void UpdateViewport()
         {
-            // Clear existing visuals
             ViewportChildren.Clear();
 
             // Add SunLight to the viewport
@@ -345,20 +364,17 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private ModelVisual3D CreateOrganModel(Model3DGroup model, Point3D position)
         {
-            // Creëer rood materiaal
             var material = new DiffuseMaterial(new SolidColorBrush(Colors.Red));
 
-            // Stel het materiaal in voor het hele model
             foreach (var geometry in model.Children)
             {
                 if (geometry is GeometryModel3D geometryModel)
                 {
                     geometryModel.Material = material;
-                    geometryModel.BackMaterial = material; // Optioneel, voor de achterkant
+                    geometryModel.BackMaterial = material;
                 }
             }
 
-            // Voeg een transform toe voor de positie
             var organModel = new ModelVisual3D { Content = model };
             organModel.Transform = new TranslateTransform3D(position.X, position.Y, position.Z);
             return organModel;
@@ -372,6 +388,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             field = value;
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        private void ExecuteShowFinishedView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

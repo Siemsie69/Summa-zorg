@@ -59,6 +59,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowPolicyCommand = new RelayCommand(ExecuteShowPolicyView);
             ShowComplaintsAndSymptomsCommand = new RelayCommand(ExecuteShowComplaintsAndSymptomsView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             HintTextResearchSummary = IsSampleMode ? "Urineonderzoek " : "Welke onderzoeken moeten er worden uitgevoerd?";
         }
@@ -74,6 +75,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool IsSampleMode
         {
             get => _isSampleMode;
@@ -85,7 +87,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotSampleMode => !IsSampleMode;
+
         public string HintTextResearchSummary
         {
             get => _hintTextResearchSummary;
@@ -98,6 +102,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public SampleDossierViewModel Instance
         {
             get;
@@ -109,15 +114,23 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;
         }
+
         public ICommand ShowPolicyCommand
         {
             get;
         }
+
         public ICommand ShowComplaintsAndSymptomsCommand
+        {
+            get;
+        }
+
+        public ICommand ShowFinishProgressCommand
         {
             get;
         }
@@ -126,9 +139,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Focus op onderzoeken die niet alleen de diagnose ondersteunen, maar ook helpen om complicaties of andere onderliggende aandoeningen uit te sluiten, zodat je het juiste behandelplan kunt bepalen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -138,6 +152,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowPolicyView(object? obj)
         {
             if (IsSampleMode != true)
@@ -157,9 +172,15 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new PolicyViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
+
         private void ExecuteShowComplaintsAndSymptomsView(object? obj)
         {
             _appNavigation.ActiveViewModel = new ComplaintsAndSymptomsViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+        }
+
+        private void ExecuteShowFinishedView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

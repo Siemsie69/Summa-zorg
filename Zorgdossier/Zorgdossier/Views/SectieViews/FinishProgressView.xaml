@@ -150,7 +150,7 @@
             <TextBlock Text="Behandeling voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
         </Border>
 
-        <Border Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" Padding="10" HorizontalAlignment="Stretch" Margin="10,20,10,0">
+        <Border Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1" Padding="10" HorizontalAlignment="Stretch" Margin="10,20,10,0">
             <StackPanel>
                 <StackPanel>
                     <TextBlock Text="Legenda" FontSize="18" FontWeight="Bold" />

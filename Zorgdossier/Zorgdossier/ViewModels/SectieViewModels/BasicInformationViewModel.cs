@@ -64,6 +64,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
             ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroductionView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             HintTextName = IsSampleMode ? "Jan Jansen" : "Naam Patiënt";
             HintTextComplaint = IsSampleMode ? "Buikpijn" : "Klacht Patiënt";
@@ -144,11 +145,18 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowPhoneSummaryCommand
         {
             get;
         }
+
         public ICommand ShowIntroductionCommand
+        {
+            get;
+        }
+
+        public ICommand ShowFinishProgressCommand
         {
             get;
         }
@@ -157,9 +165,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("De basisinformatie van een patiënt omvat onder andere de naam, de klacht waarvoor de patiënt zich heeft aangemeld en de patiëntcategorie waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de patiënt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -169,6 +178,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowPhoneSummaryView(object? obj)
         {
             if (IsSampleMode != true)
@@ -188,9 +198,15 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
+
         private void ExecuteShowIntroductionView(object? obj)
         {
             _appNavigation.ActiveViewModel = new IntroductionViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+
+        private void ExecuteShowFinishedView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }

@@ -57,7 +57,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void ExecuteShowDossiersView(object? obj)

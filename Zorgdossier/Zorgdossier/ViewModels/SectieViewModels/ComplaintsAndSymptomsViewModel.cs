@@ -59,6 +59,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
             ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
+            ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             HintTextComplaintsSymptomsSummary = IsSampleMode
                 ? "•\tPijn bij het plassen\n" +
@@ -113,15 +114,23 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;
         }
+
         public ICommand ShowResearchCommand
         {
             get;
         }
+
         public ICommand ShowOrgansCommand
+        {
+            get;
+        }
+
+        public ICommand ShowFinishProgressCommand
         {
             get;
         }
@@ -130,9 +139,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
+            MessageBox.Show("Denk hierbij aan zowel fysieke als mentale klachten en symptomen, zoals pijn, specifiek gedrag, stemmingswisselingen of een combinatie van deze factoren. Deze informatie helpt om het ziektebeeld in zijn geheel te begrijpen en een passende behandeling voor te stellen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowMainView(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -142,6 +152,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
             }
         }
+
         private void ExecuteShowResearchView(object? obj)
         {
             if (IsSampleMode != true)
@@ -161,9 +172,15 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
             }
         }
+
         private void ExecuteShowOrganSelectionView(object? obj)
         {
             _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+        }
+
+        private void ExecuteShowFinishedView(object? obj)
+        {
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
         }
         #endregion
     }
