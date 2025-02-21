@@ -57,9 +57,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroductionView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            BasicInformation.Name = IsSampleMode ? "Jan Jansen" : "";
-            BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : "";
-            BasicInformation.Gender = IsSampleMode ? "Man" : "";
+            if (dossier == null)
+            {
+                BasicInformation.Name = IsSampleMode ? "Jan Jansen" : "";
+                BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : "";
+                BasicInformation.Gender = IsSampleMode ? "Man" : "";
+            }
         }
 
         public BasicInformationViewModel()
@@ -161,7 +164,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

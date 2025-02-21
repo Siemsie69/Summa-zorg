@@ -54,10 +54,13 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
             ShowContactAdvicesCommand = new RelayCommand(ExecuteShowContactAdvicesView);
 
-            Treatment.TreatmentSummary = IsSampleMode
+            if (dossier == null)
+            {
+                Treatment.TreatmentSummary = IsSampleMode
                 ? "Er wordt een antibioticakuur voorgeschreven, zoals nitrofurantoïne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.\n" +
                 "De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten."
                 : "";
+            }
         }
 
         public TreatmentViewModel()
@@ -132,17 +135,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            if (IsSampleMode != true)
+            if (string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                if (string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
-                {
-                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
-                    return;
-                }
-                else
-                {
-                    _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
-                }
+                _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                return;
             }
             else
             {

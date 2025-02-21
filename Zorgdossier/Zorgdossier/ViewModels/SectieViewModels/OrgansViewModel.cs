@@ -72,7 +72,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            HintTextOrganChoice = IsSampleMode ? "Kies hier de organen." : "Kies hier de organen.";
+            if (dossier == null)
+            {
+                HintTextOrganChoice = IsSampleMode ? "Kies hier de organen." : "Kies hier de organen.";
+            }
 
             LoadOrgans();
             LoadSelectedOrgans();
@@ -387,7 +390,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

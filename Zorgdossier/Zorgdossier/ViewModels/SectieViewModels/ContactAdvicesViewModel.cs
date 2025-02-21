@@ -56,8 +56,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowPolicyCommand = new RelayCommand(ExecuteShowPolicyView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : "";
-            ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : "";
+            if (dossier == null)
+            {
+                ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : "";
+                ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : "";
+            }
         }
 
         public ContactAdvicesViewModel()
@@ -160,7 +163,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

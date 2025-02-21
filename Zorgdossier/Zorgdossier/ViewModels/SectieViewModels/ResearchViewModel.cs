@@ -55,7 +55,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowComplaintsAndSymptomsCommand = new RelayCommand(ExecuteShowComplaintsAndSymptomsView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : "";
+            if (dossier == null)
+            {
+                Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : "";
+            }
         }
 
         public ResearchViewModel()
@@ -160,7 +163,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

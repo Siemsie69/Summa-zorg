@@ -55,11 +55,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowPhoneSummaryCommand = new RelayCommand(ExecuteShowPhoneSummaryView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            Question.QuestionSummary = IsSampleMode
+            if (dossier == null)
+            {
+                Question.QuestionSummary = IsSampleMode
                 ? "•\tHeeft u een katheter? Loopt deze nog goed door?\n" +
                   "•\tHeeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
                   "•\tHerkent u de klachten van een eerdere urineweginfectie?"
                 : "";
+            }
         }
 
         public QuestionsViewModel()
@@ -162,7 +165,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

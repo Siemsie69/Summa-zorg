@@ -59,18 +59,21 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowResearchCommand = new RelayCommand(ExecuteShowResearchView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : "";
-            Policy.TriageCriteria = IsSampleMode
-                ? "Categorie: Urologie | " +
-                "Hoofdklacht: Pijn bij het plassen (dysurie) | " +
-                "Leeftijd: 23 jaar\n" +
-                "Triagecriterium: " +
-                "Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. " +
-                "Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).\n" +
-                "Aanvullend: Patiënt vraagt specifiek om een afspraak."
-                : "";
-            Policy.PolicyChoice = IsSampleMode ? "Afspraak" : "";
-            Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
+            if (dossier == null)
+            {
+                Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : "";
+                Policy.TriageCriteria = IsSampleMode
+                    ? "Categorie: Urologie | " +
+                    "Hoofdklacht: Pijn bij het plassen (dysurie) | " +
+                    "Leeftijd: 23 jaar\n" +
+                    "Triagecriterium: " +
+                    "Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. " +
+                    "Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).\n" +
+                    "Aanvullend: Patiënt vraagt specifiek om een afspraak."
+                    : "";
+                Policy.PolicyChoice = IsSampleMode ? "Afspraak" : "";
+                Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
+            }
 
             if (Policy != null)
             {
@@ -187,7 +190,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

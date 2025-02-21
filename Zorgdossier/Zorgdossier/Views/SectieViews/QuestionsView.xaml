@@ -108,7 +108,9 @@
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}">
+                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Visibility="{Binding IsNotSampleMode,
+                    Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                 </StackPanel>

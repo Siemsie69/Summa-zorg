@@ -55,11 +55,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowOrgansCommand = new RelayCommand(ExecuteShowOrganSelectionView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            ComplaintsSymptoms.ComplaintsSymptomsSummary = IsSampleMode
+            if (dossier == null)
+            {
+                ComplaintsSymptoms.ComplaintsSymptomsSummary = IsSampleMode
                 ? "•\tPijn bij het plassen\n" +
                   "•\tBranderig gevoel bij het plassen\n" +
                   "•\tKleine beetjes plassen"
                 : "";
+            }
         }
 
         public ComplaintsAndSymptomsViewModel()
@@ -162,7 +165,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

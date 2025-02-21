@@ -55,7 +55,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformationView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "";
+            if (dossier == null)
+            {
+                Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "";
+            }
         }
 
         public PhoneSummaryViewModel()
@@ -158,7 +161,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowFinishedView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
+            _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
         #endregion
     }

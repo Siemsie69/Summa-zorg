@@ -41,7 +41,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #endregion
 
         #region constructers
-        public FinishProgressViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null, SampleDossierViewModel instance = null)
+        public FinishProgressViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService, Dossier? dossier = null)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
