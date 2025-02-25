@@ -9,7 +9,8 @@ namespace Zorgdossier.Databases
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(ConfigurationManager.ConnectionStrings["localDb"].ConnectionString);
+            var connectionString = ConfigurationManager.ConnectionStrings["localDb"].ConnectionString + ";Pooling=False";
+            optionsBuilder.UseSqlite(connectionString);
         }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

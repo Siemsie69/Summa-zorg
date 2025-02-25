@@ -29,19 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var complaintsSymptomsInDb = context.ComplaintsSymptoms.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        ComplaintsSymptoms.ComplaintsSymptomsSummary = complaintsSymptomsInDb.ComplaintsSymptomsSummary;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -61,7 +48,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 ? "•\tPijn bij het plassen\n" +
                   "•\tBranderig gevoel bij het plassen\n" +
                   "•\tKleine beetjes plassen"
-                : "";
+                : ComplaintsSymptoms.ComplaintsSymptomsSummary;
             }
         }
 

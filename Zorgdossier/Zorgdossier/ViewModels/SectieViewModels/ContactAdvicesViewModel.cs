@@ -29,20 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var contactAdviceInDb = context.ContactAdvice.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        ContactAdvice.Advice = contactAdviceInDb.Advice;
-                        ContactAdvice.ContactAdviceText = contactAdviceInDb.ContactAdviceText;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -58,8 +44,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : "";
-                ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : "";
+                ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : ContactAdvice.Advice;
+                ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : ContactAdvice.ContactAdviceText;
             }
         }
 

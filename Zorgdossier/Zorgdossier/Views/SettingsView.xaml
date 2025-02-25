@@ -8,10 +8,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Name="Instellingen" Height="Auto" MaxWidth="900" Background="White">
-
-    <UserControl.DataContext>
+    <d:UserControl.DataContext>
         <viewmodels:SettingsViewModel/>
-    </UserControl.DataContext>
+    </d:UserControl.DataContext>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -62,7 +61,7 @@
                 <ComboBoxItem Content="Licht" Background="White"/>
                 <ComboBoxItem Content="Donker" Background="White"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Command="{Binding ResetCommand}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Language Selection -->

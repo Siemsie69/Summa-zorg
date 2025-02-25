@@ -29,19 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var treatmentInDb = context.Treatment.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        Treatment.TreatmentSummary = treatmentInDb.TreatmentSummary;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -59,7 +46,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 Treatment.TreatmentSummary = IsSampleMode
                 ? "Er wordt een antibioticakuur voorgeschreven, zoals nitrofurantoïne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.\n" +
                 "De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten."
-                : "";
+                : Treatment.TreatmentSummary;
             }
         }
 

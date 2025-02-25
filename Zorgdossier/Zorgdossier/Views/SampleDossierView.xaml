@@ -14,23 +14,6 @@
     </d:UserControl.DataContext>
 
     <Grid>
-        <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-            <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
-                </StackPanel>
-            </Button>
-
-            <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
-                        Visibility="{Binding IsNotSampleMode,
-                        Converter={StaticResource BooleanToVisibilityConverter}}">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
         <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </UserControl>

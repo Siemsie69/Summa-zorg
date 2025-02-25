@@ -30,22 +30,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var policyInDb = context.Policy.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        Policy.Urgency = policyInDb.Urgency;
-                        Policy.TriageCriteria = policyInDb.TriageCriteria;
-                        Policy.PolicyChoice = policyInDb.PolicyChoice;
-                        Policy.PolicyDateTime = policyInDb.PolicyDateTime;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -61,7 +45,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : "";
+                Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : Policy.Urgency;
                 Policy.TriageCriteria = IsSampleMode
                     ? "Categorie: Urologie | " +
                     "Hoofdklacht: Pijn bij het plassen (dysurie) | " +
@@ -70,8 +54,8 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                     "Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. " +
                     "Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).\n" +
                     "Aanvullend: Patiënt vraagt specifiek om een afspraak."
-                    : "";
-                Policy.PolicyChoice = IsSampleMode ? "Afspraak" : "";
+                    : Policy.TriageCriteria;
+                Policy.PolicyChoice = IsSampleMode ? "Afspraak" : Policy.PolicyChoice;
                 Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
             }
 

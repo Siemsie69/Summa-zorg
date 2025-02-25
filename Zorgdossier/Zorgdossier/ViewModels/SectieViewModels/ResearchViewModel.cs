@@ -29,19 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var researchInDb = context.Research.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        Research.ResearchSummary = researchInDb.ResearchSummary;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -57,7 +44,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : "";
+                Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : Research.ResearchSummary;
             }
         }
 

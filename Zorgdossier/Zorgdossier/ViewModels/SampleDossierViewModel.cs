@@ -26,7 +26,6 @@ namespace Zorgdossier.ViewModels
             IsSampleMode = true;
 
             _appNavigation.ActiveViewModel = new SectieViewModels.BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier, this);
-            CloseCommand = new RelayCommand(ExecuteCloseWindow);
         }
         #endregion
 
@@ -53,20 +52,9 @@ namespace Zorgdossier.ViewModels
         #endregion
 
         #region commands
-        public ICommand CloseCommand
-        {
-            get;
-        }
         #endregion
 
         #region methods
-        private void ExecuteCloseWindow(object? parameter)
-        {
-            if (parameter is Window window)
-            {
-                window.Close();
-            }
-        }
         #endregion
     }
 }

@@ -25,6 +25,13 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             _dossierService = dossierService;
 
             BasicInformation = _dossierService.CentralDossier.BasicInformation;
+            Phone = _dossierService.CentralDossier.Phone;
+            Question = _dossierService.CentralDossier.Question;
+            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
+            Research = _dossierService.CentralDossier.Research;
+            Policy = _dossierService.CentralDossier.Policy;
+            ContactAdvice = _dossierService.CentralDossier.ContactAdvice;
+            Treatment = _dossierService.CentralDossier.Treatment;
 
             if (dossier != null)
             {
@@ -38,6 +45,31 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                         BasicInformation.Name = basicInformationInDb.Name;
                         BasicInformation.Complaint = basicInformationInDb.Complaint;
                         BasicInformation.Gender = basicInformationInDb.Gender;
+
+                        var phoneInDb = context.Phone.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Phone.PhoneSummary = phoneInDb.PhoneSummary;
+
+                        var questionInDb = context.Question.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Question.QuestionSummary = questionInDb.QuestionSummary;
+
+                        var complaintsSymptomsInDb = context.ComplaintsSymptoms.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        ComplaintsSymptoms.ComplaintsSymptomsSummary = complaintsSymptomsInDb.ComplaintsSymptomsSummary;
+
+                        var researchInDb = context.Research.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Research.ResearchSummary = researchInDb.ResearchSummary;
+
+                        var policyInDb = context.Policy.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Policy.Urgency = policyInDb.Urgency;
+                        Policy.TriageCriteria = policyInDb.TriageCriteria;
+                        Policy.PolicyChoice = policyInDb.PolicyChoice;
+                        Policy.PolicyDateTime = policyInDb.PolicyDateTime;
+
+                        var contactAdviceInDb = context.ContactAdvice.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        ContactAdvice.Advice = contactAdviceInDb.Advice;
+                        ContactAdvice.ContactAdviceText = contactAdviceInDb.ContactAdviceText;
+
+                        var treatmentInDb = context.Treatment.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Treatment.TreatmentSummary = treatmentInDb.TreatmentSummary;
                     }
                     catch (Exception ex)
                     {
@@ -59,9 +91,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                BasicInformation.Name = IsSampleMode ? "Jan Jansen" : "";
-                BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : "";
-                BasicInformation.Gender = IsSampleMode ? "Man" : "";
+                BasicInformation.Name = IsSampleMode ? "Jan Jansen" : BasicInformation.Name;
+                BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : BasicInformation.Complaint;
+                BasicInformation.Gender = IsSampleMode ? "Man" : BasicInformation.Gender;
             }
         }
 
@@ -73,6 +105,34 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         #region properties
         public DossierService.BasicInformation BasicInformation
+        {
+            get;
+        }
+        public DossierService.Phone Phone
+        {
+            get;
+        }
+        public DossierService.Question Question
+        {
+            get;
+        }
+        public DossierService.ComplaintsSymptoms ComplaintsSymptoms
+        {
+            get;
+        }
+        public DossierService.Research Research
+        {
+            get;
+        }
+        public DossierService.Policy Policy
+        {
+            get;
+        }
+        public DossierService.ContactAdvice ContactAdvice
+        {
+            get;
+        }
+        public DossierService.Treatment Treatment
         {
             get;
         }

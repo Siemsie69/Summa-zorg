@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 using Zorgdossier.Views;
@@ -14,7 +15,6 @@ namespace Zorgdossier.ViewModels
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
         private bool _isMenuExpanded = true;
-
         #endregion
 
         #region Constructors
@@ -126,7 +126,8 @@ namespace Zorgdossier.ViewModels
 
         private void ExecuteShowSettings(object? obj)
         {
-            _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage);
+            var dbContext = new ApplicationDbContext();
+            _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage, dbContext);
         }
         #endregion
     }

@@ -29,19 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var phoneInDb = context.Phone.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        Phone.PhoneSummary = phoneInDb.PhoneSummary;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -57,7 +44,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : "";
+                Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : Phone.PhoneSummary;
             }
         }
 

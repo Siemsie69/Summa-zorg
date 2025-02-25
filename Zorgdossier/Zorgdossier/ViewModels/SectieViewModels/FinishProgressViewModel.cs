@@ -442,7 +442,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         }
         private void ExecuteCreateDossier(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je dit dossier wilt aanmaken? Het kan geweizigd, maar niet verwijderd worden.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je dit dossier wilt aanmaken? Het kan gewijzigd, maar niet verwijderd worden.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {

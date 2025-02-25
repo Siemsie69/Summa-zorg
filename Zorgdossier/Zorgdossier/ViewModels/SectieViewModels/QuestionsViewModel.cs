@@ -29,19 +29,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier != null)
             {
                 _dossier = dossier;
-
-                using (var context = new ApplicationDbContext())
-                {
-                    try
-                    {
-                        var questionInDb = context.Question.FirstOrDefault(x => x.DossierId == _dossier.Id);
-                        Question.QuestionSummary = questionInDb.QuestionSummary;
-                    }
-                    catch (Exception ex)
-                    {
-                        _userMessage.Text = ("Fout met het ophalen van bestaande data: " + ex.Message);
-                    }
-                }
             }
             if (instance != null)
             {
@@ -61,7 +48,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 ? "•\tHeeft u een katheter? Loopt deze nog goed door?\n" +
                   "•\tHeeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
                   "•\tHerkent u de klachten van een eerdere urineweginfectie?"
-                : "";
+                : Question.QuestionSummary;
             }
         }
 

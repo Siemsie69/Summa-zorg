@@ -85,7 +85,7 @@
            Foreground="{StaticResource PrimaryBrush}"
            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
             <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" 
-                      Margin="15,10,15,200" FontSize="16" SelectedIndex="0">
+                      Margin="15,10,15,200" FontSize="16" materialDesign:HintAssist.Hint="Selecteer Urgentie">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>U1 Levensbedreigend</sys:String>
@@ -115,7 +115,7 @@
            Foreground="{StaticResource PrimaryBrush}"
            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
             <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,60" FontSize="16"
-                      SelectedIndex="0">
+                      materialDesign:HintAssist.Hint="Selecteer beleidskeuze">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>Afspraak</sys:String>

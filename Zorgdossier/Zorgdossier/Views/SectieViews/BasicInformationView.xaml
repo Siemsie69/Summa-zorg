@@ -96,7 +96,8 @@
                        Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,20,10,10"/>
             <ComboBox SelectedItem="{Binding BasicInformation.Gender, UpdateSourceTrigger=PropertyChanged}" 
                        Grid.Row="3" Grid.Column="1" Width="200px" Height="40" Margin="30,20,20,10" HorizontalAlignment="Left"
-                       Background="White" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1" FontSize="16" SelectedIndex="0">
+                       Background="White" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1" FontSize="16" SelectedIndex="0"
+                       materialDesign:HintAssist.Hint="Selecteer Categorie">
                 <ComboBox.ItemsSource>
                     <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <sys:String>Man</sys:String>
