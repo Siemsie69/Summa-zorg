@@ -23,7 +23,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private bool _isSampleMode;
         private string _hintTextOrganChoice = string.Empty;
 
-
         private readonly Dictionary<string, ModelVisual3D> organModels = new();
         private readonly Dictionary<string, Point3D> organPositions = new()
         {

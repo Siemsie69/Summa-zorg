@@ -63,6 +63,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool IsSampleMode
         {
             get => _isSampleMode;
@@ -74,7 +75,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotSampleMode => !IsSampleMode;
+
         public SampleDossierViewModel Instance
         {
             get;

@@ -67,7 +67,7 @@
 
             <!-- Section 4: Exporteren van dossiers -->
             <TextBlock Grid.Row="8" Grid.ColumnSpan="2" Text="Hoe kun je een dossier exporteren?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
-            <TextBlock Grid.Row="9" Grid.ColumnSpan="2" Text="Wanneer je dossier volledig is ingevuld en gereed is voor verdere verwerking, kun je het eenvoudig opslaan en exporteren. De applicatie biedt een exportfunctie waarmee je het dossier als een goed geformatteerd document kunt genereren, zodat het gemakkelijk gedeeld en gearchiveerd kan worden."
+            <TextBlock Grid.Row="9" Grid.ColumnSpan="2" Text="Wanneer je dossier volledig is ingevuld en gereed is voor verdere verwerking, kun je het eenvoudig opslaan en exporteren. De applicatie biedt een exportfunctie waarmee je het dossier als een goed geformatteerd document kunt genereren, zodat het gemakkelijk gedeeld en ingeleverd kan worden."
                        FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0"/>
 
             <!-- Section 5: Klaar om aan de slag te gaan -->

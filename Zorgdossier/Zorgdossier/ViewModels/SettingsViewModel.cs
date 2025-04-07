@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.Data.Entity;
 using Zorgdossier.Databases;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Controls;
 
 namespace Zorgdossier.ViewModels
 {
@@ -88,7 +89,6 @@ namespace Zorgdossier.ViewModels
                 {
                     await CloseDatabaseConnectionAsync();
 
-                    // Extra wachttijd om er zeker van te zijn dat het bestand niet meer gelocked is
                     await Task.Delay(500);
 
                     if (File.Exists(DatabasePath))
@@ -101,7 +101,6 @@ namespace Zorgdossier.ViewModels
                         _userMessage.Text = "Database bestand niet gevonden.";
                     }
 
-                    // Sluit de applicatie om een volledig schone herstart te forceren
                     Application.Current.Shutdown();
                 }
                 catch (Exception ex)
@@ -120,14 +119,11 @@ namespace Zorgdossier.ViewModels
                     await _dbContext.DisposeAsync();
                 }
 
-                // Forceer SQLite om alle verbindingen los te laten
                 SQLiteConnection.ClearAllPools();
 
-                // Garbage Collector forceren om openstaande objecten op te ruimen
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
 
-                // Korte pauze om ervoor te zorgen dat het bestand echt wordt vrijgegeven
                 await Task.Delay(500);
             }
             catch (Exception ex)

@@ -108,34 +108,42 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public DossierService.Phone Phone
         {
             get;
         }
+
         public DossierService.Question Question
         {
             get;
         }
+
         public DossierService.ComplaintsSymptoms ComplaintsSymptoms
         {
             get;
-        }
+        }  
+
         public DossierService.Research Research
         {
             get;
         }
+
         public DossierService.Policy Policy
         {
             get;
         }
+
         public DossierService.ContactAdvice ContactAdvice
         {
             get;
         }
+
         public DossierService.Treatment Treatment
         {
             get;
         }
+
         public bool IsSampleMode
         {
             get => _isSampleMode;
@@ -147,7 +155,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotSampleMode => !IsSampleMode;
+
         public SampleDossierViewModel Instance
         {
             get;
@@ -159,6 +169,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand ShowHomeCommand
         {
             get;

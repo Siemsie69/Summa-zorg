@@ -8,6 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Name="Instellingen" Height="Auto" MaxWidth="900" Background="White">
+
     <d:UserControl.DataContext>
         <viewmodels:SettingsViewModel/>
     </d:UserControl.DataContext>
@@ -20,7 +21,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <!-- Extra row for Data Reset Description -->
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -67,13 +67,12 @@
         <!-- Language Selection -->
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,10,5" Orientation="Horizontal">
             <TextBlock Text="Selecteer voorkeurtaal" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <ComboBox SelectedItem="{Binding SelectedLanguage}" Width="150" Height="40" 
-                      Background="White" Foreground="{StaticResource PrimaryBrush}" 
-                      BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+            <ComboBox Width="150" Height="40" Background="White" 
+                      Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
                 <ComboBoxItem Content="Nederlands" Background="White"/>
                 <ComboBoxItem Content="Engels" Background="White"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Command="{Binding ResetCommand}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Data Reset Description -->

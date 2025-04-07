@@ -7,7 +7,8 @@
         xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Name="Home" Height="Auto" MaxWidth="900" Background="White">
+        Name="Home" Height="Auto" MaxWidth="900" 
+        MinWidth="900" Background="White" >
     <d:UserControl.DataContext>
         <viewmodels:HomeViewModel/>
     </d:UserControl.DataContext>

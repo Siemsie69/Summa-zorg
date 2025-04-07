@@ -114,10 +114,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public DossierService.BasicInformation BasicInformation
         {
             get;
         }
+
         public bool BasicInfoName
         {
             get
@@ -132,6 +134,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool BasicInfoComplaint
         {
             get
@@ -146,6 +149,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool BasicInfoType
         {
             get
@@ -165,6 +169,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool PhoneSummary
         {
             get
@@ -184,6 +189,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool QuestionSummary
         {
             get
@@ -203,6 +209,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool Organs
         {
             get
@@ -222,6 +229,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool ComplaintsSymptomsSummary
         {
             get
@@ -241,6 +249,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool ResearchSummary
         {
             get
@@ -260,6 +269,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool PolicyUrgency
         {
             get
@@ -274,6 +284,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool PolicyTriagecriterium
         {
             get
@@ -288,6 +299,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool PolicyChoice
         {
             get
@@ -317,10 +329,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public DossierService.ContactAdvice ContactAdvice
         {
             get;
         }
+
         public bool Advice
         {
             get
@@ -335,6 +349,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool AdviceForContact
         {
             get
@@ -354,6 +369,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public bool TreatmentSummary
         {
             get
@@ -380,6 +396,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         public bool IsNotEditMode => !IsEditMode;
         #endregion
 
@@ -388,46 +405,57 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
+
         public ICommand CreateDossierCommand
         {
             get;
         }
+
         public ICommand EditDossierCommand
         {
             get;
         }
+
         public ICommand ShowBasicInfoCommand
         {
             get;
         }
+
         public ICommand ShowPhoneSummaryCommand
         {
             get;
         }
+
         public ICommand ShowQuestionCommand
         {
             get;
         }
+
         public ICommand ShowOrgansCommand
         {
             get;
         }
+
         public ICommand ShowComplaintsSymptomsCommand
         {
             get;
         }
+
         public ICommand ShowResearchCommand
         {
             get;
         }
+
         public ICommand ShowPolicyCommand
         {
             get;
         }
+
         public ICommand ShowContactCommand
         {
             get;
         }
+
         public ICommand ShowTreatmentCommand
         {
             get;
@@ -440,6 +468,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             MessageBox.Show("Ben je zeker dat je alles hebt gecontroleerd en klaar bent met invullen? Zorg ervoor dat je alle benodigde informatie hebt ingevuld. Je kunt hieronder de voortgang van het invullen bekijken om te zien of je alles hebt afgerond.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteCreateDossier(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je dit dossier wilt aanmaken? Het kan gewijzigd, maar niet verwijderd worden.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -537,10 +566,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         private bool CanExecuteEditDossier(object? obj)
         {
             return _dossier != null;
         }
+
         private void ExecuteEditDossier(object? obj)
         {
             MessageBoxResult result = MessageBox.Show("Weet je zeker dat je het dossier wilt weizigen?", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
@@ -604,42 +635,52 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
         private void RedirectToDossierView()
         {
             _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
         }
+
         private void ExecuteShowBasicInfo(object? obj)
         {
             _appNavigation.ActiveViewModel = new BasicInformationViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowPhoneSummary(object? obj)
         {
             _appNavigation.ActiveViewModel = new PhoneSummaryViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowQuestion(object? obj)
         {
             _appNavigation.ActiveViewModel = new QuestionsViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowOrgans(object? obj)
         {
             _appNavigation.ActiveViewModel = new OrgansViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowComplaintsSymptoms(object? obj)
         {
             _appNavigation.ActiveViewModel = new ComplaintsAndSymptomsViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowResearch(object? obj)
         {
             _appNavigation.ActiveViewModel = new ResearchViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowPolicy(object? obj)
         {
             _appNavigation.ActiveViewModel = new PolicyViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowContact(object? obj)
         {
             _appNavigation.ActiveViewModel = new ContactAdvicesViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
         }
+
         private void ExecuteShowTreatment(object? obj)
         {
             _appNavigation.ActiveViewModel = new TreatmentViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
