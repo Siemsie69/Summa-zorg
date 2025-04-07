@@ -9,61 +9,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d"
-             Name="Onderzoeken" Height="Auto" MaxWidth="900" Background="White">
+             Name="Onderzoeken" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
     <d:UserControl.DataContext>
         <sectieviewmodels:PolicyViewModel/>
     </d:UserControl.DataContext>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        
-        <!-- Title Section with Buttons -->
-        <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
-            <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="PolicyText" Text="Dossiers: Beleid en Urgenties" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
-                <!-- Underline (Rectangle) -->
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=PolicyText}"/>
-            </StackPanel>
-
-            <!-- Buttons -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
-                        Visibility="{Binding IsNotSampleMode,
-                        Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </Grid>
-
-        <!-- Text Section -->
-        <TextBlock Text="Hier kunt u het beleid en de urgenties voor dit dossier bekijken. Lees de informatie zorgvuldig door om te begrijpen welke prioriteit het dossier heeft. Dit inzicht helpt bij het bepalen welke acties snel genomen moeten worden, zoals het inplannen van een afspraak bij de dokter of het doorverwijzen voor verdere behandeling." 
-                    FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
-
-        <!-- Content Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" MaxHeight="800">
+        <Grid Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -71,95 +24,164 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Title Section -->
-            <TextBlock Text="Beleid + Urgenties:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+            <!-- Title Section with Buttons -->
+            <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock x:Name="PolicyText" Text="Dossiers: Beleid en Urgenties" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                    <!-- Underline (Rectangle) -->
+                    <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=PolicyText}"/>
+                </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
+                    <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                        Visibility="{Binding IsNotSampleMode,
+                        Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Text Section -->
+            <TextBlock Text="Hier kunt u het beleid en de urgenties voor dit dossier bekijken. Lees de informatie zorgvuldig door om te begrijpen welke prioriteit het dossier heeft. Dit inzicht helpt bij het bepalen welke acties snel genomen moeten worden, zoals het inplannen van een afspraak bij de dokter of het doorverwijzen voor verdere behandeling." 
+                    FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+            <!-- Content Spacer -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Title Section -->
+                <TextBlock Text="Beleid + Urgenties:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
 
-            <!-- Urgency Selection Dropdown -->
-            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Kies de urgentie:" FontSize="18" FontWeight="Bold" 
+                <!-- Urgency Selection Dropdown -->
+                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Kies de urgentie:" FontSize="18" FontWeight="Bold" 
            Foreground="{StaticResource PrimaryBrush}"
            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
-            <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" 
-                      Margin="15,10,15,200" FontSize="16" materialDesign:HintAssist.Hint="Selecteer Urgentie">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <sys:String>U1 Levensbedreigend</sys:String>
-                        <sys:String>U2 Spoed</sys:String>
-                        <sys:String>U3 Dringend</sys:String>
-                        <sys:String>U4 Niet dringend</sys:String>
-                        <sys:String>U5 Advies</sys:String>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-            </ComboBox>
+                <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" 
+                      Margin="15,10,15,90" FontSize="16" materialDesign:HintAssist.Hint="Selecteer Urgentie" MaxDropDownHeight="70">
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <sys:String>U1 Levensbedreigend</sys:String>
+                            <sys:String>U2 Spoed</sys:String>
+                            <sys:String>U3 Dringend</sys:String>
+                            <sys:String>U4 Niet dringend</sys:String>
+                            <sys:String>U5 Advies</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
 
-            <!-- Triage Criteria Section -->
-            <TextBlock Grid.Row="3" Text="Triagecriterium:" FontSize="18" FontWeight="Bold" 
-           Foreground="{StaticResource PrimaryBrush}"
-           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
-            <TextBox Text="{Binding Policy.TriageCriteria,
-    UpdateSourceTrigger=PropertyChanged}"
-     Grid.Row="4" Grid.ColumnSpan="4" FontSize="16" Margin="15,10,15,10" 
-     Height="80" VerticalContentAlignment="Top"
-     VerticalScrollBarVisibility="Auto"
-     TextWrapping="Wrap" 
-     AcceptsReturn="True" 
-     materialDesign:TextFieldAssist.HasClearButton="True"
-     materialDesign:HintAssist.Hint="Vul hier het triagecriterium in (optioneel)"/>
+                    <ComboBox.Resources>
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Width" Value="10"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollBar">
+                                        <Grid Background="Transparent">
+                                            <Track Name="PART_Track" IsDirectionReversed="true">
+                                                <Track.Thumb>
+                                                    <Thumb Background="Gray" Height="30"/>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
 
-            <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Kies de beleidskeuze:" FontSize="18" FontWeight="Bold" 
-           Foreground="{StaticResource PrimaryBrush}"
-           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
-            <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,60" FontSize="16"
+                <!-- Triage Criteria Section -->
+                <TextBlock Grid.Row="3" Text="Triagecriterium:" FontSize="18" FontWeight="Bold" 
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+                <TextBox Text="{Binding Policy.TriageCriteria,
+                        UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Row="4" Grid.ColumnSpan="4" FontSize="16" Margin="15,10,15,10" 
+                         Height="80" VerticalContentAlignment="Top"
+                         VerticalScrollBarVisibility="Auto"
+                         TextWrapping="Wrap" 
+                         AcceptsReturn="True" 
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         materialDesign:HintAssist.Hint="Vul hier het triagecriterium in (optioneel)"/>
+
+                <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Kies de beleidskeuze:" FontSize="18" FontWeight="Bold" 
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+                <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,100" FontSize="16"
                       materialDesign:HintAssist.Hint="Selecteer beleidskeuze">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <sys:String>Afspraak</sys:String>
-                        <sys:String>Visite</sys:String>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-            </ComboBox>
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <sys:String>Afspraak</sys:String>
+                            <sys:String>Visite</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
 
-            <xctk:DateTimePicker Grid.Row="6" Grid.Column="2"
-                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,9,15,0" Width="200" Height="35"
+                <xctk:DateTimePicker Grid.Row="6" Grid.Column="2"
+                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,9,15,0" Width="240" Height="35"
                      Value="{Binding Policy.PolicyDateTime,
                 UpdateSourceTrigger=PropertyChanged}"
                      Visibility="{Binding Appointment,
                 Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        </Grid>
+            </Grid>
 
-        <!-- Buttons Section -->
-        <Grid Grid.Row="3" Grid.ColumnSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+            <!-- Buttons Section -->
+            <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Left Button -->
-            <Button Content="Vorige" FontSize="14" Command="{Binding ShowResearchCommand}" Width="200" Height="45" 
+                <!-- Left Button -->
+                <Button Content="Vorige" FontSize="14" Command="{Binding ShowResearchCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                    Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
-            <!-- Right Button -->
-            <Button Content="Volgende" FontSize="14" Command="{Binding ShowContactAdvicesCommand}" Width="200" Height="45" 
+                <!-- Right Button -->
+                <Button Content="Volgende" FontSize="14" Command="{Binding ShowContactAdvicesCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="2" HorizontalAlignment="Right"/>
+                    Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
-            <!-- Finish Button -->
-            <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
+                <!-- Finish Button -->
+                <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
                     Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
-                    Converter={StaticResource BooleanToVisibilityConverter}}">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
-                </StackPanel>
-            </Button>
+                    Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

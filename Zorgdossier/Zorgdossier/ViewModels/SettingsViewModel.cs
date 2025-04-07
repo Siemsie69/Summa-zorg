@@ -7,6 +7,8 @@ using System.Data.SQLite;
 using System.Data.Entity;
 using Zorgdossier.Databases;
 using Microsoft.EntityFrameworkCore;
+using MaterialDesignThemes.Wpf;
+using MaterialDesignColors;
 
 namespace Zorgdossier.ViewModels
 {
@@ -30,6 +32,7 @@ namespace Zorgdossier.ViewModels
             _dbContext = dbContext;
 
             ResetCommand = new RelayCommand(ExecuteReset);
+            ApplyThemeCommand = new RelayCommand(ExecuteApplyTheme);
         }
 
         public SettingsViewModel() { }
@@ -72,6 +75,7 @@ namespace Zorgdossier.ViewModels
 
         #region Commands
         public ICommand ResetCommand { get; }
+        public ICommand ApplyThemeCommand { get; }
         #endregion
 
         #region Methods
@@ -134,6 +138,23 @@ namespace Zorgdossier.ViewModels
             {
                 _userMessage.Text = "Fout bij sluiten van de databaseconnectie: " + ex.Message;
             }
+        }
+
+        private void ExecuteApplyTheme(object? obj)
+        {
+            var helper = new PaletteHelper();
+            ITheme theme = helper.GetTheme();
+
+            if (SelectedTheme == "Donker")
+            {
+                theme.setBaseTheme(Theme.Dark);
+            }
+            else
+            {
+                theme.SetBaseTheme(Theme.Light);
+            }
+
+            helper.SetTheme(theme);
         }
         #endregion
     }

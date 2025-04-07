@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}" mc:Ignorable="d"
-        Title="MainView" Height="540" Width="900">
+        Title="MainView" MinHeight="500" MaxHeight="500" MinWidth="900" MaxWidth="900" ResizeMode="NoResize">
     <d:Window.DataContext>
         <viewmodels:MainViewModel/>
     </d:Window.DataContext>
@@ -35,7 +35,7 @@
 
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <!-- Home Button -->
-                    <Button Command="{Binding ShowHomeCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                    <Button Command="{Binding ShowHomeCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,0,0,10">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <!-- Icon visible when menu is collapsed -->
                             <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
@@ -47,7 +47,7 @@
                     </Button>
 
                     <!-- Dossiers Button -->
-                    <Button Command="{Binding ShowDossiersCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                    <Button Command="{Binding ShowDossiersCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,0,0,10">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="PaperOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
                                 Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -57,7 +57,7 @@
                     </Button>
 
                     <!-- Explanation Button -->
-                    <Button Command="{Binding ShowExplanationCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10">
+                    <Button Command="{Binding ShowExplanationCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="InformationCircleOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
                                 Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -66,10 +66,10 @@
                         </StackPanel>
                     </Button>
 
-                    <StackPanel Height="40"/>
+                    <StackPanel Height="75"/>
 
                     <!-- Credits Button -->
-                    <Button Command="{Binding ShowCreditsCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,10,0,20">
+                    <Button Command="{Binding ShowCreditsCommand}" Height="40" Background="{StaticResource SecondaryBrush}" Foreground="{StaticResource PrimaryBrush}" Margin="0,0,0,10">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="AccountCircleOutline" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"
                                 Visibility="{Binding IsMenuCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -85,7 +85,7 @@
                         <StackPanel Orientation="Horizontal" Visibility="{Binding IsMenuExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- Hamburger Menu Button (only visible when menu is expanded) -->
                             <Button Command="{Binding ToggleMenuCommand}" VerticalAlignment="Center" Height="40"
-                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}">
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}" Margin="0,0,10,0">
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Kind="Menu" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
                                 </StackPanel>
@@ -93,7 +93,7 @@
 
                             <!-- Settings Button (visible only when menu is expanded) -->
                             <Button Command="{Binding ShowSettingsCommand}" VerticalAlignment="Center" Height="40"
-                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}" Margin="10,0,0,0">
+                                    Background="White" BorderBrush="{StaticResource PrimaryBrush}">
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Kind="Cog" Width="30" Height="30" Foreground="{StaticResource PrimaryBrush}"/>
                                 </StackPanel>
@@ -135,8 +135,8 @@
             <!-- User Message (this TextBlock shows a message when there is text to display) -->
             <TextBlock Grid.Row="1" Text="{Binding UserMessage.Text}" 
                        Visibility="{Binding UserMessage.Text, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
-                       FontSize="16" TextAlignment="Left" HorizontalAlignment="Stretch"
-                       Padding="20,0,0,10" Foreground="Red"/>
+                       FontSize="16" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                       Padding="20,0,0,0" Foreground="Red"/>
         </Grid>
     </Grid>
 </Window>

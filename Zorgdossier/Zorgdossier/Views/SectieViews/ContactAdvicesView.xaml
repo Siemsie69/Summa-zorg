@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="ContactAdvices" Height="Auto" MaxWidth="900" Background="White">
+             Name="ContactAdvices" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
     <d:UserControl.DataContext>
         <sectieviewmodels:ContactAdvicesViewModel/>
     </d:UserControl.DataContext>
@@ -55,7 +55,7 @@
 
         <!-- Text Section -->
         <TextBlock Text="Vul hier de contact- en behandeladviezen in voor het dossier. Het is belangrijk om de patiënt duidelijke richtlijnen te geven over zelfzorg, activiteiten die vermeden moeten worden, en wanneer het nodig is om contact op te nemen met een zorgverlener. Dit zorgt ervoor dat de patiënt weet hoe hij of zij de situatie het beste kan beheren en wanneer verdere actie nodig is." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3"/>
 
         <!-- Content Spacer -->
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -80,17 +80,17 @@
 
             <!-- Onderzoeken die gedaan moeten worden (TextBox) -->
             <TextBox Text="{Binding ContactAdvice.Advice, UpdateSourceTrigger=PropertyChanged}" 
-                     Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
+                     Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="80" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                      materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke adviezen geef je aan de patiënt?" />
 
             <!-- Instruction Label -->
-            <TextBlock Text="Vul hier in wanneer &#10;de patiënt contact &#10;op zou moeten &#10; nemen volgens jou:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Vul hier in wanneer &#10;de patiënt contact &#10;op zou moeten &#10;nemen volgens jou:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
                        Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
 
             <!-- Onderzoeken die gedaan moeten worden (TextBox) -->
             <TextBox Text="{Binding ContactAdvice.ContactAdviceText, UpdateSourceTrigger=PropertyChanged}" 
-                     Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
+                     Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="80" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                      materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke contact adviezen geef je aan de patiënt? (optioneel)" />
         </Grid>
@@ -108,18 +108,18 @@
             <!-- Left Button -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowPolicyCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                    Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="2" HorizontalAlignment="Right"/>
+                    Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
                     Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
-                    Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                 </StackPanel>

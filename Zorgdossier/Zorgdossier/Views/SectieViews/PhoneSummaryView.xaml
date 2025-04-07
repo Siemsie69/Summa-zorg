@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Phone" Height="Auto" MaxWidth="900" Background="White">
+             Name="Phone" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
     <d:UserControl.DataContext>
         <sectieviewmodels:PhoneSummaryViewModel/>
     </d:UserControl.DataContext>
@@ -55,7 +55,7 @@
 
         <!-- Text Section -->
         <TextBlock Text="Maak hier een korte samenvatting van het telefoongesprek, waarbij je de belangrijkste informatie over de patiënt en zijn klachten opschrijft. Dit kan bijvoorbeeld de naam van de patiënt, de aard van de klacht en eventuele relevante bijkomende factoren omvatten. Zorg ervoor dat je het gesprek beknopt en duidelijk weergeeft, zodat de belangrijkste punten snel zichtbaar zijn." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3"/>
 
         <!-- Content Spacer -->
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -97,18 +97,18 @@
             <!-- Left Button -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowBasicInformationCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Left"/>
+                    Margin="0,0,5,-10" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowQuestionsCommand}" Width="200" Height="45" 
                     Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
-                    Margin="0,0,5,0" Grid.Column="2" HorizontalAlignment="Right"/>
+                    Margin="0,0,5,-10" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
                     Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
-                    Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-10">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
                 </StackPanel>

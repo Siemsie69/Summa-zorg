@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Dossiers" Height="Auto" MaxWidth="900" Background="White">
+             Name="Dossiers" Height="480" Width="680" Background="White">
     <d:UserControl.DataContext>
         <viewmodels:DossiersViewModel/>
     </d:UserControl.DataContext>
@@ -87,11 +87,11 @@
 
             <!-- Right Button -->
             <Button Content="Voorbeelddossier openen" FontSize="14" Command="{Binding ShowSampleDossierCommand}" Width="200" Height="45" 
-            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
+            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,14" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Left Button -->
             <Button Content="Dossier aanmaken" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
-            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="2" HorizontalAlignment="Right"/>
+            Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,14" Grid.Column="2" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </UserControl>
