@@ -7,8 +7,7 @@ Hier krijg je de kans om te oefenen met het stellen van gerichte vragen, het ana
 
 ## 💫 Wat is het Zorgdossier?
 
-De applicatie biedt studenten in de zorg en welzijnssector de tools om een gedetailleerd zorgdossier aan te maken en beheren.  
-Het richt zich op het verbeteren van jouw vaardigheden in het stellen van medische vragen, het analyseren van symptomen en het opstellen van een behandelplan. 
+De applicatie biedt studenten in de zorg en welzijnssector de tools om een gedetailleerd zorgdossier aan te maken en beheren. Het richt zich op het verbeteren van jouw vaardigheden in het stellen van medische vragen, het analyseren van symptomen en het opstellen van een behandelplan. 
 
 De applicatie biedt een gestructureerde aanpak voor het beheer van patiëntgegevens en ondersteunt een leeromgeving waarin studenten kunnen oefenen met realistische casussen.
 
@@ -36,4 +35,6 @@ Dit project is ontwikkeld en gemaakt door:
 
 - [Siem van Bree](https://www.linkedin.com/in/siemvanbree)
 - [Niek van Bree](https://www.linkedin.com/in/niek-van-bree)
-- Damian van der Lee
+- [Damian van der Lee](https://www.linkedin.com/in/damianvanderlee)
+
+## 🔗 [Website Fictief zorgdossier](https://zorgdossier.siemvanbree.nl/)

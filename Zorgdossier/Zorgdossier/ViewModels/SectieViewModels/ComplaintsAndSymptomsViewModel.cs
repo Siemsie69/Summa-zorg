@@ -45,9 +45,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier == null)
             {
                 ComplaintsSymptoms.ComplaintsSymptomsSummary = IsSampleMode
-                ? "•\tPijn bij het plassen\n" +
-                  "•\tBranderig gevoel bij het plassen\n" +
-                  "•\tKleine beetjes plassen"
+                ? "Pijn bij het plassen\n" +
+                  "Branderig gevoel bij het plassen\n" +
+                  "Kleine beetjes plassen"
                 : ComplaintsSymptoms.ComplaintsSymptomsSummary;
             }
         }

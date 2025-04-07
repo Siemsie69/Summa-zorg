@@ -45,9 +45,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier == null)
             {
                 Question.QuestionSummary = IsSampleMode
-                ? "•\tHeeft u een katheter? Loopt deze nog goed door?\n" +
-                  "•\tHeeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
-                  "•\tHerkent u de klachten van een eerdere urineweginfectie?"
+                ? "Heeft u een katheter? Loopt deze nog goed door?\n" +
+                  "Heeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
+                  "Herkent u de klachten van een eerdere urineweginfectie?"
                 : Question.QuestionSummary;
             }
         }

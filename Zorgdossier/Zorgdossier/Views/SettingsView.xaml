@@ -61,7 +61,7 @@
                 <ComboBoxItem Content="Licht" Background="White"/>
                 <ComboBoxItem Content="Donker" Background="White"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="Activeren" Width="100" Height="40" Background="{StaticResource PrimaryBrush}" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyThemeCommand}"/>
         </StackPanel>
 
         <!-- Language Selection -->
