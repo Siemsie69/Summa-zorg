@@ -52,54 +52,133 @@
         </Grid>
 
         <TextBlock Text="Selecteer een of meerdere organen die het meest relevant zijn voor dit dossier, op basis van de klachten en symptomen die de patiënt heeft aangegeven. Als je een orgaan hebt geselecteerd, kun je het toevoegen aan de lijst. Je kunt ook organen verwijderen indien nodig. Elk geselecteerd orgaan heeft een 3D-model waarmee je het van alle kanten kunt bekijken en roteren, zodat je een beter beeld krijgt." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+                   FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
 
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
-            <ScrollViewer Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Height="420" VerticalScrollBarVisibility="Auto">
-                <StackPanel Background="#F0F0F0">
-                    <ComboBox Name="OrganComboBox" Background="White" 
-          Foreground="{StaticResource PrimaryBrush}" 
-          BorderBrush="{StaticResource PrimaryBrush}" 
-          BorderThickness="1"
-          ItemsSource="{Binding AvailableOrgans}" 
-          SelectedItem="{Binding SelectedOrgan}" 
-          Height="30" Margin="10" 
-          materialDesign:HintAssist.Hint="{Binding HintTextOrganChoice}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
 
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Background" Value="White"/>
-                                <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
-                                <Setter Property="Padding" Value="5"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
+            <StackPanel Background="#F0F0F0" Margin="10">
+                <ComboBox Name="OrganComboBox" Background="White" 
+                          Foreground="{StaticResource PrimaryBrush}" 
+                          BorderBrush="{StaticResource PrimaryBrush}" 
+                          BorderThickness="1"
+                          ItemsSource="{Binding AvailableOrgans}" 
+                          SelectedItem="{Binding SelectedOrgan}" 
+                          Height="30" 
+                          materialDesign:HintAssist.Hint="{Binding HintTextOrganChoice}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
 
-                    <Button Command="{Binding AddToListCommand}" 
-                            Content="Toevoegen aan Lijst" 
-                            Height="30" Margin="10"/>
-                    
-                    <Button Command="{Binding RemoveFromListCommand}" 
-                            Content="Verwijderen" 
-                            Height="30" Margin="10"/>
-                    
-                    <ListBox Name="OrganListBox" 
-                             ItemsSource="{Binding SelectedOrgans}" 
-                             SelectedItem="{Binding SelectedOrgan}" 
-                             Height="auto" Margin="10"/>
-                </StackPanel>
-            </ScrollViewer>
+                <Button Command="{Binding AddToListCommand}" 
+                        Content="Toevoegen aan Lijst" 
+                        Height="30" Margin="10 30 10 0"/>
 
-            <h:HelixViewport3D Name="helixViewport" 
-                              ShowCoordinateSystem="True" 
-                              Margin="200 0 0 0" 
-                              ItemsSource="{Binding ViewportChildren}">
-                <h:HelixViewport3D.Camera>
-                    <PerspectiveCamera Position="0, -5, 5" LookDirection="0, 0, -1" UpDirection="0, 1, 0" FieldOfView="45" />
-                </h:HelixViewport3D.Camera>
-            </h:HelixViewport3D>
+                <Button Command="{Binding RemoveFromListCommand}" 
+                        Content="Verwijderen" 
+                        Height="30" Margin="10 20 10 0"/>
+
+                <Button Command="{Binding OpenViewerCommand}" 
+                        Content="Open 3D Viewer" 
+                        Height="30" Margin="10 20 10 0"
+                        ToolTip="Open a window with 3D models of all selected organs"/>
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Lijst met geselecteerde organen:" 
+                           FontSize="14" FontWeight="Bold"
+                           Margin="10,10,10,5" 
+                           Grid.Row="0"/>
+
+                <ListBox Name="OrganListBox" 
+                         ItemsSource="{Binding SelectedOrgans}" 
+                         SelectedItem="{Binding SelectedOrgan}" 
+                         Margin="10,0,10,10" 
+                         Grid.Row="1"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListBox.Resources>
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Width" Value="8"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollBar">
+                                        <Grid>
+                                            <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                                <Track.Thumb>
+                                                    <Thumb>
+                                                        <Thumb.Style>
+                                                            <Style TargetType="Thumb">
+                                                                <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                                <Setter Property="BorderThickness" Value="0"/>
+                                                                <Setter Property="Width" Value="6"/>
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Background" Value="#FFA0A0A0"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsDragging" Value="True">
+                                                                        <Setter Property="Background" Value="#FF808080"/>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Thumb.Style>
+                                                    </Thumb>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.Resources>
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="Border" 
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                            <ContentPresenter />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#F0F0F0"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#E0E0E0"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="3" Grid.ColumnSpan="3">

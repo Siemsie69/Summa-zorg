@@ -10,6 +10,7 @@ using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 using System.Collections.Generic;
+using Zorgdossier.Views.SectieViews;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
@@ -24,6 +25,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private bool _isSampleMode;
         private string _hintTextOrganChoice = string.Empty;
         private string _selectedOrgan;
+
+        private bool _isViewerOpen = false;
+        private Window _viewerWindow;
 
         private readonly Dictionary<string, ModelVisual3D> organModels = new();
         private readonly Dictionary<string, Point3D> organPositions = new()
@@ -91,6 +95,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             AddToListCommand = new RelayCommand(AddToList, CanAddToList);
             RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
+            OpenViewerCommand = new RelayCommand(ExecuteOpenViewer, CanOpenViewer);
 
             LoadOrgans();
 
@@ -105,6 +110,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             LoadOrgans();
             AddToListCommand = new RelayCommand(AddToList, CanAddToList);
             RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
+            OpenViewerCommand = new RelayCommand(ExecuteOpenViewer, CanOpenViewer);
         }
         #endregion
 
@@ -166,12 +172,13 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         public ICommand ShowFinishProgressCommand { get; }
         public ICommand AddToListCommand { get; }
         public ICommand RemoveFromListCommand { get; }
+        public ICommand OpenViewerCommand { get; }
         #endregion
 
         #region methods
         private void LoadOrgans()
         {
-            var organFolder = @"C:\Users\Gebruiker\OneDrive\Documenten\Summa\OrganenSummaZorg\OrganenSummaZorg\Organs\stl";
+            var organFolder = @"C:\Summa-zorg\Zorgdossier\Zorgdossier\Organs\stl\";
 
             foreach (var organName in organPositions.Keys)
             {
@@ -225,7 +232,20 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (!string.IsNullOrEmpty(SelectedOrgan) && !SelectedOrgans.Contains(SelectedOrgan))
             {
                 SelectedOrgans.Add(SelectedOrgan);
-                UpdateViewport();
+
+                // Update the viewer if it's open
+                if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
+                {
+                    if (organModels.TryGetValue(SelectedOrgan, out var visual))
+                    {
+                        viewer.AddOrganModel(visual);
+                    }
+                }
+                else if (SelectedOrgans.Count == 1)
+                {
+                    // Automatically open the viewer when the first organ is added
+                    ExecuteOpenViewer(null);
+                }
             }
         }
 
@@ -239,41 +259,25 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (!string.IsNullOrEmpty(SelectedOrgan) && SelectedOrgans.Contains(SelectedOrgan))
             {
                 SelectedOrgans.Remove(SelectedOrgan);
-                UpdateViewport();
+
+                // Update the viewer if it's open
+                if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
+                {
+                    viewer.ClearModels();
+                    foreach (var organName in SelectedOrgans)
+                    {
+                        if (organModels.TryGetValue(organName, out var visual))
+                        {
+                            viewer.AddOrganModel(visual);
+                        }
+                    }
+                }
             }
         }
 
         private bool CanRemoveFromList(object parameter)
         {
             return !string.IsNullOrEmpty(SelectedOrgan) && SelectedOrgans.Contains(SelectedOrgan);
-        }
-
-        private void UpdateViewport()
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                ViewportChildren.Clear();
-
-                var ambientLight = new AmbientLight(Color.FromRgb(100, 100, 100));
-                ViewportChildren.Add(new ModelVisual3D { Content = ambientLight });
-
-                var keyLight = new DirectionalLight(Colors.White, new Vector3D(-0.7, -0.7, -1));
-                ViewportChildren.Add(new ModelVisual3D { Content = keyLight });
-
-                var fillLight = new DirectionalLight(Color.FromRgb(60, 60, 60), new Vector3D(0.3, 0.3, -1));
-                ViewportChildren.Add(new ModelVisual3D { Content = fillLight });
-
-                var rimLight = new DirectionalLight(Color.FromRgb(80, 80, 80), new Vector3D(0, 0.5, -1));
-                ViewportChildren.Add(new ModelVisual3D { Content = rimLight });
-
-                foreach (var organName in SelectedOrgans)
-                {
-                    if (organModels.TryGetValue(organName, out var visual))
-                    {
-                        ViewportChildren.Add(visual);
-                    }
-                }
-            });
         }
 
         private void ExecuteShowInfo(object? obj)
@@ -312,6 +316,49 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowFinishedView(object? obj)
         {
             _appNavigation.ActiveViewModel = new FinishProgressViewModel(_appNavigation, _userMessage, _dossierService, _dossier);
+        }
+
+        private bool CanOpenViewer(object parameter)
+        {
+            return SelectedOrgans.Count > 0 && !_isViewerOpen;
+        }
+
+        private void ExecuteOpenViewer(object parameter)
+        {
+            if (_isViewerOpen)
+            {
+                _viewerWindow?.Activate();
+                return;
+            }
+
+            _isViewerOpen = true;
+
+            var viewer = new Organ3DViewerView();
+
+            foreach (var organName in SelectedOrgans)
+            {
+                if (organModels.TryGetValue(organName, out var visual))
+                {
+                    viewer.AddOrganModel(visual);
+                }
+            }
+
+            _viewerWindow = new Window
+            {
+                Title = "3D Organ Viewer",
+                Content = viewer,
+                Width = 800,
+                Height = 600,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+
+            _viewerWindow.Closed += (sender, args) =>
+            {
+                _isViewerOpen = false;
+                _viewerWindow = null;
+            };
+
+            _viewerWindow.Show();
         }
         #endregion
     }
