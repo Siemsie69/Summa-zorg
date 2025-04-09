@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Uitleg" Height="Auto" MaxWidth="900" Background="White">
+             Name="Uitleg" Height="Auto" MaxWidth="900" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <viewmodels:ExplanationViewModel/>
     </d:UserControl.DataContext>
@@ -35,8 +35,8 @@
 
             <!-- Title Section -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="TitleText" Text="Uitleg en toelichting" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
+                <TextBlock x:Name="TitleText" Text="Uitleg en toelichting" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
             </StackPanel>
 
             <Button HorizontalAlignment="Right" Height="40" Width="60" Grid.Column="2"
@@ -48,38 +48,38 @@
 
             <!-- Welcome Text -->
             <TextBlock Text="Hier kun je een uitgebreide uitleg vinden over hoe je zorgdossiers kunt aanmaken, beheren en optimaliseren. Deze applicatie biedt ondersteuning bij het werken met patiëntendossiers, medische analyses en diagnostische processen, zodat je efficiënter te werk kunt gaan en betere zorg kunt bieden."
-                       FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="2"/>
+                       FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{DynamicResource BodyTextColor}"/>
 
             <!-- Section 1: Starten met dossiers -->
-            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Hoe te beginnen met zorgdossiers?" FontSize="18" FontWeight="Bold" Margin="0,0,0,0"/>
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Hoe te beginnen met zorgdossiers?" FontSize="18" FontWeight="Bold" Margin="0,0,0,0" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="Om te beginnen met het werken aan patiëntendossiers, dien je in het hoofdmenu te navigeren naar de sectie met de naam 'Dossiers'. Hier krijg je een volledig overzicht van alle bestaande patiëntendossiers en heb je tevens de mogelijkheid om eenvoudig nieuwe dossiers te creëren en toe te voegen."
-                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0" Foreground="{DynamicResource BodyTextColor}"/>
 
             <!-- Section 2: Dossier opstellen -->
-            <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Hoe stel je een patiëntendossier op?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
+            <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Text="Hoe stel je een patiëntendossier op?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Bij het opstellen van een patiëntendossier doorloop je een gestructureerd proces waarbij je gerichte vragen beantwoordt, symptomen analyseert en uiteindelijk een diagnose opstelt. Onze applicatie biedt een begeleid stappenplan dat je helpt bij het invullen van de benodigde gegevens en het vastleggen van de juiste medische informatie."
-                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0" Foreground="{DynamicResource BodyTextColor}"/>
 
             <!-- Section 3: Vervolgstappen bepalen -->
-            <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="Welke vervolgstappen zijn nodig?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
+            <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="Welke vervolgstappen zijn nodig?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Na het vaststellen van een diagnose is het van groot belang om de juiste vervolgstappen te bepalen. Dit kunnen aanvullende onderzoeken, een gerichte medische behandeling of een doorverwijzing naar een specialist zijn. Onze applicatie helpt je bij het in kaart brengen van deze cruciale stappen."
-                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0" Foreground="{DynamicResource BodyTextColor}"/>
 
             <!-- Section 4: Exporteren van dossiers -->
-            <TextBlock Grid.Row="8" Grid.ColumnSpan="2" Text="Hoe kun je een dossier exporteren?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
+            <TextBlock Grid.Row="8" Grid.ColumnSpan="2" Text="Hoe kun je een dossier exporteren?" FontSize="18" FontWeight="Bold" Margin="0,10,0,0" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Grid.Row="9" Grid.ColumnSpan="2" Text="Wanneer je dossier volledig is ingevuld en gereed is voor verdere verwerking, kun je het eenvoudig opslaan en exporteren. De applicatie biedt een exportfunctie waarmee je het dossier als een goed geformatteerd document kunt genereren, zodat het gemakkelijk gedeeld en ingeleverd kan worden."
-                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                       FontSize="14" TextAlignment="Justify" TextWrapping="Wrap" Margin="0,5,0,0" Foreground="{DynamicResource BodyTextColor}"/>
 
             <!-- Section 5: Klaar om aan de slag te gaan -->
             <TextBlock Grid.Row="10" Grid.ColumnSpan="2" Text="Ben je er klaar voor? Klik op de knop hieronder om direct aan de slag te gaan." 
-                       TextAlignment="Left" TextWrapping="Wrap" FontSize="18" FontWeight="Bold" Margin="0,10,0,10"/>
+                       TextAlignment="Left" TextWrapping="Wrap" FontSize="18" FontWeight="Bold" Margin="0,10,0,10" Foreground="{DynamicResource BodyTextColor}"/>
 
             <StackPanel Grid.Row="11" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Content="Maak een dossier" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45"
-                        Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0"/>
+                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,5,0"/>
 
                 <Button Content="Voorbeelddossier" FontSize="14" Command="{Binding ShowSampleDossierCommand}" Width="200" Height="45"
-                        Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0"/>
+                        Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="5,0,0,0"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

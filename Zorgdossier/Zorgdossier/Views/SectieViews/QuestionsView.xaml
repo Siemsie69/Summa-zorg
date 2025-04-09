@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Vragen" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
+             Name="Vragen" Height="Auto" MaxWidth="900" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <sectieviewmodels:QuestionsViewModel/>
     </d:UserControl.DataContext>
@@ -30,24 +30,24 @@
         <!-- Title Section with Buttons -->
         <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="QuestionsText" Text="Dossiers: Vraagstelling" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="QuestionsText" Text="Dossiers: Vraagstelling" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                 <!-- Underline (Rectangle) -->
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=QuestionsText}"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=QuestionsText}"/>
             </StackPanel>
 
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
                         Visibility="{Binding IsNotSampleMode,
                         Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -56,11 +56,11 @@
         <!-- Text Section -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10">
             <TextBlock Text="Bij het stellen van vragen aan de patiënt is het belangrijk om zowel algemene als verdiepende vragen te stellen. Dit helpt om het ziektebeeld beter in kaart te brengen en geeft je een vollediger beeld van de klachten en symptomen. Denk aan vragen die je helpen de aard, duur en intensiteit van de klachten te begrijpen, maar ook aan specifieke vragen die verder ingaan op onderliggende factoren zoals eerdere gezondheidsproblemen." 
-                       FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+                       FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
         <!-- Content Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{DynamicResource BackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -73,18 +73,18 @@
             </Grid.ColumnDefinitions>
 
             <!-- Title Section -->
-            <TextBlock Text="Vraagstelling:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Vraagstelling:" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" 
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
 
             <!-- Instruction Label -->
-            <TextBlock Text="Vul hier de vragen &#10;in die je aan de &#10;patiënt zou stellen:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Vul hier de vragen &#10;in die je aan de &#10;patiënt zou stellen:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
 
             <!-- Vragen stellen aan de Patiënt (TextBox) -->
             <TextBox Text="{Binding Question.QuestionSummary, UpdateSourceTrigger=PropertyChanged}" 
              Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-             materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Schrijf hier de vragen op die je gaat stellen" />
+             materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Schrijf hier de vragen op die je gaat stellen" Background="White"/>
         </Grid>
 
         <!-- Buttons Section -->
@@ -98,21 +98,21 @@
 
             <!-- Left Button -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowPhoneSummaryCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowOrgansCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                 </StackPanel>
             </Button>
         </Grid>

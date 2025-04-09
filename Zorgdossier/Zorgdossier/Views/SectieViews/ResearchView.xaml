@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="Onderzoeken" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
+             Name="Onderzoeken" Height="Auto" MaxWidth="900" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <sectieviewmodels:ResearchViewModel/>
     </d:UserControl.DataContext>
@@ -30,24 +30,24 @@
         <!-- Title Section with Buttons -->
         <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="ResearchText" Text="Dossiers: Onderzoeken" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="ResearchText" Text="Dossiers: Onderzoeken" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                 <!-- Underline (Rectangle) -->
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=ResearchText}"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=ResearchText}"/>
             </StackPanel>
 
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
                         Visibility="{Binding IsNotSampleMode,
                         Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -55,10 +55,10 @@
 
         <!-- Text Section -->
         <TextBlock Text="Vul in welke onderzoeken uitgevoerd moeten worden in het kader van dit dossier. Deze onderzoeken moeten gebaseerd zijn op de klachten en symptomen die de patiënt heeft aangegeven. Ze kunnen variëren van bloedonderzoeken tot beeldvorming, afhankelijk van wat nodig is om de aandoening beter te begrijpen en te bevestigen." 
-            FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3"/>
+            FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
 
         <!-- Content Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{DynamicResource BackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -71,18 +71,18 @@
             </Grid.ColumnDefinitions>
 
             <!-- Title Section -->
-            <TextBlock Text="Onderzoeken:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Onderzoeken:" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
 
             <!-- Instruction Label -->
-            <TextBlock Text="Vul hier in welke &#10;onderzoeken er &#10;gedaan moeten worden:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Vul hier in welke &#10;onderzoeken er &#10;gedaan moeten worden:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
 
             <!-- Onderzoeken die gedaan moeten worden (TextBox) -->
             <TextBox Text="{Binding Research.ResearchSummary, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="150" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke onderzoeken moeten er worden uitgevoerd?" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke onderzoeken moeten er worden uitgevoerd?" Background="White"/>
         </Grid>
 
         <!-- Buttons Section -->
@@ -96,21 +96,21 @@
 
             <!-- Left Button -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowComplaintsAndSymptomsCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowPolicyCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                 </StackPanel>
             </Button>
         </Grid>
