@@ -83,10 +83,13 @@
 
                 <!-- Urgency Selection Dropdown -->
                 <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Kies de urgentie:" FontSize="18" FontWeight="Bold" 
-           Foreground="{StaticResource PrimaryBrush}"
-           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" 
+                           Margin="0,10,0,10" Padding="15,0,0,0"/>
+                
                 <ComboBox SelectedItem="{Binding Policy.Urgency, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.ColumnSpan="3" 
                       Margin="15,10,15,90" FontSize="16" materialDesign:HintAssist.Hint="Selecteer Urgentie" MaxDropDownHeight="70">
+                    
                     <ComboBox.ItemsSource>
                         <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                             <sys:String>U1 Levensbedreigend</sys:String>
@@ -122,6 +125,7 @@
                 <TextBlock Grid.Row="3" Text="Triagecriterium:" FontSize="18" FontWeight="Bold" 
                            Foreground="{StaticResource PrimaryBrush}"
                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+                
                 <TextBox Text="{Binding Policy.TriageCriteria,
                         UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="4" Grid.ColumnSpan="4" FontSize="16" Margin="15,10,15,10" 
@@ -135,6 +139,7 @@
                 <TextBlock Grid.Row="5" Grid.ColumnSpan="2" Text="Kies de beleidskeuze:" FontSize="18" FontWeight="Bold" 
                            Foreground="{StaticResource PrimaryBrush}"
                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
+                
                 <ComboBox SelectedItem="{Binding Policy.PolicyChoice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.ColumnSpan="2" Margin="15,10,15,100" FontSize="16"
                       materialDesign:HintAssist.Hint="Selecteer beleidskeuze">
                     <ComboBox.ItemsSource>
@@ -148,9 +153,9 @@
                 <xctk:DateTimePicker Grid.Row="6" Grid.Column="2"
                      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,9,15,0" Width="240" Height="35"
                      Value="{Binding Policy.PolicyDateTime,
-                UpdateSourceTrigger=PropertyChanged}"
+                     UpdateSourceTrigger=PropertyChanged}"
                      Visibility="{Binding Appointment,
-                Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                     Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </Grid>
 
             <!-- Buttons Section -->

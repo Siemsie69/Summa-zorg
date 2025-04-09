@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zorgdossier.ViewModels.SectieViewModels;
 
 namespace Zorgdossier.Views.SectieViews
 {
@@ -23,6 +24,7 @@ namespace Zorgdossier.Views.SectieViews
         public OrgansView()
         {
             InitializeComponent();
+            DataContext = new OrgansViewModel();
         }
     }
 }

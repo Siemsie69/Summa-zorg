@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
+using System.Collections.Generic;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
@@ -19,33 +20,50 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private UserMessage _userMessage;
         private DossierService _dossierService;
         private Dossier? _dossier;
-        public ObservableCollection<Visual3D> ViewportChildren { get; } = new();
+
         private bool _isSampleMode;
         private string _hintTextOrganChoice = string.Empty;
+        private string _selectedOrgan;
 
         private readonly Dictionary<string, ModelVisual3D> organModels = new();
         private readonly Dictionary<string, Point3D> organPositions = new()
         {
-            { "Brein", new Point3D(0, 0, 0) },
-            { "Ogen", new Point3D(0, 0, 0) },
-            { "Longen", new Point3D(0, 0, 0) },
-            { "Slokdarm", new Point3D(0, 0, 0) },
-            { "Luchtpijp", new Point3D(0, 0, 0) },
-            { "Dikke darm", new Point3D(0, 0, 0) },
-            { "Dunne darm", new Point3D(0, 0, 0) },
-            { "Twaalfvingerige darm", new Point3D(0, 0, 0) },
-            { "Schildklier", new Point3D(0, 0, 0) },
+            { "Aorta", new Point3D(0, 0, 0) },
             { "Alvleesklier", new Point3D(0, 0, 0) },
-            { "Maag", new Point3D(0, 0, 0) },
-            { "Lever", new Point3D(0, 0, 0) },
+            { "Baarmoeder", new Point3D(0, 0, 0) },
+            { "Bloedomloop", new Point3D(0, 0, 0) },
+            { "Brein", new Point3D(0, 0, 0) },
+            { "Dikke Darm", new Point3D(0, 0, 0) },
+            { "Dunne Darm", new Point3D(0, 0, 0) },
+            { "Endeldarm", new Point3D(0, 0, 0) },
+            { "Eierstokken", new Point3D(0, 0, 0) },
             { "Galblaas", new Point3D(0, 0, 0) },
-            { "Nieren", new Point3D(0, 0, 0) },
-            { "Urineblaas", new Point3D(0, 0, 0) },
-            { "Prostaat", new Point3D(0, 0, 0) },
-            { "Hypofyse", new Point3D(0, 0, 0) },
-            { "Zenuwstelsel", new Point3D(0, 0, 0) },
             { "Hart", new Point3D(0, 0, 0) },
-            { "Aorta", new Point3D(0, 0, 0) }
+            { "Huid", new Point3D(0, 0, 0) },
+            { "Hypofyse", new Point3D(0, 0, 0) },
+            { "Keelholte", new Point3D(0, 0, 0) },
+            { "Ledematen (Armen)", new Point3D(0, 0, 0) },
+            { "Ledematen (Benen)", new Point3D(0, 0, 0) },
+            { "Ledematen (Vingers)", new Point3D(0, 0, 0) },
+            { "Ledematen (Tenen)", new Point3D(0, 0, 0) },
+            { "Lever", new Point3D(0, 0, 0) },
+            { "Longen", new Point3D(0, 0, 0) },
+            { "Luchtpijp", new Point3D(0, 0, 0) },
+            { "Lymfeklieren", new Point3D(0, 0, 0) },
+            { "Maag", new Point3D(0, 0, 0) },
+            { "Mondholte", new Point3D(0, 0, 0) },
+            { "Nieren", new Point3D(0, 0, 0) },
+            { "Neus", new Point3D(0, 0, 0) },
+            { "Ogen", new Point3D(0, 0, 0) },
+            { "Oren", new Point3D(0, 0, 0) },
+            { "Prostaat", new Point3D(0, 0, 0) },
+            { "Schildklier", new Point3D(0, 0, 0) },
+            { "Skelet", new Point3D(0, 0, 0) },
+            { "Slokdarm", new Point3D(0, 0, 0) },
+            { "Twaalfvingerige Darm", new Point3D(0, 0, 0) },
+            { "Urineblaas", new Point3D(0, 0, 0) },
+            { "Zaadballen", new Point3D(0, 0, 0) },
+            { "Zenuwstelsel", new Point3D(0, 0, 0) }
         };
         #endregion
 
@@ -71,92 +89,27 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
-            if (dossier == null)
-            {
-                HintTextOrganChoice = IsSampleMode ? "Kies hier de organen." : "Kies hier de organen.";
-            }
-
-            LoadOrgans();
-            LoadSelectedOrgans();
-
             AddToListCommand = new RelayCommand(AddToList, CanAddToList);
             RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
-        }
-        public OrgansViewModel()
-        {
 
-        }
+            LoadOrgans();
 
-        private void LoadOrgans()
-        {
-            Application.Current.Dispatcher.Invoke(() =>
+            if (dossier == null)
             {
-                foreach (var organName in organPositions.Keys)
-                {
-                    if (!AvailableOrgans.Contains(organName))
-                    {
-                        AvailableOrgans.Add(organName);
-                    }
-                }
-
-                // Voeg extra niet-zichtbare organen toe
-                var extraOrgans = new List<string>
-                {
-                    "Skelet",
-                    "Endeldarm",
-                    "Oren",
-                    "Neus",
-                    "Mondholte",
-                    "Keelholte",
-                    "Lymfeklieren",
-                    "Ledematen (arm)",
-                    "Ledematen (been)",
-                    "Ledematen (vingers)",
-                    "Ledematen (tenen)",
-                    "Huid",
-                    "Bloedomloop",
-                    "Zaadballen",
-                    "Eierstokken",
-                    "Baarmoeder"
-                };
-
-                foreach (var organ in extraOrgans)
-                {
-                    if (!AvailableOrgans.Contains(organ))
-                    {
-                        AvailableOrgans.Add(organ);
-                    }
-                }
-            });
-        }
-
-        private void SaveOrgans()
-        {
-            // Zet de lijst van organen om naar een string, gescheiden door komma's
-            string organsAsString = string.Join(",", SelectedOrgans);
-
-            // Sla de string op in DossierService
-            _dossierService.CentralDossier.Organ.Organs = organsAsString;
-            if (_dossierService?.CentralDossier?.Organ == null)
-            {
-                MessageBox.Show("Organ is niet geïnitialiseerd!");
-                return;
+                HintTextOrganChoice = IsSampleMode ? "Selecteer hier de organen." : "Selecteer hier de organen.";
             }
         }
 
-        private void UpdateOrgans()
+        public OrgansViewModel()
         {
-            // Zelfde logica als opslaan: werk de string in DossierService bij
-            string organsAsString = string.Join(",", SelectedOrgans);
-            _dossierService.CentralDossier.Organ.Organs = organsAsString;
+            LoadOrgans();
+            AddToListCommand = new RelayCommand(AddToList, CanAddToList);
+            RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
         }
         #endregion
 
         #region properties
-        public DossierService.Organ Organ
-        {
-            get;
-        }
+        public DossierService.Organ Organ { get; }
 
         public bool IsSampleMode
         {
@@ -165,7 +118,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 if (_isSampleMode != value)
                 {
-                    _isSampleMode = value; OnPropertyChanged(nameof(IsSampleMode)); OnPropertyChanged(nameof(IsNotSampleMode));
+                    _isSampleMode = value;
+                    OnPropertyChanged(nameof(IsSampleMode));
+                    OnPropertyChanged(nameof(IsNotSampleMode));
                 }
             }
         }
@@ -185,64 +140,145 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
         }
 
-        public SampleDossierViewModel Instance
-        {
-            get;
-        }
-
-        public ObservableCollection<string> AvailableOrgans { get; } = new();
-
-        public ObservableCollection<string> SelectedOrgans { get; } = new();
-
-        private string? _selectedOrgan;
-        public string? SelectedOrgan
+        public string SelectedOrgan
         {
             get => _selectedOrgan;
-            set => SetProperty(ref _selectedOrgan, value); // Notify UI
+            set
+            {
+                _selectedOrgan = value;
+                OnPropertyChanged();
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
+
+        public ObservableCollection<string> AvailableOrgans { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> SelectedOrgans { get; } = new ObservableCollection<string>();
+        public ObservableCollection<Visual3D> ViewportChildren { get; } = new ObservableCollection<Visual3D>();
+
+        public SampleDossierViewModel Instance { get; }
         #endregion
 
         #region commands
-        public ICommand ShowInfoCommand
-        {
-            get;
-        }
-
-        public ICommand ShowHomeCommand
-        {
-            get;
-        }
-
-        public ICommand ShowComplaintsAndSymptomsCommand
-        {
-            get;
-        }
-
-        public ICommand ShowQuestionsCommand
-        {
-            get;
-        }
-
-        public ICommand AddToListCommand
-        {
-            get;
-        }
-
-        public ICommand RemoveFromListCommand
-        {
-            get;
-        }
-
-        public ICommand ShowFinishProgressCommand
-        {
-            get;
-        }
+        public ICommand ShowInfoCommand { get; }
+        public ICommand ShowHomeCommand { get; }
+        public ICommand ShowComplaintsAndSymptomsCommand { get; }
+        public ICommand ShowQuestionsCommand { get; }
+        public ICommand ShowFinishProgressCommand { get; }
+        public ICommand AddToListCommand { get; }
+        public ICommand RemoveFromListCommand { get; }
         #endregion
 
         #region methods
+        private void LoadOrgans()
+        {
+            var organFolder = @"C:\Users\Gebruiker\OneDrive\Documenten\Summa\OrganenSummaZorg\OrganenSummaZorg\Organs\stl";
+
+            foreach (var organName in organPositions.Keys)
+            {
+                AvailableOrgans.Add(organName);
+
+                var organPath = Path.Combine(organFolder, $"{organName}.stl");
+                if (File.Exists(organPath))
+                {
+                    try
+                    {
+                        var reader = new StLReader();
+                        var model = reader.Read(organPath);
+                        var visual = CreateOrganModel(model, organPositions[organName]);
+                        organModels[organName] = visual;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Failed to load model for {organName}: {ex.Message}");
+                    }
+                }
+            }
+        }
+
+        private ModelVisual3D CreateOrganModel(Model3DGroup model, Point3D position)
+        {
+            var materialGroup = new MaterialGroup();
+            var diffuseMaterial = new DiffuseMaterial(
+                new SolidColorBrush(Color.FromRgb(150, 200, 230)));
+            var specularMaterial = new SpecularMaterial(
+                new SolidColorBrush(Color.FromRgb(220, 220, 220)), 60);
+
+            materialGroup.Children.Add(diffuseMaterial);
+            materialGroup.Children.Add(specularMaterial);
+
+            foreach (var geometry in model.Children)
+            {
+                if (geometry is GeometryModel3D geometryModel)
+                {
+                    geometryModel.Material = materialGroup;
+                    geometryModel.BackMaterial = materialGroup;
+                }
+            }
+
+            var organModel = new ModelVisual3D { Content = model };
+            organModel.Transform = new TranslateTransform3D(position.X, position.Y, position.Z);
+            return organModel;
+        }
+
+        private void AddToList(object parameter)
+        {
+            if (!string.IsNullOrEmpty(SelectedOrgan) && !SelectedOrgans.Contains(SelectedOrgan))
+            {
+                SelectedOrgans.Add(SelectedOrgan);
+                UpdateViewport();
+            }
+        }
+
+        private bool CanAddToList(object parameter)
+        {
+            return !string.IsNullOrEmpty(SelectedOrgan) && !SelectedOrgans.Contains(SelectedOrgan);
+        }
+
+        private void RemoveFromList(object parameter)
+        {
+            if (!string.IsNullOrEmpty(SelectedOrgan) && SelectedOrgans.Contains(SelectedOrgan))
+            {
+                SelectedOrgans.Remove(SelectedOrgan);
+                UpdateViewport();
+            }
+        }
+
+        private bool CanRemoveFromList(object parameter)
+        {
+            return !string.IsNullOrEmpty(SelectedOrgan) && SelectedOrgans.Contains(SelectedOrgan);
+        }
+
+        private void UpdateViewport()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                ViewportChildren.Clear();
+
+                var ambientLight = new AmbientLight(Color.FromRgb(100, 100, 100));
+                ViewportChildren.Add(new ModelVisual3D { Content = ambientLight });
+
+                var keyLight = new DirectionalLight(Colors.White, new Vector3D(-0.7, -0.7, -1));
+                ViewportChildren.Add(new ModelVisual3D { Content = keyLight });
+
+                var fillLight = new DirectionalLight(Color.FromRgb(60, 60, 60), new Vector3D(0.3, 0.3, -1));
+                ViewportChildren.Add(new ModelVisual3D { Content = fillLight });
+
+                var rimLight = new DirectionalLight(Color.FromRgb(80, 80, 80), new Vector3D(0, 0.5, -1));
+                ViewportChildren.Add(new ModelVisual3D { Content = rimLight });
+
+                foreach (var organName in SelectedOrgans)
+                {
+                    if (organModels.TryGetValue(organName, out var visual))
+                    {
+                        ViewportChildren.Add(visual);
+                    }
+                }
+            });
+        }
+
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Kies de organen die direct gerelateerd zijn aan de klachten en symptomen die de patiënt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.",
+            MessageBox.Show("Selecteer hier de organen die direct gerelateerd zijn aan de klachten en symptomen die de patiënt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.",
                             "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -271,120 +307,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private void ExecuteShowQuestionsView(object? obj)
         {
             _appNavigation.ActiveViewModel = new QuestionsViewModel(_appNavigation, _userMessage, _dossierService, _dossier, Instance);
-        }
-
-        private void AddToList(object? obj = null)
-        {
-            if (SelectedOrgan != null && !SelectedOrgans.Contains(SelectedOrgan))
-            {
-                SelectedOrgans.Add(SelectedOrgan); 
-                SaveOrgans(); 
-            }
-        }
-
-        private bool CanAddToList(object? obj = null)
-        {
-            return SelectedOrgan != null && !SelectedOrgans.Contains(SelectedOrgan);
-        }
-
-        private void RemoveFromList(object? obj = null)
-        {
-            if (SelectedOrgan != null && SelectedOrgans.Contains(SelectedOrgan))
-            {
-                SelectedOrgans.Remove(SelectedOrgan);
-                SaveOrgans(); 
-            }
-        }
-
-        private bool CanRemoveFromList(object? obj = null)
-        {
-            return SelectedOrgan != null && SelectedOrgans.Contains(SelectedOrgan);
-        }
-
-        private async Task<bool> FileExistsAsync(string path)
-        {
-            return await Task.Run(() => File.Exists(path));
-        }
-
-        private void LoadSelectedOrgans()
-        {
-            string? organsAsString = _dossierService.CentralDossier.Organ.Organs;
-
-            if (!string.IsNullOrEmpty(organsAsString))
-            {
-                var organsList = organsAsString.Split(',').ToList();
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    foreach (var organ in organsList)
-                    {
-                        if (!SelectedOrgans.Contains(organ))
-                        {
-                            SelectedOrgans.Add(organ);
-                        }
-                    }
-                });
-            }
-        }
-
-        private void UpdateViewport()
-        {
-            ViewportChildren.Clear();
-
-            // Add SunLight to the viewport
-            //var sunLight = new SunLight();
-            //ViewportChildren.Add(sunLight);
-
-            foreach (string organName in SelectedOrgans)
-            {
-                var organPath = Path.Combine("Resources/stl", $"{organName}.stl");
-
-                if (File.Exists(organPath))
-                {
-                    try
-                    {
-                        var reader = new StLReader();
-                        var model = reader.Read(organPath);
-                        var visual = CreateOrganModel(model, organPositions[organName]);
-                        ViewportChildren.Add(visual);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Failed to load model for {organName}: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show($"File not found for organ: {organName}", "File Missing", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-        }
-
-        private ModelVisual3D CreateOrganModel(Model3DGroup model, Point3D position)
-        {
-            var material = new DiffuseMaterial(new SolidColorBrush(Colors.Red));
-
-            foreach (var geometry in model.Children)
-            {
-                if (geometry is GeometryModel3D geometryModel)
-                {
-                    geometryModel.Material = material;
-                    geometryModel.BackMaterial = material;
-                }
-            }
-
-            var organModel = new ModelVisual3D { Content = model };
-            organModel.Transform = new TranslateTransform3D(position.X, position.Y, position.Z);
-            return organModel;
-        }
-
-        protected bool SetProperty<T>(ref T field, T value, [System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(field, value))
-                return false;
-
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
         }
 
         private void ExecuteShowFinishedView(object? obj)
