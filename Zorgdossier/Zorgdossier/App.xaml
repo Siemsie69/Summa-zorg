@@ -12,6 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Zorgdossier;component/Themes/LightTheme.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Zorgdossier;component/Languages/DutchLanguage.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 

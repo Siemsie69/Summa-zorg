@@ -31,7 +31,7 @@
 
         <!-- Settings Title -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock x:Name="SettingsText" Text="Instellingen" FontSize="36" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="SettingsText" Text="{DynamicResource SettingsTitle}" FontSize="36" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
             <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=SettingsText}"/>
         </StackPanel>
 
@@ -71,10 +71,10 @@
             <ComboBox SelectedValue="{Binding SelectedLanguage}"
                       SelectedValuePath="Content" Width="150" Height="40" Background="White" 
                       BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
-                <ComboBoxItem Content="Nederlands" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
-                <ComboBoxItem Content="Engels" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="Dutch" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="English" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Content="Activeren" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyLanguageCommand}"/>
         </StackPanel>
 
         <!-- Data Reset Description -->

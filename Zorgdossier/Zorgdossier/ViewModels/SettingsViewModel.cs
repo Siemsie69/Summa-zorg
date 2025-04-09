@@ -34,6 +34,7 @@ namespace Zorgdossier.ViewModels
 
             ResetCommand = new RelayCommand(ExecuteReset);
             ApplyThemeCommand = new RelayCommand(ExecuteApplyTheme);
+            ApplyLanguageCommand = new RelayCommand(ExecuteApplyLanguage);
         }
 
         public SettingsViewModel() { }
@@ -77,6 +78,7 @@ namespace Zorgdossier.ViewModels
         #region Commands
         public ICommand ResetCommand { get; }
         public ICommand ApplyThemeCommand { get; }
+        public ICommand ApplyLanguageCommand { get; }
         #endregion
 
         #region Methods
@@ -141,6 +143,14 @@ namespace Zorgdossier.ViewModels
             if (!string.IsNullOrEmpty(SelectedTheme))
             {
                 ThemeManager.ApplyTheme(SelectedTheme);
+            }
+        }
+
+        private void ExecuteApplyLanguage(object? obj)
+        {
+            if (!string.IsNullOrEmpty(SelectedLanguage))
+            {
+                ThemeManager.ApplyLanguage(SelectedLanguage);
             }
         }
         #endregion

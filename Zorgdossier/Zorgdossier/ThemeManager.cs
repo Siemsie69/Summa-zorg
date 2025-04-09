@@ -16,13 +16,25 @@ namespace Zorgdossier
 
             var appResources = Application.Current.Resources.MergedDictionaries;
 
-            // Verwijder eventueel oude thema dictionary
             var existing = appResources.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Theme"));
             if (existing != null)
                 appResources.Remove(existing);
 
-            // Voeg nieuwe toe
-            appResources.Insert(0, themeDict); // Plaats vooraan voor prioriteit
+            appResources.Insert(0, themeDict);
+        }
+
+        public static void ApplyLanguage(string languageName)
+        {
+            string uri = $"Languages/{languageName}Language.xaml";
+            var languageDict = new ResourceDictionary() { Source = new Uri(uri, UriKind.Relative) };
+
+            var appResources = Application.Current.Resources.MergedDictionaries;
+
+            var existing = appResources.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Language"));
+            if (existing != null)
+                appResources.Remove(existing);
+
+            appResources.Insert(0, languageDict);
         }
     }
 

@@ -93,11 +93,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowQuestionsCommand = new RelayCommand(ExecuteShowQuestionsView);
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
+            LoadOrgans();
             AddToListCommand = new RelayCommand(AddToList, CanAddToList);
             RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
             OpenViewerCommand = new RelayCommand(ExecuteOpenViewer, CanOpenViewer);
-
-            LoadOrgans();
 
             if (dossier == null)
             {
@@ -107,10 +106,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         public OrgansViewModel()
         {
-            LoadOrgans();
-            AddToListCommand = new RelayCommand(AddToList, CanAddToList);
-            RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
-            OpenViewerCommand = new RelayCommand(ExecuteOpenViewer, CanOpenViewer);
+            
         }
         #endregion
 
@@ -233,7 +229,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 SelectedOrgans.Add(SelectedOrgan);
 
-                // Update the viewer if it's open
                 if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
                 {
                     if (organModels.TryGetValue(SelectedOrgan, out var visual))
@@ -243,7 +238,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
                 else if (SelectedOrgans.Count == 1)
                 {
-                    // Automatically open the viewer when the first organ is added
                     ExecuteOpenViewer(null);
                 }
             }
@@ -260,7 +254,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 SelectedOrgans.Remove(SelectedOrgan);
 
-                // Update the viewer if it's open
                 if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
                 {
                     viewer.ClearModels();
