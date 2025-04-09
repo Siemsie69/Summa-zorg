@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Name="BasisInformatie" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
+             Name="BasisInformatie" Height="Auto" MaxWidth="900" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <sectieviewmodels:BasicInformationViewModel/>
     </d:UserControl.DataContext>
@@ -32,24 +32,24 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                 <!-- Title -->
-                <TextBlock x:Name="BasicInfoText" Text="Dossiers: Basisinformatie" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="BasicInfoText" Text="Dossiers: Basisinformatie" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                 <!-- Underline (Rectangle) -->
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=BasicInfoText}"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=BasicInfoText}"/>
             </StackPanel>
 
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
                         Visibility="{Binding IsNotSampleMode,
                         Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -57,10 +57,10 @@
 
         <!-- Text Section -->
         <TextBlock Text="Vul hier de basisinformatie van de patiënt in, zoals de naam, de klacht en de patiëntcategorie. Deze gegevens vormen de basis voor de verdere beoordeling en behandeling van de patiënt. Het is van groot belang om zorgvuldig te zijn bij het invullen van deze informatie, omdat dit invloed heeft op de juiste zorg die geboden kan worden. Zorg ervoor dat je alle relevante details verzamelt ." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
 
         <!-- Content Spacer -->
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{DynamicResource BackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -74,39 +74,36 @@
             </Grid.ColumnDefinitions>
 
             <!-- Title Section -->
-            <TextBlock Text="Basisinformatie:" FontSize="20" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Basisinformatie:" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
 
             <!-- Naam van de Patiënt -->
-            <TextBlock Text="Naam van de Patiënt:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Naam van de Patiënt:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,15,10,0"/>
             <TextBox Text="{Binding BasicInformation.Name, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,15,20,0"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Naam Patiënt" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Naam Patiënt" Background="White"/>
 
             <!-- Klacht(en) van Patiënt -->
-            <TextBlock Text="Klacht(en) van Patiënt:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Klacht(en) van Patiënt:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,15,10,0"/>
             <TextBox Text="{Binding BasicInformation.Complaint, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,15,20,0"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Klacht Patiënt" />
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Klacht Patiënt" Background="White"/>
 
             <!-- Patiëntcategorie -->
-            <TextBlock Text="Selecteer Patiëntcategorie:" FontSize="14" Foreground="{StaticResource PrimaryBrush}" 
+            <TextBlock Text="Selecteer Patiëntcategorie:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
            Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,15,20,10"/>
 
             <ComboBox Grid.Row="3" Grid.Column="1" Width="163" Height="40"
-                Margin="30,15,20,10" HorizontalAlignment="Left" Background="White" Foreground="{StaticResource PrimaryBrush}" BorderBrush="{StaticResource PrimaryBrush}"
+                Margin="30,15,20,10" HorizontalAlignment="Left" 
+                Background="White" BorderBrush="{StaticResource PrimaryBrush}"
                 BorderThickness="1" FontSize="16" SelectedIndex="0" MaxDropDownHeight="70" materialDesign:HintAssist.Hint="Selecteer Categorie"
-                SelectedItem="{Binding BasicInformation.Gender, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type sys:String}" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <sys:String>Man</sys:String>
-                        <sys:String>Vrouw</sys:String>
-                        <sys:String>Kind</sys:String>
-                        <sys:String>Bejaarde</sys:String>
-                    </x:Array>
-                </ComboBox.ItemsSource>
+                SelectedValue="{Binding BasicInformation.Gender, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
+                <ComboBoxItem Content="Man" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="Vrouw" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="Kind" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="Bejaarde" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
 
                 <ComboBox.Resources>
                     <Style TargetType="ScrollBar">
@@ -141,22 +138,22 @@
 
             <!-- Left Button -->
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,30,5,-10" Grid.Column="0" HorizontalAlignment="Left"
                     Visibility="{Binding IsNotSampleMode, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <!-- Right Button -->
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowPhoneSummaryCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,30,5,-10" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <!-- Finish Button -->
             <Button Height="45" Width="60" Margin="0,30,0,-10" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                 </StackPanel>
             </Button>
         </Grid>

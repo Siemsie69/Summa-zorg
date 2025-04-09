@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:Zorgdossier.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}" mc:Ignorable="d"
-        Title="MainView" MinHeight="500" MaxHeight="500" MinWidth="900" MaxWidth="900" ResizeMode="NoResize">
+        Title="MainView" MinHeight="500" MaxHeight="500" MaxWidth="900" ResizeMode="NoResize">
     <d:Window.DataContext>
         <viewmodels:MainViewModel/>
     </d:Window.DataContext>
@@ -130,13 +130,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!-- Content control binds to the active view model -->
-            <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <ContentControl Content="{Binding AppNavigation.ActiveViewModel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
             <!-- User Message (this TextBlock shows a message when there is text to display) -->
-            <TextBlock Grid.Row="1" Text="{Binding UserMessage.Text}" 
+            <TextBlock Grid.Row="1" Width="820" Text="{Binding UserMessage.Text}" 
                        Visibility="{Binding UserMessage.Text, Converter={StaticResource StringIsEmptyVisibilityConverter}}"
                        FontSize="16" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                       Padding="20,0,0,0" Foreground="Red"/>
+                       Padding="20,0,0,0" Background="{DynamicResource BackgroundColor}" Foreground="Red"/>
         </Grid>
     </Grid>
 </Window>

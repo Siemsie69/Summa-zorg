@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Name="RegistrationWindow"
         Title="RegistrationView"
-        ResizeMode="CanResize" Height="450" Width="600">
+        MinHeight="500" MaxHeight="500" MinWidth="900" MaxWidth="900" ResizeMode="NoResize">
     <d:Window.DataContext>
         <viewmodels:RegistrationViewModel/>
     </d:Window.DataContext>

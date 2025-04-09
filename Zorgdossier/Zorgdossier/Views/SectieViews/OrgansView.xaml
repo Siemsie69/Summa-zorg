@@ -9,7 +9,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:h="http://helix-toolkit.org/wpf"
              mc:Ignorable="d"
-             Name="Organs" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
+             Name="Organs" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <sectieviewmodels:OrgansViewModel/>
     </d:UserControl.DataContext>
@@ -30,46 +30,46 @@
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="OrgansText" Text="Dossiers: Organen Selecteren" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=OrgansText}"/>
+                <TextBlock x:Name="OrgansText" Text="Dossiers: Organen Selecteren" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=OrgansText}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
                         Visibility="{Binding IsNotSampleMode,
                         Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
         </Grid>
 
         <TextBlock Text="Selecteer een of meerdere organen die het meest relevant zijn voor dit dossier, op basis van de klachten en symptomen die de patiënt heeft aangegeven. Als je een orgaan hebt geselecteerd, kun je het toevoegen aan de lijst. Je kunt ook organen verwijderen indien nodig. Elk geselecteerd orgaan heeft een 3D-model waarmee je het van alle kanten kunt bekijken en roteren, zodat je een beter beeld krijgt." 
-               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+               FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
 
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{DynamicResource BackgroundColor}">
             <ScrollViewer Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Height="420" VerticalScrollBarVisibility="Auto">
                 <StackPanel Background="#F0F0F0">
                     <ComboBox Name="OrganComboBox" Background="White" 
-          Foreground="{StaticResource PrimaryBrush}" 
-          BorderBrush="{StaticResource PrimaryBrush}" 
-          BorderThickness="1"
-          ItemsSource="{Binding AvailableOrgans}" 
-          SelectedItem="{Binding SelectedOrgan}" 
-          Height="30" Margin="10" 
-          materialDesign:HintAssist.Hint="{Binding HintTextOrganChoice}">
+                              Foreground="{StaticResource PrimaryBrush}" 
+                              BorderBrush="{StaticResource PrimaryBrush}" 
+                              BorderThickness="1"
+                              ItemsSource="{Binding AvailableOrgans}" 
+                              SelectedItem="{Binding SelectedOrgan}" 
+                              Height="30" Margin="10" 
+                              materialDesign:HintAssist.Hint="{Binding HintTextOrganChoice}">
 
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="ComboBoxItem">
-                                <Setter Property="Background" Value="White"/>
-                                <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                                <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource BodyTextColor}"/>
                                 <Setter Property="Padding" Value="5"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -111,19 +111,19 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="Vorige" FontSize="14" Command="{Binding ShowQuestionsCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <Button Content="Volgende" FontSize="14" Command="{Binding ShowComplaintsAndSymptomsCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                 </StackPanel>
             </Button>
         </Grid>

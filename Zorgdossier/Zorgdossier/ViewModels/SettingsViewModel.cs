@@ -33,6 +33,7 @@ namespace Zorgdossier.ViewModels
             _dbContext = dbContext;
 
             ResetCommand = new RelayCommand(ExecuteReset);
+            ApplyThemeCommand = new RelayCommand(ExecuteApplyTheme);
         }
 
         public SettingsViewModel() { }
@@ -132,6 +133,14 @@ namespace Zorgdossier.ViewModels
             catch (Exception ex)
             {
                 _userMessage.Text = "Fout bij sluiten van de databaseconnectie: " + ex.Message;
+            }
+        }
+
+        private void ExecuteApplyTheme(object? obj)
+        {
+            if (!string.IsNullOrEmpty(SelectedTheme))
+            {
+                ThemeManager.ApplyTheme(SelectedTheme);
             }
         }
         #endregion

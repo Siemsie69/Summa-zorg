@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Name="Home" Height="Auto" MaxWidth="900" 
-        MinWidth="900" Background="White" >
+        Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <viewmodels:HomeViewModel/>
     </d:UserControl.DataContext>
@@ -30,19 +30,19 @@
 
         <!-- Title Section -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock x:Name="TitleText" Text="Home" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="TitleText" Text="Home" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
             <!-- Underline (Rectangle) -->
-            <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
+            <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
         </StackPanel>
 
         <!-- Welcome Text -->
         <TextBlock Text="Welkom student! Deze applicatie ondersteunt je bij het leren aanmaken en beheren van patiëntendossiers. Je krijgt de kans om te oefenen met het stellen van gerichte vragen, het analyseren van klachten en het formuleren van een diagnose. Daarnaast ontdek je welke vervolgstappen nodig zijn voor een optimale behandeling."
-                   FontSize="14" TextWrapping="Wrap" Margin="0,10,0,10" Grid.Row="1" Grid.ColumnSpan="2"/>
+                   FontSize="14" TextWrapping="Wrap" Margin="0,10,0,10" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{DynamicResource BodyTextColor}"/>
 
         <!-- Action Text -->
         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="Kies hieronder om meteen aan de slag te gaan: start een nieuw dossier of bekijk de uitleg."
                    FontSize="16" FontWeight="Bold" TextWrapping="Wrap"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Width="360"/>
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Foreground="{DynamicResource BodyTextColor}"/>
 
         <!-- Spacer -->
         <Grid Grid.Row="3" Grid.ColumnSpan="2"/>
@@ -50,9 +50,9 @@
         <!-- Buttons Section -->
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button Content="Start Nieuw Dossier" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="0,0,5,0"/>
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,5,0"/>
             <Button Content="Bekijk Uitleg" FontSize="14" Command="{Binding ShowExplanationCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" Margin="5,0,0,0"/>
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="5,0,0,0"/>
         </StackPanel>
 
         <!-- Spacer -->
@@ -61,7 +61,7 @@
         <!-- Footer Text -->
         <TextBlock Grid.Row="6" Grid.ColumnSpan="2" 
            Text="Deze applicatie is gemaakt door Summa ICT, Siem, Niek en Damian. Wij zijn drie studenten uit het tweede leerjaar (2024-2025) die samen hebben gewerkt aan dit project om jou te helpen leren en groeien. Veel succes met je studie!"
-           FontSize="12" TextWrapping="Wrap" Foreground="Gray" HorizontalAlignment="Left" MaxWidth="620"/>
+           FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource CreditsTextColor}" HorizontalAlignment="Left" MaxWidth="620"/>
 
         <!-- Spacer between Footer and User Message -->
         <Grid Grid.Row="7" Grid.ColumnSpan="2" Height="20"/>
