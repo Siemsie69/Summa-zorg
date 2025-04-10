@@ -36,7 +36,7 @@
         </StackPanel>
 
         <!-- Settings Description -->
-        <TextBlock Text="Beheer uw voorkeuren voor een optimale gebruikerservaring. U kunt eenvoudig het thema van de applicatie aanpassen, kiezen tussen Nederlands of Engels als voorkeurstaal en uw gegevens beheren."
+        <TextBlock Text="{DynamicResource SettingsText}"
                    FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{DynamicResource BodyTextColor}"/>
 
         <!-- Settings Details -->
@@ -48,45 +48,44 @@
                     <Setter Property="Foreground" Value="{DynamicResource BodyTextColor}"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock Text="Applicatiethema: Kies tussen een licht of donker thema om de visuele ervaring aan te passen aan uw voorkeuren." Foreground="{DynamicResource BodyTextColor}"/>
-            <TextBlock Text="Voorkeurstaal: Selecteer de taal van de applicatie, kies tussen Nederlands of Engels." Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsThemeText}" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsLanguageText}" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
         <!-- Theme Selection -->
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,10,5" Orientation="Horizontal">
-            <TextBlock Text="Selecteer voorkeurthema" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsSelectThemeText}" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource BodyTextColor}"/>
             <ComboBox SelectedValue="{Binding SelectedTheme}"
                       SelectedValuePath="Content" Width="150" Height="40" 
                       Background="White"
                       BorderBrush="{DynamicResource PrimaryBrush}" BorderThickness="1">
-                <ComboBoxItem Content="Light" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
-                <ComboBoxItem Content="Dark" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="{DynamicResource SettingsCmbLightText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="{DynamicResource SettingsCmbDarkText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyThemeCommand}"/>
+            <Button Content="{DynamicResource SettingsActivateButtonText}" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyThemeCommand}"/>
         </StackPanel>
 
         <!-- Language Selection -->
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,10,5" Orientation="Horizontal">
-            <TextBlock Text="Selecteer voorkeurtaal" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsSelectLanguageText}" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource BodyTextColor}"/>
             <ComboBox SelectedValue="{Binding SelectedLanguage}"
                       SelectedValuePath="Content" Width="150" Height="40" Background="White" 
                       BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
-                <ComboBoxItem Content="Dutch" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
-                <ComboBoxItem Content="English" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="{DynamicResource SettingsCmbDutchText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
+                <ComboBoxItem Content="{DynamicResource SettingsCmbEnglishText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
             </ComboBox>
-            <Button Content="Activeren" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyLanguageCommand}"/>
+            <Button Content="{DynamicResource SettingsActivateButtonText}" Width="100" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding ApplyLanguageCommand}"/>
         </StackPanel>
 
         <!-- Data Reset Description -->
         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,10,10">
-            <TextBlock Text="Resetten van gegevens: Wis alle opgeslagen gegevens en herstel de applicatie naar de oorspronkelijke instellingen." FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource BodyTextColor}"/>
-            <TextBlock Text="Let op: uw dossiers worden allemaal verwijderd." FontSize="14" TextWrapping="Wrap" Margin="0 10 0 0" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsResetText}" FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource SettingsResetWarningText}" FontSize="14" TextWrapping="Wrap" Margin="0 10 0 0" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
         <!-- Reset Button -->
         <StackPanel Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-            <Button Content="Gegevens Resetten" Width="200" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Command="{Binding ResetCommand}" />
+            <Button Content="{DynamicResource SettingsResetButtonText}" Width="200" Height="40" Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Command="{Binding ResetCommand}" />
         </StackPanel>
-
     </Grid>
 </UserControl>

@@ -37,23 +37,23 @@
 
         <!-- Credits Content -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20,0,0">
-            <TextBlock Text="Deze applicatie biedt zorgstudenten een veilige omgeving om te oefenen met fictieve patiëntendossiers. Door realistische casussen te analyseren, gerichte vragen te stellen en diagnoses te formuleren, ontwikkelen zij essentiële vaardigheden zonder de druk van een echte medische setting." 
+            <TextBlock Text="{DynamicResource CreditsText}" 
                 FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{DynamicResource BodyTextColor}"/>
 
-            <TextBlock Text="Dankzij de inzet van enthousiaste ontwikkelaars en docenten is deze applicatie een waardevol leermiddel geworden. Het Zorgdossier combineert technologie en educatie om studenten optimaal voor te bereiden op de praktijk." 
+            <TextBlock Text="{DynamicResource CreditsExtraText}" 
                 FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
         <!-- Credits Content -->
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,20,10,0">
-            <TextBlock Text="Applicatie is ontwikkeld door:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="{DynamicResource BodyTextColor}"/>
-            <TextBlock Text="• Siem van Bree (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
-            <TextBlock Text="• Niek van Bree (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
-            <TextBlock Text="• Damian van de Lee (Ontwikkelaar)" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsDevelopedByText}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsSiemText}" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsNiekText}" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsDamianText}" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,0">
-            <TextBlock Text="Technologieën:" FontSize="16" FontWeight="Bold" Margin="0,20,0,10" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsTechnologiesText}" FontSize="16" FontWeight="Bold" Margin="0,20,0,10" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Text="• C#" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Text="• XAML" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Text="• SQLite" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
@@ -65,7 +65,7 @@
             Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
             Margin="0,0,0,0"
             Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-ict"/>
-            <Button Content="Summa Zorg &amp; Welzijn" FontSize="14" Width="200" Height="45"
+            <Button Content="{DynamicResource CreditsSummaCareText}" FontSize="14" Width="200" Height="45"
             Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
             Margin="0,10,0,0"
             Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-zorg-welzijn"/>
@@ -73,7 +73,7 @@
 
 
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
-            <TextBlock Text="© 2025 Zorgdossier. Alle rechten voorbehouden." FontSize="14" FontStyle="Italic" Margin="0,20,0,0" HorizontalAlignment="Left" Foreground="{DynamicResource BodyTextColor}"/>
+            <TextBlock Text="{DynamicResource CreditsRightsText}" FontSize="14" FontStyle="Italic" Margin="0,20,0,0" HorizontalAlignment="Left" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
     </Grid>
 </UserControl>

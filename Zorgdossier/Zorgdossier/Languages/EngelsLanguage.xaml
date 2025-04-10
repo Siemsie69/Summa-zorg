@@ -1,0 +1,59 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="SettingsTitle">Settings</System:String>
+    <System:String x:Key="SettingsText">Manage your preferences for the best user experience. You can easily change the app theme, choose Dutch or English as your preferred language, and manage your data.</System:String>
+    <System:String x:Key="SettingsThemeText">App Theme: Choose between a light or dark theme to match your visual preferences.</System:String>
+    <System:String x:Key="SettingsLanguageText">Preferred Language: Select the language of the app, either Dutch or English.</System:String>
+    <System:String x:Key="SettingsSelectThemeText">Select preferred theme</System:String>
+    <System:String x:Key="SettingsSelectLanguageText">Select preferred language</System:String>
+    <System:String x:Key="SettingsResetText">Reset Data: Clear all saved data and restore the app to its default settings.</System:String>
+    <System:String x:Key="SettingsResetWarningText">Warning: All your records will be deleted.</System:String>
+    <System:String x:Key="SettingsActivateButtonText">Activate</System:String>
+    <System:String x:Key="SettingsResetButtonText">Reset Data</System:String>
+    <System:String x:Key="SettingsCmbLightText">Light</System:String>
+    <System:String x:Key="SettingsCmbDarkText">Dark</System:String>
+    <System:String x:Key="SettingsCmbDutchText">Dutch</System:String>
+    <System:String x:Key="SettingsCmbEnglishText">English</System:String>
+
+    <System:String x:Key="MainRecordButtonText">Records</System:String>
+    <System:String x:Key="MainExplanationButtonText">Explanation</System:String>
+
+    <System:String x:Key="HomeText">Welcome student! This app helps you learn how to create and manage patient records. You'll get to practice asking the right questions, analyzing symptoms, and making a diagnosis. You'll also learn what steps to take for the best possible treatment.</System:String>
+    <System:String x:Key="HomeActionText">Choose below to get started right away: start a new record or view the explanation.</System:String>
+    <System:String x:Key="HomeRecordButtonText">Start New Record</System:String>
+    <System:String x:Key="HomeExplanationButtonText">View Explanation</System:String>
+    <System:String x:Key="HomeCreditsText">This app was created by Summa ICT, Siem, Niek, and Damian. We are three second - year students (2024 - 2025) who worked together on this project to help you learn and grow. Good luck with your studies!</System:String>
+
+    <System:String x:Key="ExplanationTitleText">Explanation and Information</System:String>
+    <System:String x:Key="ExplanationText">Here you'll find a detailed explanation of how to create, manage, and improve patient records. This app supports you in working with patient files, medical analysis, and making diagnoses so you can work more efficiently and give better care.</System:String>
+    <System:String x:Key="ExplanationBeginTitleText">How to get started with patient records?</System:String>
+    <System:String x:Key="ExplanationBeginText">To start working on patient records, go to the 'Records' section from the main menu. There you'll see an overview of all existing records and can also easily create new ones.</System:String>
+    <System:String x:Key="ExplanationSetUpTitleText">How to create a patient record?</System:String>
+    <System:String x:Key="ExplanationSetUpText">When creating a patient record, you follow a step - by - step process where you answer specific questions, analyze symptoms, and finally make a diagnosis. Our app provides a guided plan to help you enter the needed information and record accurate medical details.</System:String>
+    <System:String x:Key="ExplanationNextStepTitleText">What are the next steps?</System:String>
+    <System:String x:Key="ExplanationNextStepText">After making a diagnosis, it's important to plan the right next steps. These might include more tests, medical treatment, or a referral to a specialist. Our app helps you figure out these important steps.</System:String>
+    <System:String x:Key="ExplanationExportTitleText">How to export a record?</System:String>
+    <System:String x:Key="ExplanationExportText">When your record is complete and ready, you can easily save and export it. The app offers an export feature to create a well - formatted document that you can share or turn in.</System:String>
+    <System:String x:Key="ExplanationActionText">Ready to begin? Click the button below to get started right away.</System:String>
+    <System:String x:Key="ExplanationRecordButtonText">Create a Record</System:String>
+    <System:String x:Key="ExplanationSampleButtonText">Example Record</System:String>
+
+    <System:String x:Key="RecordsTitleText">Records</System:String>
+    <System:String x:Key="RecordsText">Here you'll see an overview of all your records. You can view, edit, and improve them. Use the edit options to change any information. If you get stuck, you can open an example record for help. You can also export any record and easily turn it in once it's finished.</System:String>
+    <System:String x:Key="RecordsNameText">Title</System:String>
+    <System:String x:Key="RecordsEditText">Edit</System:String>
+    <System:String x:Key="RecordsExportText">Export</System:String>
+    <System:String x:Key="RecordsSampleButtonText">Open Example Record</System:String>
+    <System:String x:Key="RecordsCreateButtonText">Create Record</System:String>
+
+    <System:String x:Key="CreditsText">This app gives healthcare students a safe place to practice with fictional patient records. By analyzing realistic cases, asking the right questions, and making diagnoses, they build essential skills without the pressure of a real medical setting.</System:String>
+    <System:String x:Key="CreditsExtraText">Thanks to the hard work of dedicated developers and teachers, this app has become a valuable learning tool. Zorgdossier combines technology and education to help prepare students for real - world practice.</System:String>
+    <System:String x:Key="CreditsDevelopedByText">App developed by:</System:String>
+    <System:String x:Key="CreditsSiemText">&#x2022; Siem van Bree (Developer)</System:String>
+    <System:String x:Key="CreditsNiekText">&#x2022; Niek van Bree (Developer)</System:String>
+    <System:String x:Key="CreditsDamianText">&#x2022; Damian van de Lee (Developer)</System:String>
+    <System:String x:Key="CreditsTechnologiesText">Technologies:</System:String>
+    <System:String x:Key="CreditsSummaCareText">Summa Care &amp; Welfare</System:String>
+    <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. All rights reserved.</System:String>
+</ResourceDictionary>

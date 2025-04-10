@@ -29,13 +29,13 @@
 
         <!-- Title Section -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-            <TextBlock x:Name="TitleText" Text="Dossiers" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}"/>
+            <TextBlock x:Name="TitleText" Text="{DynamicResource RecordsTitleText}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}"/>
             <!-- Underline (Rectangle) -->
             <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=TitleText}"/>
         </StackPanel>
 
         <!-- Subtekst -->
-        <TextBlock Text="Hier zie je een overzicht van al je dossiers. Dossiers kunnen bekeken, bewerkt en verbeterd worden. Gebruik de bewerkingsopties om informatie aan te passen. Als je vastloopt, kun je ook een voorbeelddossier openen voor meer duidelijkheid. Daarnaast kun je elk dossier exporteren en gemakkelijk inleveren wanneer het klaar is."
+        <TextBlock Text="{DynamicResource RecordsText}"
                    FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" HorizontalAlignment="Left"
                    Grid.Row="1" Grid.ColumnSpan="2" Foreground="{DynamicResource BodyTextColor}"/>
 
@@ -47,10 +47,10 @@
                   CanUserAddRows="False" HorizontalAlignment="Stretch" FontSize="14" Background="LightGray">
             <DataGrid.Columns>
                 <!-- Title Column -->
-                <DataGridTextColumn Header="Titel" Binding="{Binding Title}" Width="*" />
+                <DataGridTextColumn Header="{DynamicResource RecordsNameText}" Binding="{Binding Title}" Width="*" />
 
                 <!-- Edit Button Column -->
-                <DataGridTemplateColumn Header="Bewerken" Width="Auto">
+                <DataGridTemplateColumn Header="{DynamicResource RecordsEditText}" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Bewerken" HorizontalAlignment="Left" Command="{Binding DataContext.ShowIntroductionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" 
@@ -60,7 +60,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Export Button Column -->
-                <DataGridTemplateColumn Header="Exporteren" MinWidth="110">
+                <DataGridTemplateColumn Header="{DynamicResource RecordsExportText}" MinWidth="110">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Exporteren" HorizontalAlignment="Left" Command="{Binding DataContext.ExportDossierCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Width="120" Height="30" 
@@ -86,11 +86,11 @@
             </Grid.ColumnDefinitions>
 
             <!-- Right Button -->
-            <Button Content="Voorbeelddossier openen" FontSize="14" Command="{Binding ShowSampleDossierCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource RecordsSampleButtonText}" FontSize="14" Command="{Binding ShowSampleDossierCommand}" Width="200" Height="45" 
             Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="5,0,0,0" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Left Button -->
-            <Button Content="Dossier aanmaken" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource RecordsCreateButtonText}" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
             Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,5,0" Grid.Column="2" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
