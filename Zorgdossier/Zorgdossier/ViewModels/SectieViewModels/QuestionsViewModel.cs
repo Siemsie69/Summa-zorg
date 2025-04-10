@@ -111,8 +111,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Zorg ervoor dat je vragen stelt die zowel breed als specifiek zijn, zodat je het volledige spectrum van klachten en symptomen kunt begrijpen en het juiste behandelplan kunt opstellen.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String QuestionsMessageText = (string)Application.Current.Resources["QuestionsMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(QuestionsMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteShowMainView(object? obj)

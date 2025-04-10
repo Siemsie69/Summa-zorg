@@ -24,7 +24,6 @@ namespace Zorgdossier.Views.SectieViews
         public OrgansView()
         {
             InitializeComponent();
-            DataContext = new OrgansViewModel();
         }
     }
 }

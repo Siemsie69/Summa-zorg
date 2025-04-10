@@ -465,8 +465,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Ben je zeker dat je alles hebt gecontroleerd en klaar bent met invullen? Zorg ervoor dat je alle benodigde informatie hebt ingevuld. Je kunt hieronder de voortgang van het invullen bekijken om te zien of je alles hebt afgerond.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String FinishProgressMessageText = (string)Application.Current.Resources["FinishProgressMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(FinishProgressMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteCreateDossier(object? obj)

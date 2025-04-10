@@ -106,8 +106,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Bepaal de behandelingen die passen bij de diagnose en de ernst van de klachten, zodat de patiënt de juiste zorg ontvangt.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String TreatmentMessageText = (string)Application.Current.Resources["TreatmentMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(TreatmentMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteShowMainView(object? obj)

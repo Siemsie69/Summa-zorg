@@ -1,6 +1,174 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String x:Key="InfoMessageTitle">Additional Information and Helpful Tips</System:String>
+
+    <!-- BUTTONS -->
+    <System:String x:Key="PreviousButton">Previous</System:String>
+    <System:String x:Key="NextButton">Next</System:String>
+
+    <!-- CHECK THIS ONE --><System:String x:Key="StartButton">Start new Record</System:String>
+    <System:String x:Key="CreateButton">Create Record</System:String>
+    <System:String x:Key="UpdateButton">Update Record</System:String>
+
+    <!-- SectieViews -->
+    <!-- IntroductionView -->
+    <!-- NOT DONE -->
+
+    <!-- BasicInformation -->
+    <System:String x:Key="BasicInformationTitle">Records: Basicinformation</System:String>
+    <System:String x:Key="BasicInformationText">Enter the patient's basic information here, such as name, complaint and patient category. This information is the basis for further assessment and treatment of the patient. It is very important to be careful when filling in this information as it will affect the proper care that can be provided. Be sure to gather all relevant details.</System:String>
+    <System:String x:Key="BasicInformationSubTitle">Basicinformation:</System:String>
+    <System:String x:Key="BasicInformationName">Name of the Patient:</System:String>
+    <System:String x:Key="BasicInformationNameHint">Patient Name:</System:String>
+    <System:String x:Key="BasicInformationComplaint">Complaint(s) of Patient:</System:String>
+    <System:String x:Key="BasicInformationComplaintHint">Patient Complaint:</System:String>
+    <System:String x:Key="BasicInformationCategory">Select Patient Category:</System:String>
+    <System:String x:Key="BasicInformationCategoryHint">Select Category</System:String>
+    <System:String x:Key="BasicInformationCategoryMen">Men</System:String>
+    <System:String x:Key="BasicInformationCategoryWoman">Woman</System:String>
+    <System:String x:Key="BasicInformationCategoryChild">Child</System:String>
+    <System:String x:Key="BasicInformationCategoryEldery">Eldery</System:String>
+
+    <System:String x:Key="BasicInformationMessageText">A patient's basic information includes the name, the complaint for which the patient has presented and the patient category we are dealing with. It is important to get a clear picture of who the patient is and what care needs are involved so that appropriate care can be provided.</System:String>
+
+    <!-- PhoneSummaryView -->
+    <System:String x:Key="PhoneSummaryTitle">Records: Phone call</System:String>
+    <System:String x:Key="PhoneSummaryText">Make a brief summary of the telephone conversation here, writing down key information about the patient and his complaints. This may include, for example, the patient's name, the nature of the complaint and any relevant additional factors. Be sure to summarize the conversation succinctly and clearly so that the main points are quickly apparent.</System:String>
+    <System:String x:Key="PhoneSummarySubTitle">Summary phone call:</System:String>
+    <System:String x:Key="PhoneSummarySummary" xml:space="preserve">Enter here the summary &#10;of the main points &#10;you discussed:</System:String>
+    <System:String x:Key="PhoneSummaryHint">Summary phone call</System:String>
+
+    <System:String x:Key="PhoneSummaryMessageText">Be sure to include not only the name and symptoms, but also other important details, such as possible triggers or previous treatments. This additional information can influence the treatment process and help further understand the patient's care needs.</System:String>
+
+    <!-- QuestionsView -->
+    <System:String x:Key="QuestionsTitle">Records: Questioning</System:String>
+    <System:String x:Key="QuestionsText">When asking the patient questions, it is important to ask both general and in-depth questions. This helps to better identify the clinical picture and gives you a fuller picture of the complaints and symptoms. Think of questions that help you understand the nature, duration and intensity of the symptoms, as well as specific questions that go further into underlying factors such as previous health problems.</System:String>
+    <System:String x:Key="QuestionsSubTitle">Questioning:</System:String>
+    <System:String x:Key="QuestionsQuestions" xml:space="preserve">Enter here the questions &#10;you would ask the &#10;patient:</System:String>
+    <System:String x:Key="QuestionsHint">Write down here the questions you are going to ask</System:String>
+
+    <System:String x:Key="QuestionsMessageText">Be sure to ask questions that are both broad and specific so that you can understand the full spectrum of complaints and symptoms and create the appropriate treatment plan.</System:String>
+
+    <!-- OrgansView -->
+    <System:String x:Key="OrgansTitle">Records: Select Organs</System:String>
+    <System:String x:Key="OrgansText">Select one or more organs most relevant to this case, based on the complaints and symptoms indicated by the patient. Once you have selected an organ, you can add it to the list. You can also remove organs if necessary. Each selected organ has a 3D model that allows you to view it from all sides and rotate it to get a better view.</System:String>
+    <System:String x:Key="OrgansAddToList">Add to the List</System:String>
+    <System:String x:Key="OrgansRemoveFromList">Remove from List</System:String>
+    <System:String x:Key="OrgansOpenViewer">Open 3D Viewer</System:String>
+    <System:String x:Key="OrgansListItems">List of selected organs:</System:String>
+
+    <System:String x:Key="OrgansMessageText">Select the organs here that are directly related to the complaints and symptoms the patient is experiencing. This helps to create a more focused record so you can plan appropriate care and treatment.</System:String>
+
+    <System:String x:Key="ViewerTitle">3D Organ Viewer</System:String>
+    <System:String x:Key="ViewerText">View the selected organs in 3D. Hold down the right mouse button and drag to rotate. Use the scroll wheel to zoom in or out. Hold down the scroll wheel and drag to move. You can also use the WASD keys to move and the arrow keys to rotate around. For quick views, you can use the ViewCube.</System:String>
+
+    <!-- ComplaintsAndSymptomsView -->
+    <System:String x:Key="ComplaintsAndSymptomsTitle">Records: Complaints and Symptoms</System:String>
+    <System:String x:Key="ComplaintsAndSymptomsText">Enter the complaints and symptoms that are relevant to the file here. It is important to note both physical and mental symptoms, as together they can provide a complete picture of the patient's health situation. This helps to understand what kind of care the patient needs.</System:String>
+    <System:String x:Key="ComplaintsAndSymptomsSubTitle">The complaints and symptoms:</System:String>
+    <System:String x:Key="ComplaintsAndSymptomsComplaints" xml:space="preserve">Enter the complaints &#10;&amp; symptoms &#10;the patient is experiencing:</System:String>
+    <System:String x:Key="ComplaintsAndSymptomsHint">What complaints and symptoms is the patient experiencing?</System:String>
+
+    <System:String x:Key="ComplaintsAndSymptomsMessageText">Consider both physical and mental complaints and symptoms, such as pain, specific behaviors, mood swings or a combination of these factors. This information helps to understand the clinical picture as a whole and suggest appropriate treatment.</System:String>
+
+    <!-- ResearchView -->
+    <System:String x:Key="ResearchTitle">Records: Research</System:String>
+    <System:String x:Key="ResearchText">Enter which examinations should be performed as part of this case. These investigations should be based on the complaints and symptoms indicated by the patient. They can range from blood tests to imaging, depending on what is needed to better understand and confirm the condition.</System:String>
+    <System:String x:Key="ResearchSubTitle">Investigations:</System:String>
+    <System:String x:Key="ResearchResearch" xml:space="preserve">Fill in here what &#10;investigations should be &#10;done:</System:String>
+    <System:String x:Key="ResearchHint">What investigations should be conducted?</System:String>
+
+    <System:String x:Key="ResearchMessageText">Focus on tests that not only support the diagnosis, but also help rule out complications or other underlying conditions so you can determine the right treatment plan.</System:String>
+
+    <!-- PolicyView -->
+    <System:String x:Key="PolicyTitle">Records: Policy and Urgencies</System:String>
+    <System:String x:Key="PolicyText">Here you can view the policy and urgencies for this file. Read the information carefully to understand the priority level. This insight helps determine which actions need to be taken quickly, such as scheduling a doctor's appointment or referring for further treatment.</System:String>
+    <System:String x:Key="PolicySubTitle">Policy + Urgencies:</System:String>
+    <System:String x:Key="PolicyUrgencyTitle">Select the urgency:</System:String>
+    <System:String x:Key="PolicyUrgencyHint">Select urgency</System:String>
+
+    <System:String x:Key="PolicyUrgencyU1">U1 Life-threatening</System:String>
+    <System:String x:Key="PolicyUrgencyU2">U2 Urgent</System:String>
+    <System:String x:Key="PolicyUrgencyU3">U3 Pressing</System:String>
+    <System:String x:Key="PolicyUrgencyU4">U4 Not urgent</System:String>
+    <System:String x:Key="PolicyUrgencyU5">U5 Advice</System:String>
+
+    <System:String x:Key="PolicyTriageTitle">Triage criterion:</System:String>
+    <System:String x:Key="PolicyTriageHint">Enter the triage criterion here (optional)</System:String>
+
+    <System:String x:Key="PolicyChoiceTitle">Select the policy option:</System:String>
+    <System:String x:Key="PolicyChoiceHint">Select policy option</System:String>
+
+    <System:String x:Key="PolicyChoiceAppointment">Appointment</System:String>
+    <System:String x:Key="PolicyChoiceVisit">Visit</System:String>
+
+    <System:String x:Key="PolicyMessageText">Based on the urgency and triage criteria, you can now decide whether it is necessary to schedule an immediate doctor's appointment and what time is best for the patient.</System:String>
+
+    <!-- ContactAdvicesView -->
+    <System:String x:Key="ContactAdvicesTitle">Records: (Contact) Advice</System:String>
+    <System:String x:Key="ContactAdvicesText">Fill in the contact and treatment advice for this case. It is important to give the patient clear guidance on self-care, activities to avoid, and when to contact a healthcare provider. This helps ensure the patient knows how to best manage the situation and when further action is needed.</System:String>
+    <System:String x:Key="ContactAdvicesSubTitle">Advice:</System:String>
+    <System:String x:Key="ContactAdvicesAdviceLabel" xml:space="preserve">Enter the advice &#10;you would give to &#10;the patient here:</System:String>
+    <System:String x:Key="ContactAdvicesAdviceHint">What advice are you giving the patient?</System:String>
+    <System:String x:Key="ContactAdvicesContactLabel" xml:space="preserve">Enter when the &#10;patient should make &#10;contact according &#10;to you:</System:String>
+    <System:String x:Key="ContactAdvicesContactHint">What contact advice are you giving the patient? (optional)</System:String>
+
+    <System:String x:Key="ContactAdvicesMessageText">Give the patient clear self - care instructions, including advice on activities to avoid. Also inform when it is necessary to contact, such as when symptoms worsen or new symptoms appear.</System:String>
+
+    <!-- TreatmentView -->
+    <System:String x:Key="TreatmentTitle">Records: Treatment Process</System:String>
+    <System:String x:Key="TreatmentText">Select the treatment options that are relevant to this case, based on the patient's symptoms, complaints, and final diagnosis. Depending on the situation, treatments can vary from medication and physiotherapy to other therapies. It is important to make the right choice - often in consultation with a doctor - in order to establish the treatment plan.</System:String>
+    <System:String x:Key="TreatmentSubTitle">Treatment:</System:String>
+    <System:String x:Key="TreatmentLabel" xml:space="preserve">Fill in which treatment(s) &#10;the patient should receive:</System:String>
+    <System:String x:Key="TreatmentHint">Which treatment(s) will the patient receive?</System:String>
+
+    <System:String x:Key="TreatmentMessageText">Determine treatments appropriate to the diagnosis and severity of symptoms so that the patient receives appropriate care.</System:String>
+
+    <!-- FinishProgressView -->
+    <System:String x:Key="FinishProgressTitle">Records: Progress &amp; Finish</System:String>
+    <System:String x:Key="FinishProgressText">Take your time to review all details and make sure no important information is missing. This helps prevent mistakes and ensures the file is properly finalized. Click the section names to navigate.</System:String>
+    <System:String x:Key="FinishProgressSubTitle">Progress &amp; Finish?</System:String>
+
+    <System:String x:Key="FinishProgressBasic">Basic Information</System:String>
+    <System:String x:Key="FinishProgressBasicName">Patient Name</System:String>
+    <System:String x:Key="FinishProgressBasicComplaint">Patient Complaint</System:String>
+    <System:String x:Key="FinishProgressBasicCategory">Patient Category</System:String>
+
+    <System:String x:Key="FinishProgressPhoneSummary">Phone Summary</System:String>
+    <System:String x:Key="FinishProgressPhoneText">Phone call summary</System:String>
+
+    <System:String x:Key="FinishProgressQuestions">Ask Questions</System:String>
+    <System:String x:Key="FinishProgressQuestionsText">Questions for the patient</System:String>
+
+    <System:String x:Key="FinishProgressOrgans">Select Organs</System:String>
+    <System:String x:Key="FinishProgressOrgansText">Organs</System:String>
+
+    <System:String x:Key="FinishProgressComplaints">Complaints and Symptoms</System:String>
+    <System:String x:Key="FinishProgressComplaintsText">Complaints experienced by the patient</System:String>
+
+    <System:String x:Key="FinishProgressResearch">Research</System:String>
+    <System:String x:Key="FinishProgressResearchText">Planned research</System:String>
+
+    <System:String x:Key="FinishProgressPolicy">Policy and Urgencies</System:String>
+    <System:String x:Key="FinishProgressPolicyUrgency">Urgency</System:String>
+    <System:String x:Key="FinishProgressPolicyTriage">Triage criterion</System:String>
+    <System:String x:Key="FinishProgressPolicyChoice">Policy choice</System:String>
+    <System:String x:Key="FinishProgressPolicyTime">Appointment time</System:String>
+
+    <System:String x:Key="FinishProgressAdvice">Contact Advice</System:String>
+    <System:String x:Key="FinishProgressAdviceText">Advice for the patient</System:String>
+    <System:String x:Key="FinishProgressAdviceContact">Contact advice for the patient</System:String>
+
+    <System:String x:Key="FinishProgressTreatment">Treatment</System:String>
+    <System:String x:Key="FinishProgressTreatmentText">Treatment for the patient</System:String>
+
+    <System:String x:Key="FinishProgressLegendNotFilledIn">Not Filled In</System:String>
+    <System:String x:Key="FinishProgressLegendFilledIn">Filled In</System:String>
+
+    <System:String x:Key="FinishProgressMessageText">Are you sure you have checked everything and finished filling it out? Make sure you have filled out all the required information. You can check your completion progress below to see if you have completed everything.</System:String>
+
+    <!-- SettingsView -->
     <System:String x:Key="SettingsTitle">Settings</System:String>
     <System:String x:Key="SettingsText">Manage your preferences for the best user experience. You can easily change the app theme, choose Dutch or English as your preferred language, and manage your data.</System:String>
     <System:String x:Key="SettingsThemeText">App Theme: Choose between a light or dark theme to match your visual preferences.</System:String>
@@ -16,6 +184,7 @@
     <System:String x:Key="SettingsCmbDutchText">Dutch</System:String>
     <System:String x:Key="SettingsCmbEnglishText">English</System:String>
 
+    <!-- MainView -->
     <System:String x:Key="MainRecordButtonText">Records</System:String>
     <System:String x:Key="MainExplanationButtonText">Explanation</System:String>
 
@@ -25,6 +194,7 @@
     <System:String x:Key="HomeExplanationButtonText">View Explanation</System:String>
     <System:String x:Key="HomeCreditsText">This app was created by Summa ICT, Siem, Niek, and Damian. We are three second - year students (2024 - 2025) who worked together on this project to help you learn and grow. Good luck with your studies!</System:String>
 
+    <!-- ExplanationView -->
     <System:String x:Key="ExplanationTitleText">Explanation and Information</System:String>
     <System:String x:Key="ExplanationText">Here you'll find a detailed explanation of how to create, manage, and improve patient records. This app supports you in working with patient files, medical analysis, and making diagnoses so you can work more efficiently and give better care.</System:String>
     <System:String x:Key="ExplanationBeginTitleText">How to get started with patient records?</System:String>
@@ -39,6 +209,9 @@
     <System:String x:Key="ExplanationRecordButtonText">Create a Record</System:String>
     <System:String x:Key="ExplanationSampleButtonText">Example Record</System:String>
 
+    <System:String x:Key="ExplanationMessageText">Dear Student, Click on this button for additional information and explanation. You will find this button anywhere while filling out the file. Use this feature and keep the sample file open to fill out your file correctly and completely.</System:String>
+
+    <!-- DossiersView -->
     <System:String x:Key="RecordsTitleText">Records</System:String>
     <System:String x:Key="RecordsText">Here you'll see an overview of all your records. You can view, edit, and improve them. Use the edit options to change any information. If you get stuck, you can open an example record for help. You can also export any record and easily turn it in once it's finished.</System:String>
     <System:String x:Key="RecordsNameText">Title</System:String>
@@ -47,6 +220,7 @@
     <System:String x:Key="RecordsSampleButtonText">Open Example Record</System:String>
     <System:String x:Key="RecordsCreateButtonText">Create Record</System:String>
 
+    <!-- CreditsView -->
     <System:String x:Key="CreditsText">This app gives healthcare students a safe place to practice with fictional patient records. By analyzing realistic cases, asking the right questions, and making diagnoses, they build essential skills without the pressure of a real medical setting.</System:String>
     <System:String x:Key="CreditsExtraText">Thanks to the hard work of dedicated developers and teachers, this app has become a valuable learning tool. Zorgdossier combines technology and education to help prepare students for real - world practice.</System:String>
     <System:String x:Key="CreditsDevelopedByText">App developed by:</System:String>
@@ -56,4 +230,5 @@
     <System:String x:Key="CreditsTechnologiesText">Technologies:</System:String>
     <System:String x:Key="CreditsSummaCareText">Summa Care &amp; Welfare</System:String>
     <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. All rights reserved.</System:String>
+
 </ResourceDictionary>

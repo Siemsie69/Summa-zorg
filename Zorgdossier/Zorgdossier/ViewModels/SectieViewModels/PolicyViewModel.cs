@@ -125,8 +125,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Op basis van de urgentie en de triagecriteria kunt u nu beslissen of het noodzakelijk is om direct een afspraak bij de dokter te plannen en welke tijd het beste past voor de patiënt.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String PolicyMessageText = (string)Application.Current.Resources["PolicyMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(PolicyMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteShowMainView(object? obj)

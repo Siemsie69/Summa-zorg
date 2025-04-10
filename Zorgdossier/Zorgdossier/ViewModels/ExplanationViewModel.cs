@@ -56,13 +56,17 @@ namespace Zorgdossier.ViewModels
         #region 
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String ExplanationMessageText = (string)Application.Current.Resources["ExplanationMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(ExplanationMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void ExecuteShowDossiers(object? obj)
         {
             _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
         }
+
         private void ExecuteShowSampleDossier(object? obj)
         {
             var sharedViewModel = SampleDossierViewModel.Instance;

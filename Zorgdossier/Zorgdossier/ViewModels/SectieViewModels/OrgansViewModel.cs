@@ -32,42 +32,42 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         private readonly Dictionary<string, ModelVisual3D> organModels = new();
         private readonly Dictionary<string, Point3D> organPositions = new()
         {
-            { "Aorta", new Point3D(0, 0, 0) },
-            { "Alvleesklier", new Point3D(0, 0, 0) },
-            { "Baarmoeder", new Point3D(0, 0, 0) },
-            { "Bloedomloop", new Point3D(0, 0, 0) },
-            { "Brein", new Point3D(0, 0, 0) },
-            { "Dikke Darm", new Point3D(0, 0, 0) },
-            { "Dunne Darm", new Point3D(0, 0, 0) },
-            { "Endeldarm", new Point3D(0, 0, 0) },
-            { "Eierstokken", new Point3D(0, 0, 0) },
-            { "Galblaas", new Point3D(0, 0, 0) },
-            { "Hart", new Point3D(0, 0, 0) },
-            { "Huid", new Point3D(0, 0, 0) },
-            { "Hypofyse", new Point3D(0, 0, 0) },
-            { "Keelholte", new Point3D(0, 0, 0) },
-            { "Ledematen (Armen)", new Point3D(0, 0, 0) },
-            { "Ledematen (Benen)", new Point3D(0, 0, 0) },
-            { "Ledematen (Vingers)", new Point3D(0, 0, 0) },
-            { "Ledematen (Tenen)", new Point3D(0, 0, 0) },
-            { "Lever", new Point3D(0, 0, 0) },
-            { "Longen", new Point3D(0, 0, 0) },
-            { "Luchtpijp", new Point3D(0, 0, 0) },
-            { "Lymfeklieren", new Point3D(0, 0, 0) },
-            { "Maag", new Point3D(0, 0, 0) },
-            { "Mondholte", new Point3D(0, 0, 0) },
-            { "Nieren", new Point3D(0, 0, 0) },
-            { "Neus", new Point3D(0, 0, 0) },
-            { "Ogen", new Point3D(0, 0, 0) },
-            { "Oren", new Point3D(0, 0, 0) },
-            { "Prostaat", new Point3D(0, 0, 0) },
-            { "Schildklier", new Point3D(0, 0, 0) },
-            { "Skelet", new Point3D(0, 0, 0) },
-            { "Slokdarm", new Point3D(0, 0, 0) },
-            { "Twaalfvingerige Darm", new Point3D(0, 0, 0) },
-            { "Urineblaas", new Point3D(0, 0, 0) },
-            { "Zaadballen", new Point3D(0, 0, 0) },
-            { "Zenuwstelsel", new Point3D(0, 0, 0) }
+            { "Alvleesklier - Pancreas", new Point3D(0, 0, 0) },
+            { "Aorta - Aorta", new Point3D(0, 0, 0) },
+            { "Baarmoeder - Uterus", new Point3D(0, 0, 0) },
+            { "Bloedomloop - Circulatory System", new Point3D(0, 0, 0) },
+            { "Brein - Brain", new Point3D(0, 0, 0) },
+            { "Dikke Darm - Large Intestine", new Point3D(0, 0, 0) },
+            { "Dunne Darm - Small Intestine", new Point3D(0, 0, 0) },
+            { "Endeldarm - Rectum", new Point3D(0, 0, 0) },
+            { "Eierstokken - Ovaries", new Point3D(0, 0, 0) },
+            { "Galblaas - Gallbladder", new Point3D(0, 0, 0) },
+            { "Hart - Heart", new Point3D(0, 0, 0) },
+            { "Huid - Skin", new Point3D(0, 0, 0) },
+            { "Hypofyse - Pituitary Gland", new Point3D(0, 0, 0) },
+            { "Keelholte - Pharynx", new Point3D(0, 0, 0) },
+            { "Ledematen (Armen) - Limbs (Arms)", new Point3D(0, 0, 0) },
+            { "Ledematen (Benen) - Limbs (Legs)", new Point3D(0, 0, 0) },
+            { "Ledematen (Vingers) - Limbs (Fingers)", new Point3D(0, 0, 0) },
+            { "Ledematen (Tenen) - Limbs (Toes)", new Point3D(0, 0, 0) },
+            { "Lever - Liver", new Point3D(0, 0, 0) },
+            { "Longen - Lungs", new Point3D(0, 0, 0) },
+            { "Luchtpijp - Trachea", new Point3D(0, 0, 0) },
+            { "Lymfeklieren - Lymph Nodes", new Point3D(0, 0, 0) },
+            { "Maag - Stomach", new Point3D(0, 0, 0) },
+            { "Mondholte - Oral Cavity", new Point3D(0, 0, 0) },
+            { "Nieren - Kidneys", new Point3D(0, 0, 0) },
+            { "Neus - Nose", new Point3D(0, 0, 0) },
+            { "Ogen - Eyes", new Point3D(0, 0, 0) },
+            { "Oren - Ears", new Point3D(0, 0, 0) },
+            { "Prostaat - Prostate", new Point3D(0, 0, 0) },
+            { "Schildklier - Thyroid Gland", new Point3D(0, 0, 0) },
+            { "Skelet - Skeleton", new Point3D(0, 0, 0) },
+            { "Slokdarm - Esophagus", new Point3D(0, 0, 0) },
+            { "Twaalfvingerige Darm - Duodenum", new Point3D(0, 0, 0) },
+            { "Urineblaas - Bladder", new Point3D(0, 0, 0) },
+            { "Zaadballen - Testicles", new Point3D(0, 0, 0) },
+            { "Zenuwstelsel - Nervous System", new Point3D(0, 0, 0) }
         };
         #endregion
 
@@ -275,8 +275,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Selecteer hier de organen die direct gerelateerd zijn aan de klachten en symptomen die de patiënt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String OrgansMessageText = (string)Application.Current.Resources["OrgansMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(OrgansMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteShowMainView(object? obj)

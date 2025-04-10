@@ -27,7 +27,7 @@ namespace Zorgdossier
                 {
                     MainWindow = new MainView()
                     {
-                        DataContext = new MainViewModel(_appNavigation, _userMessage, null)
+                        DataContext = new MainViewModel(_appNavigation, _userMessage)
                     };
                     MainWindow.Show();
                 }
