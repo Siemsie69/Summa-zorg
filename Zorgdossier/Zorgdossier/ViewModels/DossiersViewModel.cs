@@ -176,38 +176,35 @@ namespace Zorgdossier.ViewModels
                                     }
                                 }
 
-
-                                // Gegevens toevoegen
-
-                                AddStyledParagraph("Naam student:", student?.Name);
-                                AddStyledParagraph("Studentnummer:", student?.StudentNumber);
-                                AddStyledParagraph("Aangemaakt op:", dossierRow?.CreatedAt.ToString());
-                                AddStyledParagraph("Gewijzigd op:", dossierRow?.UpdatedAt.ToString());
+                                AddStyledParagraph(Application.Current.Resources["ExportStudentNameText"] as string, student?.Name);
+                                AddStyledParagraph(Application.Current.Resources["ExportStudentNumberText"] as string, student?.StudentNumber);
+                                AddStyledParagraph(Application.Current.Resources["ExportCreatedAtText"] as string, dossierRow?.CreatedAt.ToString());
+                                AddStyledParagraph(Application.Current.Resources["ExportUpdatedAtText"] as string, dossierRow?.UpdatedAt.ToString());
 
                                 document.Add(new Paragraph("\n"));
                                 document.Add(new Paragraph("\n"));
 
-                                AddStyledParagraph("Titel:", dossierRow?.Title);
-                                AddStyledParagraph("Naam Patiënt:", basicInformation?.Name);
-                                AddStyledParagraph("Klacht:", basicInformation?.Complaint);
-                                AddStyledParagraph("Type:", basicInformation?.Gender);
-                                AddStyledParagraph("Telefoonsamenvatting:", phone?.PhoneSummary);
-                                AddStyledParagraph("Vragen voor de patiënt:", question?.QuestionSummary);
+                                AddStyledParagraph(Application.Current.Resources["ExportTitleText"] as string, dossierRow?.Title);
+                                AddStyledParagraph(Application.Current.Resources["ExportPatientNameText"] as string, basicInformation?.Name);
+                                AddStyledParagraph(Application.Current.Resources["ExportComplaintText"] as string, basicInformation?.Complaint);
+                                AddStyledParagraph(Application.Current.Resources["ExportGenderText"] as string, basicInformation?.Gender);
+                                AddStyledParagraph(Application.Current.Resources["ExportPhoneSummaryText"] as string, phone?.PhoneSummary);
+                                AddStyledParagraph(Application.Current.Resources["ExportPatientQuestionText"] as string, question?.QuestionSummary);
                                 document.Add(new Paragraph("\n"));
-                                AddStyledParagraph("Orgaan/Organen:", organ?.Organs, isList: true);
+                                AddStyledParagraph(Application.Current.Resources["ExportOrgansText"] as string, organ?.Organs, isList: true);
                                 document.Add(new Paragraph("\n"));
-                                AddStyledParagraph("Klachten en Symptomen:", complaintsSymptoms?.ComplaintsSymptomsSummary);
-                                AddStyledParagraph("Onderzoeken:", research?.ResearchSummary);
-                                AddStyledParagraph("Urgentie:", policy?.Urgency);
-                                AddStyledParagraph("Triagecriterium (indien ingevuld):", policy?.TriageCriteria);
-                                AddStyledParagraph("Beleidskeuze:", policy?.PolicyChoice);
-                                AddStyledParagraph("Datum en tijd van de afspraak (indien gekozen):", policy?.PolicyDateTime?.ToString());
-                                AddStyledParagraph("Advies voor de patiënt:", contactAdvice?.Advice);
-                                AddStyledParagraph("Contactadvies voor de patiënt (indien ingevuld):", contactAdvice?.ContactAdviceText);
-                                AddStyledParagraph("Behandeling:", treatment?.TreatmentSummary);
+                                AddStyledParagraph(Application.Current.Resources["ExportSymptomsText"] as string, complaintsSymptoms?.ComplaintsSymptomsSummary);
+                                AddStyledParagraph(Application.Current.Resources["ExportResearchText"] as string, research?.ResearchSummary);
+                                AddStyledParagraph(Application.Current.Resources["ExportUrgencyText"] as string, policy?.Urgency);
+                                AddStyledParagraph(Application.Current.Resources["ExportTriageCriteriaText"] as string, policy?.TriageCriteria);
+                                AddStyledParagraph(Application.Current.Resources["ExportPolicyChoiceText"] as string, policy?.PolicyChoice);
+                                AddStyledParagraph(Application.Current.Resources["ExportPolicyDateTimeText"] as string, policy?.PolicyDateTime?.ToString());
+                                AddStyledParagraph(Application.Current.Resources["ExportAdviceText"] as string, contactAdvice?.Advice);
+                                AddStyledParagraph(Application.Current.Resources["ExportContactAdviceText"] as string, contactAdvice?.ContactAdviceText);
+                                AddStyledParagraph(Application.Current.Resources["ExportTreatmentText"] as string, treatment?.TreatmentSummary);
 
-                                // Afsluiting
-                                document.Add(new Paragraph("Einde van het dossier.")
+                                // Closing
+                                document.Add(new Paragraph(Application.Current.Resources["ExportEndOfFileText"] as string)
                                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_OBLIQUE))
                                     .SetFontSize(10)
                                     .SetMarginTop(20)

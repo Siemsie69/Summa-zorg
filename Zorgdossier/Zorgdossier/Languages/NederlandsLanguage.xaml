@@ -252,4 +252,27 @@
 	<System:String x:Key="CreditsSummaCareText">Summa Zorg &amp; Welzijn</System:String>
 	<System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. Alle rechten voorbehouden.</System:String>
 
+    <!-- Exporteren DossierView -->
+    <System:String x:Key="ExportStudentNameText">Naam student:</System:String>
+    <System:String x:Key="ExportStudentNumberText">Studentnummer:</System:String>
+    <System:String x:Key="ExportCreatedAtText">Aangemaakt op:</System:String>
+    <System:String x:Key="ExportUpdatedAtText">Gewijzigd op:</System:String>
+    <System:String x:Key="ExportTitleText">Titel:</System:String>
+    <System:String x:Key="ExportPatientNameText">Naam Pati&#235;nt:</System:String>
+    <System:String x:Key="ExportComplaintText">Klacht:</System:String>
+    <System:String x:Key="ExportGenderText">Type:</System:String>
+    <System:String x:Key="ExportPhoneSummaryText">Telefoonsamenvatting:</System:String>
+    <System:String x:Key="ExportPatientQuestionText">Vragen voor de pati&#235;nt:</System:String>
+    <System:String x:Key="ExportOrgansText">Orgaan/Organen:</System:String>
+    <System:String x:Key="ExportSymptomsText">Klachten en Symptomen:</System:String>
+    <System:String x:Key="ExportResearchText">Onderzoeken:</System:String>
+    <System:String x:Key="ExportUrgencyText">Urgentie:</System:String>
+    <System:String x:Key="ExportTriageCriteriaText">Triagecriterium (indien ingevuld):</System:String>
+    <System:String x:Key="ExportPolicyChoiceText">Beleidskeuze:</System:String>
+    <System:String x:Key="ExportPolicyDateTimeText">Datum en tijd van de afspraak (indien gekozen):</System:String>
+    <System:String x:Key="ExportAdviceText">Advies voor de pati&#235;nt:</System:String>
+    <System:String x:Key="ExportContactAdviceText">Contactadvies voor de pati&#235;nt (indien ingevuld):</System:String>
+    <System:String x:Key="ExportTreatmentText">Behandeling:</System:String>
+    <System:String x:Key="ExportEndOfFileText">Einde van het dossier.</System:String>
+
 </ResourceDictionary>
