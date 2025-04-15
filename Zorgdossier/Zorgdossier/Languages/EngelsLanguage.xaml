@@ -231,4 +231,27 @@
     <System:String x:Key="CreditsSummaCareText">Summa Care &amp; Welfare</System:String>
     <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. All rights reserved.</System:String>
 
+    <!-- Exporteren DossierView -->
+    <System:String x:Key="ExportStudentNameText">Student name:</System:String>
+    <System:String x:Key="ExportStudentNumberText">Student number:</System:String>
+    <System:String x:Key="ExportCreatedAtText">Created on:</System:String>
+    <System:String x:Key="ExportUpdatedAtText">Last updated on:</System:String>
+    <System:String x:Key="ExportTitleText">Title:</System:String>
+    <System:String x:Key="ExportPatientNameText">Patient name:</System:String>
+    <System:String x:Key="ExportComplaintText">Complaint:</System:String>
+    <System:String x:Key="ExportGenderText">Type:</System:String>
+    <System:String x:Key="ExportPhoneSummaryText">Phone summary:</System:String>
+    <System:String x:Key="ExportPatientQuestionText">Questions for the patient:</System:String>
+    <System:String x:Key="ExportOrgansText">Organ(s):</System:String>
+    <System:String x:Key="ExportSymptomsText">Complaints and symptoms:</System:String>
+    <System:String x:Key="ExportResearchText">Examinations:</System:String>
+    <System:String x:Key="ExportUrgencyText">Urgency:</System:String>
+    <System:String x:Key="ExportTriageCriteriaText">Triage criteria (if applicable):</System:String>
+    <System:String x:Key="ExportPolicyChoiceText">Policy decision:</System:String>
+    <System:String x:Key="ExportPolicyDateTimeText">Appointment date and time (if selected):</System:String>
+    <System:String x:Key="ExportAdviceText">Advice for the patient:</System:String>
+    <System:String x:Key="ExportContactAdviceText">Contact advice for the patient (if applicable):</System:String>
+    <System:String x:Key="ExportTreatmentText">Treatment:</System:String>
+    <System:String x:Key="ExportEndOfFileText">End of file.</System:String>
+
 </ResourceDictionary>

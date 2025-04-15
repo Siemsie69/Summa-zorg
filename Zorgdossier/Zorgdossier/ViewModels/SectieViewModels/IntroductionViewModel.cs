@@ -31,7 +31,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             }
             else
             {
-                IntroductionText = "Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les.Deze stap helpt je om het proces van het invullen van patiëntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.";
+                IntroductionText = "Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les. Deze stap helpt je om het proces van het invullen van patiëntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.";
                 ButtonText = "Aanmaken beginnen";
             }
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);

@@ -94,6 +94,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             ShowFinishProgressCommand = new RelayCommand(ExecuteShowFinishedView);
 
             LoadOrgans();
+            LoadSelectedOrgans();
             AddToListCommand = new RelayCommand(AddToList, CanAddToList);
             RemoveFromListCommand = new RelayCommand(RemoveFromList, CanRemoveFromList);
             OpenViewerCommand = new RelayCommand(ExecuteOpenViewer, CanOpenViewer);
@@ -106,9 +107,32 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         public OrgansViewModel()
         {
-            
+
         }
         #endregion
+
+        private void SaveOrgans()
+        {
+            string organsAsString = string.Join(",", SelectedOrgans);
+            _dossierService.CentralDossier.Organ.Organs = organsAsString;
+        }
+
+        private void LoadSelectedOrgans()
+        {
+            string? organsAsString = _dossierService.CentralDossier.Organ.Organs;
+
+            if (!string.IsNullOrEmpty(organsAsString))
+            {
+                var organsList = organsAsString.Split(',').ToList();
+                foreach (var organ in organsList)
+                {
+                    if (!SelectedOrgans.Contains(organ))
+                    {
+                        SelectedOrgans.Add(organ);
+                    }
+                }
+            }
+        }
 
         #region properties
         public DossierService.Organ Organ { get; }
@@ -228,6 +252,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (!string.IsNullOrEmpty(SelectedOrgan) && !SelectedOrgans.Contains(SelectedOrgan))
             {
                 SelectedOrgans.Add(SelectedOrgan);
+                SaveOrgans();
 
                 if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
                 {
@@ -253,6 +278,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (!string.IsNullOrEmpty(SelectedOrgan) && SelectedOrgans.Contains(SelectedOrgan))
             {
                 SelectedOrgans.Remove(SelectedOrgan);
+                SaveOrgans();
 
                 if (_isViewerOpen && _viewerWindow?.Content is Organ3DViewerView viewer)
                 {
@@ -338,13 +364,25 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
 
+            var mainWindow = Application.Current.MainWindow;
+            var left = mainWindow.Left;
+            var top = mainWindow.Top;
+            var width = mainWindow.Width;
+            var height = mainWindow.Height;
+
+            double viewerWidth = 750;
+            double viewerHeight = 500;
+
             _viewerWindow = new Window
             {
                 Title = "3D Organ Viewer",
                 Content = viewer,
-                Width = 800,
-                Height = 600,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
+                Width = viewerWidth,
+                Height = viewerHeight,
+                Left = left + width,
+                Top = top,
+
+                WindowStartupLocation = WindowStartupLocation.Manual
             };
 
             _viewerWindow.Closed += (sender, args) =>
