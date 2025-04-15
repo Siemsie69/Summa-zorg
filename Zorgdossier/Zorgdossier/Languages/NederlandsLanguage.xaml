@@ -1,235 +1,255 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
-    <System:String x:Key="InfoMessageTitle">Aanvullende Informatie en Handige Tips</System:String>
+	<System:String x:Key="InfoMessageTitle">Aanvullende Informatie en Handige Tips</System:String>
 
-    <!-- BUTTONS -->
-    <System:String x:Key="PreviousButton">Vorige</System:String>
-    <System:String x:Key="NextButton">Volgende</System:String>
+	<!-- BUTTONS -->
+	<System:String x:Key="PreviousButton">Vorige</System:String>
+	<System:String x:Key="NextButton">Volgende</System:String>
 
-    <!-- CHECK THIS ONE -->
-    <System:String x:Key="StartButton">Start nieuw Dossier</System:String>
-    <System:String x:Key="CreateButton">Dossier aanmaken</System:String>
-    <System:String x:Key="UpdateButton">Update Dossier</System:String>
+	<!-- USERMESSAGES -->
+	<System:String x:Key="StandardUserMessageText">Alle invoervelden moeten ingevuld zijn voordat je verder kan.</System:String>
+	<System:String x:Key="ContactAdvicesUserMessageText">Het invoerveld voor de adviezen voor de pati&#235;nt moet ingevuld zijn voordat je verder kan.</System:String>
+	<System:String x:Key="FinishCreateUserMessageText">Er is een fout opgetreden bij het toevoegen van het dossier: </System:String>
+	<System:String x:Key="FinishEditUserMessageText">Er is een fout opgetreden bij het wijzigen van het dossier: </System:String>
+	<System:String x:Key="PolicyUserMessageText">De invoervelden voor de urgentie en voor de beleidskeuze moeten ingevuld zijn voordat je verder kan.</System:String>
+	<System:String x:Key="SettingsResetNotFoundText">Database bestand niet gevonden.</System:String>
+	<System:String x:Key="SettingsResetFailureText">Fout met het verwijderen van gegevens: </System:String>
+	<System:String x:Key="SettingsResetConnectionFailureText">Fout bij sluiten van de databaseconnectie: </System:String>
 
-    <!-- SectieViews -->
-    <!-- IntroductionView -->
-    <!-- NOT DONE -->
+	<!-- CHECK THIS ONE -->
+	<System:String x:Key="StartButton">Start nieuw Dossier</System:String>
+	<System:String x:Key="CreateButton">Dossier aanmaken</System:String>
+	<System:String x:Key="UpdateButton">Update Dossier</System:String>
 
-    <!-- BasicInformation -->
-    <System:String x:Key="BasicInformationTitle">Dossiers: Basisinformatie</System:String>
-    <System:String x:Key="BasicInformationText">Vul hier de basisinformatie van de pati&#235;nt in, zoals de naam, de klacht en de pati&#235;ntcategorie. Deze gegevens vormen de basis voor de verdere beoordeling en behandeling van de pati&#235;nt. Het is van groot belang om zorgvuldig te zijn bij het invullen van deze informatie, omdat dit invloed heeft op de juiste zorg die geboden kan worden. Zorg ervoor dat je alle relevante details verzamelt.</System:String>
-    <System:String x:Key="BasicInformationSubTitle">Basisinformatie:</System:String>
-    <System:String x:Key="BasicInformationName">Naam van de Pati&#235;nt:</System:String>
-    <System:String x:Key="BasicInformationNameHint">Naam Pati&#235;nt:</System:String>
-    <System:String x:Key="BasicInformationComplaint">Klacht(en) van Pati&#235;nt:</System:String>
-    <System:String x:Key="BasicInformationComplaintHint">Klacht Pati&#235;nt:</System:String>
-    <System:String x:Key="BasicInformationCategory">Selecteer Pati&#235;ntcategorie:</System:String>
-    <System:String x:Key="BasicInformationCategoryHint">Selecteer Categorie</System:String>
-    <System:String x:Key="BasicInformationCategoryMen">Man</System:String>
-    <System:String x:Key="BasicInformationCategoryWoman">Vrouw</System:String>
-    <System:String x:Key="BasicInformationCategoryChild">Kind</System:String>
-    <System:String x:Key="BasicInformationCategoryEldery">Bejaarde</System:String>
+	<!-- SectieViews -->
+	<!-- IntroductionView -->
+	<System:String x:Key="IntroductionTitle">Dossiers: De Introductie</System:String>
+	<System:String x:Key="IntroductionEditText">Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een Pdf-bestand.</System:String>
+	<System:String x:Key="IntroductionCreateText">Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les. Deze stap helpt je om het proces van het invullen van pati&#235;ntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.</System:String>
+	<System:String x:Key="IntroductionEditButtonText">Wijzigen beginnen</System:String>
+	<System:String x:Key="IntroductionCreateButtonText">Aanmaken beginnen</System:String>
+	<System:String x:Key="IntroductionCancelButtonText">Annuleren</System:String>
 
-    <System:String x:Key="BasicInformationMessageText">De basisinformatie van een pati&#235;nt omvat onder andere de naam, de klacht waarvoor de pati&#235;nt zich heeft aangemeld en de pati&#235;ntcategorie waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de pati&#235;nt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.</System:String>
+	<System:String x:Key="IntroductionMessageText">Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.</System:String>
 
-    <!-- PhoneSummaryView -->
-    <System:String x:Key="PhoneSummaryTitle">Dossiers: Telefoongesprek</System:String>
-    <System:String x:Key="PhoneSummaryText">Maak hier een korte samenvatting van het telefoongesprek, waarbij je de belangrijkste informatie over de pati&#235;nt en zijn klachten opschrijft. Dit kan bijvoorbeeld de naam van de pati&#235;nt, de aard van de klacht en eventuele relevante bijkomende factoren omvatten. Zorg ervoor dat je het gesprek beknopt en duidelijk weergeeft, zodat de belangrijkste punten snel zichtbaar zijn.</System:String>
-    <System:String x:Key="PhoneSummarySubTitle">Samenvatting telefoongesprek:</System:String>
-    <System:String x:Key="PhoneSummarySummary" xml:space="preserve">Vul hier de samenvatting &#10;in van de belangrijkste punten &#10;die je hebt besproken:</System:String>
-    <System:String x:Key="PhoneSummaryHint">Samenvatting telefoongesprek</System:String>
+	<!-- BasicInformation -->
+	<System:String x:Key="BasicInformationTitle">Dossiers: Basisinformatie</System:String>
+	<System:String x:Key="BasicInformationText">Vul hier de basisinformatie van de pati&#235;nt in, zoals de naam, de klacht en de pati&#235;ntcategorie. Deze gegevens vormen de basis voor de verdere beoordeling en behandeling van de pati&#235;nt. Het is van groot belang om zorgvuldig te zijn bij het invullen van deze informatie, omdat dit invloed heeft op de juiste zorg die geboden kan worden. Zorg ervoor dat je alle relevante details verzamelt.</System:String>
+	<System:String x:Key="BasicInformationSubTitle">Basisinformatie:</System:String>
+	<System:String x:Key="BasicInformationName">Naam van de Pati&#235;nt:</System:String>
+	<System:String x:Key="BasicInformationNameHint">Naam Pati&#235;nt:</System:String>
+	<System:String x:Key="BasicInformationComplaint">Klacht(en) van Pati&#235;nt:</System:String>
+	<System:String x:Key="BasicInformationComplaintHint">Klacht Pati&#235;nt:</System:String>
+	<System:String x:Key="BasicInformationCategory">Selecteer Pati&#235;ntcategorie:</System:String>
+	<System:String x:Key="BasicInformationCategoryHint">Selecteer Categorie</System:String>
+	<System:String x:Key="BasicInformationCategoryMen">Man</System:String>
+	<System:String x:Key="BasicInformationCategoryWoman">Vrouw</System:String>
+	<System:String x:Key="BasicInformationCategoryChild">Kind</System:String>
+	<System:String x:Key="BasicInformationCategoryEldery">Bejaarde</System:String>
 
-    <System:String x:Key="PhoneSummaryMessageText">Zorg ervoor dat je niet alleen de naam en klachten opneemt, maar ook andere belangrijke details, zoals mogelijke triggers of eerdere behandelingen. Deze aanvullende informatie kan het behandeltraject be&#239;nvloeden en helpt bij het verder begrijpen van de zorgbehoefte van de pati&#235;nt.</System:String>
+	<System:String x:Key="BasicInformationMessageText">De basisinformatie van een pati&#235;nt omvat onder andere de naam, de klacht waarvoor de pati&#235;nt zich heeft aangemeld en de pati&#235;ntcategorie waarmee we te maken hebben. Het is belangrijk om een duidelijk beeld te krijgen van wie de pati&#235;nt is en welke zorgbehoeften er spelen, zodat de juiste zorg kan worden geboden.</System:String>
 
-    <!-- QuestionsView -->
-    <System:String x:Key="QuestionsTitle">Dossiers: Vraagstelling</System:String>
-    <System:String x:Key="QuestionsText">Bij het stellen van vragen aan de pati&#235;nt is het belangrijk om zowel algemene als verdiepende vragen te stellen. Dit helpt om het ziektebeeld beter in kaart te brengen en geeft je een vollediger beeld van de klachten en symptomen. Denk aan vragen die je helpen de aard, duur en intensiteit van de klachten te begrijpen, maar ook aan specifieke vragen die verder ingaan op onderliggende factoren zoals eerdere gezondheidsproblemen.</System:String>
-    <System:String x:Key="QuestionsSubTitle">Vraagstelling:</System:String>
-    <System:String x:Key="QuestionsQuestions" xml:space="preserve">Vul hier de vragen &#10;in die je aan de &#10;pati&#235;nt zou stellen:</System:String>
-    <System:String x:Key="QuestionsHint">Schrijf hier de vragen op die je gaat stellen</System:String>
+	<!-- PhoneSummaryView -->
+	<System:String x:Key="PhoneSummaryTitle">Dossiers: Telefoongesprek</System:String>
+	<System:String x:Key="PhoneSummaryText">Maak hier een korte samenvatting van het telefoongesprek, waarbij je de belangrijkste informatie over de pati&#235;nt en zijn klachten opschrijft. Dit kan bijvoorbeeld de naam van de pati&#235;nt, de aard van de klacht en eventuele relevante bijkomende factoren omvatten. Zorg ervoor dat je het gesprek beknopt en duidelijk weergeeft, zodat de belangrijkste punten snel zichtbaar zijn.</System:String>
+	<System:String x:Key="PhoneSummarySubTitle">Samenvatting telefoongesprek:</System:String>
+	<System:String x:Key="PhoneSummarySummary" xml:space="preserve">Vul hier de samenvatting &#10;in van de belangrijkste punten &#10;die je hebt besproken:</System:String>
+	<System:String x:Key="PhoneSummaryHint">Samenvatting telefoongesprek</System:String>
 
-    <System:String x:Key="QuestionsMessageText">Zorg ervoor dat je vragen stelt die zowel breed als specifiek zijn, zodat je het volledige spectrum van klachten en symptomen kunt begrijpen en het juiste behandelplan kunt opstellen.</System:String>
+	<System:String x:Key="PhoneSummaryMessageText">Zorg ervoor dat je niet alleen de naam en klachten opneemt, maar ook andere belangrijke details, zoals mogelijke triggers of eerdere behandelingen. Deze aanvullende informatie kan het behandeltraject be&#239;nvloeden en helpt bij het verder begrijpen van de zorgbehoefte van de pati&#235;nt.</System:String>
 
-    <!-- OrgansView -->
-    <System:String x:Key="OrgansTitle">Dossiers: Organen Selecteren</System:String>
-    <System:String x:Key="OrgansText">Selecteer een of meerdere organen die het meest relevant zijn voor dit dossier, op basis van de klachten en symptomen die de pati&#235;nt heeft aangegeven. Als je een orgaan hebt geselecteerd, kun je het toevoegen aan de lijst. Je kunt ook organen verwijderen indien nodig. Elk geselecteerd orgaan heeft een 3D-model waarmee je het van alle kanten kunt bekijken en roteren, zodat je een beter beeld krijgt.</System:String>
-    <System:String x:Key="OrgansAddToList">Toevoegen aan Lijst</System:String>
-    <System:String x:Key="OrgansRemoveFromList">Verwijderen van Lijst</System:String>
-    <System:String x:Key="OrgansOpenViewer">Open 3D Viewer</System:String>
-    <System:String x:Key="OrgansListItems">Lijst met geselecteerde organen:</System:String>
+	<!-- QuestionsView -->
+	<System:String x:Key="QuestionsTitle">Dossiers: Vraagstelling</System:String>
+	<System:String x:Key="QuestionsText">Bij het stellen van vragen aan de pati&#235;nt is het belangrijk om zowel algemene als verdiepende vragen te stellen. Dit helpt om het ziektebeeld beter in kaart te brengen en geeft je een vollediger beeld van de klachten en symptomen. Denk aan vragen die je helpen de aard, duur en intensiteit van de klachten te begrijpen, maar ook aan specifieke vragen die verder ingaan op onderliggende factoren zoals eerdere gezondheidsproblemen.</System:String>
+	<System:String x:Key="QuestionsSubTitle">Vraagstelling:</System:String>
+	<System:String x:Key="QuestionsQuestions" xml:space="preserve">Vul hier de vragen &#10;in die je aan de &#10;pati&#235;nt zou stellen:</System:String>
+	<System:String x:Key="QuestionsHint">Schrijf hier de vragen op die je gaat stellen</System:String>
 
-    <System:String x:Key="OrgansMessageText">Selecteer hier de organen die direct gerelateerd zijn aan de klachten en symptomen die de pati&#235;nt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.</System:String>
+	<System:String x:Key="QuestionsMessageText">Zorg ervoor dat je vragen stelt die zowel breed als specifiek zijn, zodat je het volledige spectrum van klachten en symptomen kunt begrijpen en het juiste behandelplan kunt opstellen.</System:String>
 
-    <System:String x:Key="ViewerTitle">3D Organen Viewer</System:String>
-    <System:String x:Key="ViewerText">Bekijk de geselecteerde organen in 3D. Houd de rechtermuisknop ingedrukt en sleep om te roteren. Gebruik het scrollwiel om in of uit te zoomen. Houd het scrollwiel ingedrukt en sleep om te bewegen. Je kunt ook de WASD-toetsen gebruiken om te verplaatsen en de pijltjestoetsen om rond te draaien. Voor snelle aanzichten kun je de ViewCube gebruiken.</System:String>
+	<!-- OrgansView -->
+	<System:String x:Key="OrgansTitle">Dossiers: Organen Selecteren</System:String>
+	<System:String x:Key="OrgansText">Selecteer een of meerdere organen die het meest relevant zijn voor dit dossier, op basis van de klachten en symptomen die de pati&#235;nt heeft aangegeven. Als je een orgaan hebt geselecteerd, kun je het toevoegen aan de lijst. Je kunt ook organen verwijderen indien nodig. Elk geselecteerd orgaan heeft een 3D-model waarmee je het van alle kanten kunt bekijken en roteren, zodat je een beter beeld krijgt.</System:String>
+	<System:String x:Key="OrgansAddToList">Toevoegen aan Lijst</System:String>
+	<System:String x:Key="OrgansRemoveFromList">Verwijderen van Lijst</System:String>
+	<System:String x:Key="OrgansOpenViewer">Open 3D Viewer</System:String>
+	<System:String x:Key="OrgansListItems">Lijst met geselecteerde organen:</System:String>
 
-    <!-- ComplaintsAndSymptomsView -->
-    <System:String x:Key="ComplaintsAndSymptomsTitle">Dossiers: Klachten en Symptomen</System:String>
-    <System:String x:Key="ComplaintsAndSymptomsText">Vul hier de klachten en symptomen in die relevant zijn voor het dossier. Het is belangrijk om zowel de fysieke als mentale symptomen te noteren, aangezien deze samen een compleet beeld van de gezondheidssituatie van de pati&#235;nt kunnen geven. Dit helpt om te begrijpen welke zorg de pati&#235;nt nodig heeft.</System:String>
-    <System:String x:Key="ComplaintsAndSymptomsSubTitle">De klachten en symptomen:</System:String>
-    <System:String x:Key="ComplaintsAndSymptomsComplaints" xml:space="preserve">Vul hier de klachten &#10;&amp; symptomen in die &#10;bij de pati&#235;nt horen:</System:String>
-    <System:String x:Key="ComplaintsAndSymptomsHint">Welke klachten en symptomen ervaart de pati&#235;nt?</System:String>
+	<System:String x:Key="OrgansMessageText">Selecteer hier de organen die direct gerelateerd zijn aan de klachten en symptomen die de pati&#235;nt ervaart. Dit helpt om een gerichter dossier op te stellen, zodat je de juiste zorg en behandeling kunt plannen.</System:String>
 
-    <System:String x:Key="ComplaintsAndSymptomsMessageText">Denk hierbij aan zowel fysieke als mentale klachten en symptomen, zoals pijn, specifiek gedrag, stemmingswisselingen of een combinatie van deze factoren. Deze informatie helpt om het ziektebeeld in zijn geheel te begrijpen en een passende behandeling voor te stellen.</System:String>
+	<System:String x:Key="ViewerTitle">3D Organen Viewer</System:String>
+	<System:String x:Key="ViewerText">Bekijk de geselecteerde organen in 3D. Houd de rechtermuisknop ingedrukt en sleep om te roteren. Gebruik het scrollwiel om in of uit te zoomen. Houd het scrollwiel ingedrukt en sleep om te bewegen. Je kunt ook de WASD-toetsen gebruiken om te verplaatsen en de pijltjestoetsen om rond te draaien. Voor snelle aanzichten kun je de ViewCube gebruiken.</System:String>
 
-    <!-- ResearchView -->
-    <System:String x:Key="ResearchTitle">Dossiers: Onderzoeken</System:String>
-    <System:String x:Key="ResearchText">Vul in welke onderzoeken uitgevoerd moeten worden in het kader van dit dossier. Deze onderzoeken moeten gebaseerd zijn op de klachten en symptomen die de pati&#235;nt heeft aangegeven. Ze kunnen vari&#235;ren van bloedonderzoeken tot beeldvorming, afhankelijk van wat nodig is om de aandoening beter te begrijpen en te bevestigen.</System:String>
-    <System:String x:Key="ResearchSubTitle">Onderzoeken:</System:String>
-    <System:String x:Key="ResearchResearch" xml:space="preserve">Vul hier in welke &#10;onderzoeken er &#10;gedaan moeten worden:</System:String>
-    <System:String x:Key="ResearchHint">Welke onderzoeken moeten er worden uitgevoerd?</System:String>
+	<!-- ComplaintsAndSymptomsView -->
+	<System:String x:Key="ComplaintsAndSymptomsTitle">Dossiers: Klachten en Symptomen</System:String>
+	<System:String x:Key="ComplaintsAndSymptomsText">Vul hier de klachten en symptomen in die relevant zijn voor het dossier. Het is belangrijk om zowel de fysieke als mentale symptomen te noteren, aangezien deze samen een compleet beeld van de gezondheidssituatie van de pati&#235;nt kunnen geven. Dit helpt om te begrijpen welke zorg de pati&#235;nt nodig heeft.</System:String>
+	<System:String x:Key="ComplaintsAndSymptomsSubTitle">De klachten en symptomen:</System:String>
+	<System:String x:Key="ComplaintsAndSymptomsComplaints" xml:space="preserve">Vul hier de klachten &#10;&amp; symptomen in die &#10;bij de pati&#235;nt horen:</System:String>
+	<System:String x:Key="ComplaintsAndSymptomsHint">Welke klachten en symptomen ervaart de pati&#235;nt?</System:String>
 
-    <System:String x:Key="ResearchMessageText">Focus op onderzoeken die niet alleen de diagnose ondersteunen, maar ook helpen om complicaties of andere onderliggende aandoeningen uit te sluiten, zodat je het juiste behandelplan kunt bepalen.</System:String>
+	<System:String x:Key="ComplaintsAndSymptomsMessageText">Denk hierbij aan zowel fysieke als mentale klachten en symptomen, zoals pijn, specifiek gedrag, stemmingswisselingen of een combinatie van deze factoren. Deze informatie helpt om het ziektebeeld in zijn geheel te begrijpen en een passende behandeling voor te stellen.</System:String>
 
-    <!-- PolicyView -->
-    <System:String x:Key="PolicyTitle">Dossiers: Beleid en Urgenties</System:String>
-    <System:String x:Key="PolicyText">Hier kunt u het beleid en de urgenties voor dit dossier bekijken. Lees de informatie zorgvuldig door om te begrijpen welke prioriteit het dossier heeft. Dit inzicht helpt bij het bepalen welke acties snel genomen moeten worden, zoals het inplannen van een afspraak bij de dokter of het doorverwijzen voor verdere behandeling.</System:String>
-    <System:String x:Key="PolicySubTitle">Beleid + Urgenties:</System:String>
-    <System:String x:Key="PolicyUrgencyTitle">Kies de urgentie:</System:String>
-    <System:String x:Key="PolicyUrgencyHint">Selecteer urgentie</System:String>
+	<!-- ResearchView -->
+	<System:String x:Key="ResearchTitle">Dossiers: Onderzoeken</System:String>
+	<System:String x:Key="ResearchText">Vul in welke onderzoeken uitgevoerd moeten worden in het kader van dit dossier. Deze onderzoeken moeten gebaseerd zijn op de klachten en symptomen die de pati&#235;nt heeft aangegeven. Ze kunnen vari&#235;ren van bloedonderzoeken tot beeldvorming, afhankelijk van wat nodig is om de aandoening beter te begrijpen en te bevestigen.</System:String>
+	<System:String x:Key="ResearchSubTitle">Onderzoeken:</System:String>
+	<System:String x:Key="ResearchResearch" xml:space="preserve">Vul hier in welke &#10;onderzoeken er &#10;gedaan moeten worden:</System:String>
+	<System:String x:Key="ResearchHint">Welke onderzoeken moeten er worden uitgevoerd?</System:String>
 
-    <System:String x:Key="PolicyUrgencyU1">U1 Levensbedreigend</System:String>
-    <System:String x:Key="PolicyUrgencyU2">U2 Spoed</System:String>
-    <System:String x:Key="PolicyUrgencyU3">U3 Dringend</System:String>
-    <System:String x:Key="PolicyUrgencyU4">U4 Niet dringend</System:String>
-    <System:String x:Key="PolicyUrgencyU5">U5 Advies</System:String>
+	<System:String x:Key="ResearchMessageText">Focus op onderzoeken die niet alleen de diagnose ondersteunen, maar ook helpen om complicaties of andere onderliggende aandoeningen uit te sluiten, zodat je het juiste behandelplan kunt bepalen.</System:String>
 
-    <System:String x:Key="PolicyTriageTitle">Triagecriterium:</System:String>
-    <System:String x:Key="PolicyTriageHint">Vul hier het triagecriterium in (optioneel)</System:String>
+	<!-- PolicyView -->
+	<System:String x:Key="PolicyTitle">Dossiers: Beleid en Urgenties</System:String>
+	<System:String x:Key="PolicyText">Hier kunt u het beleid en de urgenties voor dit dossier bekijken. Lees de informatie zorgvuldig door om te begrijpen welke prioriteit het dossier heeft. Dit inzicht helpt bij het bepalen welke acties snel genomen moeten worden, zoals het inplannen van een afspraak bij de dokter of het doorverwijzen voor verdere behandeling.</System:String>
+	<System:String x:Key="PolicySubTitle">Beleid + Urgenties:</System:String>
+	<System:String x:Key="PolicyUrgencyTitle">Kies de urgentie:</System:String>
+	<System:String x:Key="PolicyUrgencyHint">Selecteer urgentie</System:String>
 
-    <System:String x:Key="PolicyChoiceTitle">Kies de beleidskeuze:</System:String>
-    <System:String x:Key="PolicyChoiceHint">Selecteer beleidskeuze</System:String>
+	<System:String x:Key="PolicyUrgencyU1">U1 Levensbedreigend</System:String>
+	<System:String x:Key="PolicyUrgencyU2">U2 Spoed</System:String>
+	<System:String x:Key="PolicyUrgencyU3">U3 Dringend</System:String>
+	<System:String x:Key="PolicyUrgencyU4">U4 Niet dringend</System:String>
+	<System:String x:Key="PolicyUrgencyU5">U5 Advies</System:String>
 
-    <System:String x:Key="PolicyChoiceAppointment">Afspraak</System:String>
-    <System:String x:Key="PolicyChoiceVisit">Visite</System:String>
+	<System:String x:Key="PolicyTriageTitle">Triagecriterium:</System:String>
+	<System:String x:Key="PolicyTriageHint">Vul hier het triagecriterium in (optioneel)</System:String>
 
-    <System:String x:Key="PolicyMessageText">Op basis van de urgentie en de triagecriteria kunt u nu beslissen of het noodzakelijk is om direct een afspraak bij de dokter te plannen en welke tijd het beste past voor de pati&#235;nt.</System:String>
+	<System:String x:Key="PolicyChoiceTitle">Kies de beleidskeuze:</System:String>
+	<System:String x:Key="PolicyChoiceHint">Selecteer beleidskeuze</System:String>
 
-    <!-- ContactAdvicesView -->
-    <System:String x:Key="ContactAdvicesTitle">Dossiers: (Contact-) Adviezen</System:String>
-    <System:String x:Key="ContactAdvicesText">Vul hier de contact- en behandeladviezen in voor het dossier. Het is belangrijk om de pati&#235;nt duidelijke richtlijnen te geven over zelfzorg, activiteiten die vermeden moeten worden, en wanneer het nodig is om contact op te nemen met een zorgverlener. Dit zorgt ervoor dat de pati&#235;nt weet hoe hij of zij de situatie het beste kan beheren en wanneer verdere actie nodig is.</System:String>
-    <System:String x:Key="ContactAdvicesSubTitle">Adviezen:</System:String>
-    <System:String x:Key="ContactAdvicesAdviceLabel" xml:space="preserve">Vul hier in welke &#10;adviezen je aan de &#10;pati&#235;nt zou geven:</System:String>
-    <System:String x:Key="ContactAdvicesAdviceHint">Welke adviezen geef je aan de pati&#235;nt?</System:String>
-    <System:String x:Key="ContactAdvicesContactLabel" xml:space="preserve">Vul hier in wanneer &#10;de pati&#235;nt contact &#10;op zou moeten &#10;nemen volgens jou:</System:String>
-    <System:String x:Key="ContactAdvicesContactHint">Welke contact adviezen geef je aan de pati&#235;nt? (optioneel)</System:String>
+	<System:String x:Key="PolicyChoiceAppointment">Afspraak</System:String>
+	<System:String x:Key="PolicyChoiceVisit">Visite</System:String>
 
-    <System:String x:Key="ContactAdvicesMessageText">Geef de pati&#235;nt duidelijke zelfzorginstructies, inclusief advies over activiteiten die vermeden moeten worden. Informeer ook wanneer het noodzakelijk is om contact op te nemen, bijvoorbeeld bij verergering van de klachten of het optreden van nieuwe symptomen.</System:String>
+	<System:String x:Key="PolicyMessageText">Op basis van de urgentie en de triagecriteria kunt u nu beslissen of het noodzakelijk is om direct een afspraak bij de dokter te plannen en welke tijd het beste past voor de pati&#235;nt.</System:String>
 
-    <!-- TreatmentView -->
-    <System:String x:Key="TreatmentTitle">Dossiers: Behandelingsproces</System:String>
-    <System:String x:Key="TreatmentText">Kies de behandelingsopties die relevant zijn voor dit dossier, op basis van de klachten, symptomen en de uiteindelijke diagnose van de pati&#235;nt. Afhankelijk van de situatie kunnen de behandelingen vari&#235;ren van medicatie en fysiotherapie tot andere therapie&#235;n. Het is belangrijk om de juiste keuze te maken, vaak in overleg met een arts, om het behandelplan verder op te stellen.</System:String>
-    <System:String x:Key="TreatmentSubTitle">Behandeling:</System:String>
-    <System:String x:Key="TreatmentLabel" xml:space="preserve">Vul hier in welke &#10;behandelingen de pati&#235;nt &#10;zou moeten krijgen:</System:String>
-    <System:String x:Key="TreatmentHint">Welke behandeling(en) krijgt de pati&#235;nt?</System:String>
+	<!-- ContactAdvicesView -->
+	<System:String x:Key="ContactAdvicesTitle">Dossiers: (Contact-) Adviezen</System:String>
+	<System:String x:Key="ContactAdvicesText">Vul hier de contact- en behandeladviezen in voor het dossier. Het is belangrijk om de pati&#235;nt duidelijke richtlijnen te geven over zelfzorg, activiteiten die vermeden moeten worden, en wanneer het nodig is om contact op te nemen met een zorgverlener. Dit zorgt ervoor dat de pati&#235;nt weet hoe hij of zij de situatie het beste kan beheren en wanneer verdere actie nodig is.</System:String>
+	<System:String x:Key="ContactAdvicesSubTitle">Adviezen:</System:String>
+	<System:String x:Key="ContactAdvicesAdviceLabel" xml:space="preserve">Vul hier in welke &#10;adviezen je aan de &#10;pati&#235;nt zou geven:</System:String>
+	<System:String x:Key="ContactAdvicesAdviceHint">Welke adviezen geef je aan de pati&#235;nt?</System:String>
+	<System:String x:Key="ContactAdvicesContactLabel" xml:space="preserve">Vul hier in wanneer &#10;de pati&#235;nt contact &#10;op zou moeten &#10;nemen volgens jou:</System:String>
+	<System:String x:Key="ContactAdvicesContactHint">Welke contact adviezen geef je aan de pati&#235;nt? (optioneel)</System:String>
 
-    <System:String x:Key="TreatmentMessageText">Bepaal de behandelingen die passen bij de diagnose en de ernst van de klachten, zodat de pati&#235;nt de juiste zorg ontvangt.</System:String>
+	<System:String x:Key="ContactAdvicesMessageText">Geef de pati&#235;nt duidelijke zelfzorginstructies, inclusief advies over activiteiten die vermeden moeten worden. Informeer ook wanneer het noodzakelijk is om contact op te nemen, bijvoorbeeld bij verergering van de klachten of het optreden van nieuwe symptomen.</System:String>
 
-    <!-- FinishProgressView -->
-    <System:String x:Key="FinishProgressTitle">Dossiers: Progressie &amp; Klaar</System:String>
-    <System:String x:Key="FinishProgressText">Neem de tijd om alle details na te lopen en zorg dat je geen belangrijke gegevens mist. Zo voorkom je fouten en sluit je het dossier correct af. Klik op de sectienamen om erheen te gaan.</System:String>
-    <System:String x:Key="FinishProgressSubTitle">Progressie &amp; Klaar?</System:String>
+	<!-- TreatmentView -->
+	<System:String x:Key="TreatmentTitle">Dossiers: Behandelingsproces</System:String>
+	<System:String x:Key="TreatmentText">Kies de behandelingsopties die relevant zijn voor dit dossier, op basis van de klachten, symptomen en de uiteindelijke diagnose van de pati&#235;nt. Afhankelijk van de situatie kunnen de behandelingen vari&#235;ren van medicatie en fysiotherapie tot andere therapie&#235;n. Het is belangrijk om de juiste keuze te maken, vaak in overleg met een arts, om het behandelplan verder op te stellen.</System:String>
+	<System:String x:Key="TreatmentSubTitle">Behandeling:</System:String>
+	<System:String x:Key="TreatmentLabel" xml:space="preserve">Vul hier in welke &#10;behandelingen de pati&#235;nt &#10;zou moeten krijgen:</System:String>
+	<System:String x:Key="TreatmentHint">Welke behandeling(en) krijgt de pati&#235;nt?</System:String>
 
-    <System:String x:Key="FinishProgressBasic">Basisinformatie</System:String>
-    <System:String x:Key="FinishProgressBasicName">Naam Pati&#235;nt</System:String>
-    <System:String x:Key="FinishProgressBasicComplaint">Klacht Pati&#235;nt</System:String>
-    <System:String x:Key="FinishProgressBasicCategory">Categorie Pati&#235;nt</System:String>
+	<System:String x:Key="TreatmentMessageText">Bepaal de behandelingen die passen bij de diagnose en de ernst van de klachten, zodat de pati&#235;nt de juiste zorg ontvangt.</System:String>
 
-    <System:String x:Key="FinishProgressPhoneSummary">Telefoonsamenvatting</System:String>
-    <System:String x:Key="FinishProgressPhoneText">Samenvatting telefoongesprek</System:String>
+	<!-- FinishProgressView -->
+	<System:String x:Key="FinishProgressTitle">Dossiers: Progressie &amp; Klaar</System:String>
+	<System:String x:Key="FinishProgressText">Neem de tijd om alle details na te lopen en zorg dat je geen belangrijke gegevens mist. Zo voorkom je fouten en sluit je het dossier correct af. Klik op de sectienamen om erheen te gaan.</System:String>
+	<System:String x:Key="FinishProgressSubTitle">Progressie &amp; Klaar?</System:String>
 
-    <System:String x:Key="FinishProgressQuestions">Vragen stellen</System:String>
-    <System:String x:Key="FinishProgressQuestionsText">Vragen voor de pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressBasic">Basisinformatie</System:String>
+	<System:String x:Key="FinishProgressBasicName">Naam Pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressBasicComplaint">Klacht Pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressBasicCategory">Categorie Pati&#235;nt</System:String>
 
-    <System:String x:Key="FinishProgressOrgans">Organen selecteren</System:String>
-    <System:String x:Key="FinishProgressOrgansText">Organen</System:String>
+	<System:String x:Key="FinishProgressPhoneSummary">Telefoonsamenvatting</System:String>
+	<System:String x:Key="FinishProgressPhoneText">Samenvatting telefoongesprek</System:String>
 
-    <System:String x:Key="FinishProgressComplaints">Klachten en symptomen</System:String>
-    <System:String x:Key="FinishProgressComplaintsText">Klachten die de pati&#235;nt ervaart</System:String>
+	<System:String x:Key="FinishProgressQuestions">Vragen stellen</System:String>
+	<System:String x:Key="FinishProgressQuestionsText">Vragen voor de pati&#235;nt</System:String>
 
-    <System:String x:Key="FinishProgressResearch">Onderzoeken</System:String>
-    <System:String x:Key="FinishProgressResearchText">Uit te voeren onderzoeken</System:String>
+	<System:String x:Key="FinishProgressOrgans">Organen selecteren</System:String>
+	<System:String x:Key="FinishProgressOrgansText">Organen</System:String>
 
-    <System:String x:Key="FinishProgressPolicy">Beleid en urgenties</System:String>
-    <System:String x:Key="FinishProgressPolicyUrgency">Urgentie</System:String>
-    <System:String x:Key="FinishProgressPolicyTriage">Triagecriterium</System:String>
-    <System:String x:Key="FinishProgressPolicyChoice">Beleidskeuze</System:String>
-    <System:String x:Key="FinishProgressPolicyTime">Moment van afspraak</System:String>
+	<System:String x:Key="FinishProgressComplaints">Klachten en symptomen</System:String>
+	<System:String x:Key="FinishProgressComplaintsText">Klachten die de pati&#235;nt ervaart</System:String>
 
-    <System:String x:Key="FinishProgressAdvice">(Contact-) adviezen</System:String>
-    <System:String x:Key="FinishProgressAdviceText">Adviezen voor de pati&#235;nt</System:String>
-    <System:String x:Key="FinishProgressAdviceContact">Contact adviezen voor de pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressResearch">Onderzoeken</System:String>
+	<System:String x:Key="FinishProgressResearchText">Uit te voeren onderzoeken</System:String>
 
-    <System:String x:Key="FinishProgressTreatment">Behandeling</System:String>
-    <System:String x:Key="FinishProgressTreatmentText">Behandeling voor de pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressPolicy">Beleid en urgenties</System:String>
+	<System:String x:Key="FinishProgressPolicyUrgency">Urgentie</System:String>
+	<System:String x:Key="FinishProgressPolicyTriage">Triagecriterium</System:String>
+	<System:String x:Key="FinishProgressPolicyChoice">Beleidskeuze</System:String>
+	<System:String x:Key="FinishProgressPolicyTime">Moment van afspraak</System:String>
 
-    <System:String x:Key="FinishProgressLegendNotFilledIn">Niet ingevuld</System:String>
-    <System:String x:Key="FinishProgressLegendFilledIn">Volledig ingevuld</System:String>
+	<System:String x:Key="FinishProgressAdvice">(Contact-) adviezen</System:String>
+	<System:String x:Key="FinishProgressAdviceText">Adviezen voor de pati&#235;nt</System:String>
+	<System:String x:Key="FinishProgressAdviceContact">Contact adviezen voor de pati&#235;nt</System:String>
 
-    <System:String x:Key="FinishProgressMessageText">Ben je zeker dat je alles hebt gecontroleerd en klaar bent met invullen? Zorg ervoor dat je alle benodigde informatie hebt ingevuld. Je kunt hieronder de voortgang van het invullen bekijken om te zien of je alles hebt afgerond.</System:String>
+	<System:String x:Key="FinishProgressTreatment">Behandeling</System:String>
+	<System:String x:Key="FinishProgressTreatmentText">Behandeling voor de pati&#235;nt</System:String>
 
-    <!-- SettingsView -->
-    <System:String x:Key="SettingsTitle">Instellingen</System:String>
-    <System:String x:Key="SettingsText">Beheer uw voorkeuren voor een optimale gebruikerservaring. U kunt eenvoudig het thema van de applicatie aanpassen, kiezen tussen Nederlands of Engels als voorkeurstaal en uw gegevens beheren.</System:String>
-    <System:String x:Key="SettingsThemeText">Applicatiethema: Kies tussen een licht of donker thema om de visuele ervaring aan te passen aan uw voorkeuren.</System:String>
-    <System:String x:Key="SettingsLanguageText">Voorkeurstaal: Selecteer de taal van de applicatie, kies tussen Nederlands of Engels.</System:String>
-    <System:String x:Key="SettingsSelectThemeText">Selecteer voorkeurthema</System:String>
-    <System:String x:Key="SettingsSelectLanguageText">Selecteer voorkeurtaal</System:String>
-    <System:String x:Key="SettingsResetText">Resetten van gegevens: Wis alle opgeslagen gegevens en herstel de applicatie naar de oorspronkelijke instellingen.</System:String>
-    <System:String x:Key="SettingsResetWarningText">Let op: uw dossiers worden allemaal verwijderd.</System:String>
-    <System:String x:Key="SettingsActivateButtonText">Activeren</System:String>
-    <System:String x:Key="SettingsResetButtonText">Gegevens Resetten</System:String>
-    <System:String x:Key="SettingsCmbLightText">Licht</System:String>
-    <System:String x:Key="SettingsCmbDarkText">Donker</System:String>
-    <System:String x:Key="SettingsCmbDutchText">Nederlands</System:String>
-    <System:String x:Key="SettingsCmbEnglishText">Engels</System:String>
+	<System:String x:Key="FinishProgressLegendNotFilledIn">Niet ingevuld</System:String>
+	<System:String x:Key="FinishProgressLegendFilledIn">Volledig ingevuld</System:String>
 
-    <!-- MainView -->
-    <System:String x:Key="MainRecordButtonText">Dossiers</System:String>
-    <System:String x:Key="MainExplanationButtonText">Uitleg</System:String>
+	<System:String x:Key="FinishProgressMessageText">Ben je zeker dat je alles hebt gecontroleerd en klaar bent met invullen? Zorg ervoor dat je alle benodigde informatie hebt ingevuld. Je kunt hieronder de voortgang van het invullen bekijken om te zien of je alles hebt afgerond.</System:String>
 
-    <System:String x:Key="HomeText">Welkom student! Deze applicatie ondersteunt je bij het leren aanmaken en beheren van pati&#235;ntendossiers. Je krijgt de kans om te oefenen met het stellen van gerichte vragen, het analyseren van klachten en het formuleren van een diagnose. Daarnaast ontdek je welke vervolgstappen nodig zijn voor een optimale behandeling.</System:String>
-    <System:String x:Key="HomeActionText">Kies hieronder om meteen aan de slag te gaan: start een nieuw dossier of bekijk de uitleg.</System:String>
-    <System:String x:Key="HomeRecordButtonText">Start Nieuw Dossier</System:String>
-    <System:String x:Key="HomeExplanationButtonText">Bekijk Uitleg</System:String>
-    <System:String x:Key="HomeCreditsText">Deze applicatie is gemaakt door Summa ICT, Siem, Niek en Damian. Wij zijn drie studenten uit het tweede leerjaar (2024-2025) die samen hebben gewerkt aan dit project om jou te helpen leren en groeien. Veel succes met je studie!</System:String>
+	<!-- SettingsView -->
+	<System:String x:Key="SettingsTitle">Instellingen</System:String>
+	<System:String x:Key="SettingsText">Beheer uw voorkeuren voor een optimale gebruikerservaring. U kunt eenvoudig het thema van de applicatie aanpassen, kiezen tussen Nederlands of Engels als voorkeurstaal en uw gegevens beheren.</System:String>
+	<System:String x:Key="SettingsThemeText">Applicatiethema: Kies tussen een licht of donker thema om de visuele ervaring aan te passen aan uw voorkeuren.</System:String>
+	<System:String x:Key="SettingsLanguageText">Voorkeurstaal: Selecteer de taal van de applicatie, kies tussen Nederlands of Engels.</System:String>
+	<System:String x:Key="SettingsSelectThemeText">Selecteer voorkeurthema</System:String>
+	<System:String x:Key="SettingsSelectLanguageText">Selecteer voorkeurtaal</System:String>
+	<System:String x:Key="SettingsResetText">Resetten van gegevens: Wis alle opgeslagen gegevens en herstel de applicatie naar de oorspronkelijke instellingen.</System:String>
+	<System:String x:Key="SettingsResetWarningText">Let op: uw dossiers worden allemaal verwijderd.</System:String>
+	<System:String x:Key="SettingsActivateButtonText">Activeren</System:String>
+	<System:String x:Key="SettingsResetButtonText">Gegevens Resetten</System:String>
+	<System:String x:Key="SettingsCmbLightText">Licht</System:String>
+	<System:String x:Key="SettingsCmbDarkText">Donker</System:String>
+	<System:String x:Key="SettingsCmbDutchText">Nederlands</System:String>
+	<System:String x:Key="SettingsCmbEnglishText">Engels</System:String>
+	<System:String x:Key="SettingsResetMessageText">Weet je zeker dat je al je gegevens wilt verwijderen? Ze kunnen niet meer worden teruggehaald.</System:String>
+	<System:String x:Key="SettingsResetMessageTitleText">Waarschuwing</System:String>
+	<System:String x:Key="SettingsResetSuccesText">Database succesvol verwijderd.</System:String>
 
-    <!-- ExplanationView -->
-    <System:String x:Key="ExplanationTitleText">Uitleg en toelichting</System:String>
-    <System:String x:Key="ExplanationText">Hier kun je een uitgebreide uitleg vinden over hoe je zorgdossiers kunt aanmaken, beheren en optimaliseren. Deze applicatie biedt ondersteuning bij het werken met pati&#235;ntendossiers, medische analyses en diagnostische processen, zodat je effici&#235;nter te werk kunt gaan en betere zorg kunt bieden.</System:String>
-    <System:String x:Key="ExplanationBeginTitleText">Hoe te beginnen met zorgdossiers?</System:String>
-    <System:String x:Key="ExplanationBeginText">Om te beginnen met het werken aan pati&#235;ntendossiers, dien je in het hoofdmenu te navigeren naar de sectie met de naam 'Dossiers'. Hier krijg je een volledig overzicht van alle bestaande pati&#235;ntendossiers en heb je tevens de mogelijkheid om eenvoudig nieuwe dossiers te cre&#235;ren en toe te voegen.</System:String>
-    <System:String x:Key="ExplanationSetUpTitleText">Hoe stel je een pati&#235;ntendossier op?</System:String>
-    <System:String x:Key="ExplanationSetUpText">Bij het opstellen van een pati&#235;ntendossier doorloop je een gestructureerd proces waarbij je gerichte vragen beantwoordt, symptomen analyseert en uiteindelijk een diagnose opstelt. Onze applicatie biedt een begeleid stappenplan dat je helpt bij het invullen van de benodigde gegevens en het vastleggen van de juiste medische informatie.</System:String>
-    <System:String x:Key="ExplanationNextStepTitleText">Welke vervolgstappen zijn nodig?</System:String>
-    <System:String x:Key="ExplanationNextStepText">Na het vaststellen van een diagnose is het van groot belang om de juiste vervolgstappen te bepalen. Dit kunnen aanvullende onderzoeken, een gerichte medische behandeling of een doorverwijzing naar een specialist zijn. Onze applicatie helpt je bij het in kaart brengen van deze cruciale stappen.</System:String>
-    <System:String x:Key="ExplanationExportTitleText">Hoe kun je een dossier exporteren?</System:String>
-    <System:String x:Key="ExplanationExportText">Wanneer je dossier volledig is ingevuld en gereed is voor verdere verwerking, kun je het eenvoudig opslaan en exporteren. De applicatie biedt een exportfunctie waarmee je het dossier als een goed geformatteerd document kunt genereren, zodat het gemakkelijk gedeeld en ingeleverd kan worden.</System:String>
-    <System:String x:Key="ExplanationActionText">Ben je er klaar voor? Klik op de knop hieronder om direct aan de slag te gaan.</System:String>
-    <System:String x:Key="ExplanationRecordButtonText">Maak een dossier</System:String>
-    <System:String x:Key="ExplanationSampleButtonText">Voorbeelddossier</System:String>
+	<!-- MainView -->
+	<System:String x:Key="MainRecordButtonText">Dossiers</System:String>
+	<System:String x:Key="MainExplanationButtonText">Uitleg</System:String>
 
-    <System:String x:Key="ExplanationMessageText">Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.</System:String>
+	<System:String x:Key="HomeText">Welkom student! Deze applicatie ondersteunt je bij het leren aanmaken en beheren van pati&#235;ntendossiers. Je krijgt de kans om te oefenen met het stellen van gerichte vragen, het analyseren van klachten en het formuleren van een diagnose. Daarnaast ontdek je welke vervolgstappen nodig zijn voor een optimale behandeling.</System:String>
+	<System:String x:Key="HomeActionText">Kies hieronder om meteen aan de slag te gaan: start een nieuw dossier of bekijk de uitleg.</System:String>
+	<System:String x:Key="HomeRecordButtonText">Start Nieuw Dossier</System:String>
+	<System:String x:Key="HomeExplanationButtonText">Bekijk Uitleg</System:String>
+	<System:String x:Key="HomeCreditsText">Deze applicatie is gemaakt door Summa ICT, Siem, Niek en Damian. Wij zijn drie studenten uit het tweede leerjaar (2024-2025) die samen hebben gewerkt aan dit project om jou te helpen leren en groeien. Veel succes met je studie!</System:String>
 
-    <!-- DossiersView -->
-    <System:String x:Key="RecordsTitleText">Dossiers</System:String>
-    <System:String x:Key="RecordsText">Hier zie je een overzicht van al je dossiers. Dossiers kunnen bekeken, bewerkt en verbeterd worden. Gebruik de bewerkingsopties om informatie aan te passen. Als je vastloopt, kun je ook een voorbeelddossier openen voor meer duidelijkheid. Daarnaast kun je elk dossier exporteren en gemakkelijk inleveren wanneer het klaar is.</System:String>
-    <System:String x:Key="RecordsNameText">Titel</System:String>
-    <System:String x:Key="RecordsEditText">Bewerken</System:String>
-    <System:String x:Key="RecordsExportText">Exporteren</System:String>
-    <System:String x:Key="RecordsSampleButtonText">Voorbeelddossier openen</System:String>
-    <System:String x:Key="RecordsCreateButtonText">Dossier aanmaken</System:String>
+	<!-- ExplanationView -->
+	<System:String x:Key="ExplanationTitleText">Uitleg en toelichting</System:String>
+	<System:String x:Key="ExplanationText">Hier kun je een uitgebreide uitleg vinden over hoe je zorgdossiers kunt aanmaken, beheren en optimaliseren. Deze applicatie biedt ondersteuning bij het werken met pati&#235;ntendossiers, medische analyses en diagnostische processen, zodat je effici&#235;nter te werk kunt gaan en betere zorg kunt bieden.</System:String>
+	<System:String x:Key="ExplanationBeginTitleText">Hoe te beginnen met zorgdossiers?</System:String>
+	<System:String x:Key="ExplanationBeginText">Om te beginnen met het werken aan pati&#235;ntendossiers, dien je in het hoofdmenu te navigeren naar de sectie met de naam 'Dossiers'. Hier krijg je een volledig overzicht van alle bestaande pati&#235;ntendossiers en heb je tevens de mogelijkheid om eenvoudig nieuwe dossiers te cre&#235;ren en toe te voegen.</System:String>
+	<System:String x:Key="ExplanationSetUpTitleText">Hoe stel je een pati&#235;ntendossier op?</System:String>
+	<System:String x:Key="ExplanationSetUpText">Bij het opstellen van een pati&#235;ntendossier doorloop je een gestructureerd proces waarbij je gerichte vragen beantwoordt, symptomen analyseert en uiteindelijk een diagnose opstelt. Onze applicatie biedt een begeleid stappenplan dat je helpt bij het invullen van de benodigde gegevens en het vastleggen van de juiste medische informatie.</System:String>
+	<System:String x:Key="ExplanationNextStepTitleText">Welke vervolgstappen zijn nodig?</System:String>
+	<System:String x:Key="ExplanationNextStepText">Na het vaststellen van een diagnose is het van groot belang om de juiste vervolgstappen te bepalen. Dit kunnen aanvullende onderzoeken, een gerichte medische behandeling of een doorverwijzing naar een specialist zijn. Onze applicatie helpt je bij het in kaart brengen van deze cruciale stappen.</System:String>
+	<System:String x:Key="ExplanationExportTitleText">Hoe kun je een dossier exporteren?</System:String>
+	<System:String x:Key="ExplanationExportText">Wanneer je dossier volledig is ingevuld en gereed is voor verdere verwerking, kun je het eenvoudig opslaan en exporteren. De applicatie biedt een exportfunctie waarmee je het dossier als een goed geformatteerd document kunt genereren, zodat het gemakkelijk gedeeld en ingeleverd kan worden.</System:String>
+	<System:String x:Key="ExplanationActionText">Ben je er klaar voor? Klik op de knop hieronder om direct aan de slag te gaan.</System:String>
+	<System:String x:Key="ExplanationRecordButtonText">Maak een dossier</System:String>
+	<System:String x:Key="ExplanationSampleButtonText">Voorbeelddossier</System:String>
 
-    <!-- CreditsView -->
-    <System:String x:Key="CreditsText">Deze applicatie biedt zorgstudenten een veilige omgeving om te oefenen met fictieve pati&#235;ntendossiers. Door realistische casussen te analyseren, gerichte vragen te stellen en diagnoses te formuleren, ontwikkelen zij essenti&#235;le vaardigheden zonder de druk van een echte medische setting.</System:String>
-    <System:String x:Key="CreditsExtraText">Dankzij de inzet van enthousiaste ontwikkelaars en docenten is deze applicatie een waardevol leermiddel geworden. Het Zorgdossier combineert technologie en educatie om studenten optimaal voor te bereiden op de praktijk.</System:String>
-    <System:String x:Key="CreditsDevelopedByText">Applicatie is ontwikkeld door:</System:String>
-    <System:String x:Key="CreditsSiemText">&#x2022; Siem van Bree (Ontwikkelaar)</System:String>
-    <System:String x:Key="CreditsNiekText">&#x2022; Niek van Bree (Ontwikkelaar)</System:String>
-    <System:String x:Key="CreditsDamianText">&#x2022; Damian van de Lee (Ontwikkelaar)</System:String>
-    <System:String x:Key="CreditsTechnologiesText">Technologie&#235;n:</System:String>
-    <System:String x:Key="CreditsSummaCareText">Summa Zorg &amp; Welzijn</System:String>
-    <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. Alle rechten voorbehouden.</System:String>
+	<System:String x:Key="ExplanationMessageText">Beste student, klik op deze knop voor extra informatie en uitleg. Je vindt deze knop overal terwijl je het dossier invult. Gebruik deze functie en houd het voorbeelddossier open om je dossier correct en volledig in te vullen.</System:String>
+
+	<!-- DossiersView -->
+	<System:String x:Key="RecordsTitleText">Dossiers</System:String>
+	<System:String x:Key="RecordsText">Hier zie je een overzicht van al je dossiers. Dossiers kunnen bekeken, bewerkt en verbeterd worden. Gebruik de bewerkingsopties om informatie aan te passen. Als je vastloopt, kun je ook een voorbeelddossier openen voor meer duidelijkheid. Daarnaast kun je elk dossier exporteren en gemakkelijk inleveren wanneer het klaar is.</System:String>
+	<System:String x:Key="RecordsNameText">Titel</System:String>
+	<System:String x:Key="RecordsEditText">Bewerken</System:String>
+	<System:String x:Key="RecordsExportText">Exporteren</System:String>
+	<System:String x:Key="RecordsSampleButtonText">Voorbeelddossier openen</System:String>
+	<System:String x:Key="RecordsCreateButtonText">Dossier aanmaken</System:String>
+
+	<!-- CreditsView -->
+	<System:String x:Key="CreditsText">Deze applicatie biedt zorgstudenten een veilige omgeving om te oefenen met fictieve pati&#235;ntendossiers. Door realistische casussen te analyseren, gerichte vragen te stellen en diagnoses te formuleren, ontwikkelen zij essenti&#235;le vaardigheden zonder de druk van een echte medische setting.</System:String>
+	<System:String x:Key="CreditsExtraText">Dankzij de inzet van enthousiaste ontwikkelaars en docenten is deze applicatie een waardevol leermiddel geworden. Het Zorgdossier combineert technologie en educatie om studenten optimaal voor te bereiden op de praktijk.</System:String>
+	<System:String x:Key="CreditsDevelopedByText">Applicatie is ontwikkeld door:</System:String>
+	<System:String x:Key="CreditsSiemText">&#x2022; Siem van Bree (Ontwikkelaar)</System:String>
+	<System:String x:Key="CreditsNiekText">&#x2022; Niek van Bree (Ontwikkelaar)</System:String>
+	<System:String x:Key="CreditsDamianText">&#x2022; Damian van de Lee (Ontwikkelaar)</System:String>
+	<System:String x:Key="CreditsTechnologiesText">Technologie&#235;n:</System:String>
+	<System:String x:Key="CreditsSummaCareText">Summa Zorg &amp; Welzijn</System:String>
+	<System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. Alle rechten voorbehouden.</System:String>
 
 </ResourceDictionary>

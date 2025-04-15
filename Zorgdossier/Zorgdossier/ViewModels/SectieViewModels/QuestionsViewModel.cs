@@ -123,7 +123,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+                _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
             }
         }
 
@@ -133,7 +133,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 if (string.IsNullOrWhiteSpace(Question.QuestionSummary))
                 {
-                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    String StandardUserMessageText = (string)Application.Current.Resources["StandardUserMessageText"];
+
+                    _userMessage.Text = StandardUserMessageText;
                     return;
                 }
                 else

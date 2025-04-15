@@ -6,6 +6,16 @@
     <!-- BUTTONS -->
     <System:String x:Key="PreviousButton">Vorige</System:String>
     <System:String x:Key="NextButton">Volgende</System:String>
+    
+    <!-- USERMESSAGES -->
+    <System:String x:Key="StandardUserMessageText">Alle invoervelden moeten ingevuld zijn voordat je verder kan.</System:String>
+    <System:String x:Key="ContactAdvicesUserMessageText">Het invoerveld voor de adviezen voor de pati&#235;nt moet ingevuld zijn voordat je verder kan.</System:String>
+    <System:String x:Key="FinishCreateUserMessageText">Er is een fout opgetreden bij het toevoegen van het dossier: </System:String>
+    <System:String x:Key="FinishEditUserMessageText">Er is een fout opgetreden bij het wijzigen van het dossier: </System:String>
+    <System:String x:Key="PolicyUserMessageText">De invoervelden voor de urgentie en voor de beleidskeuze moeten ingevuld zijn voordat je verder kan.</System:String>
+    <System:String x:Key="SettingsResetNotFoundText">Database bestand niet gevonden.</System:String>
+    <System:String x:Key="SettingsResetFailureText">Fout met het verwijderen van gegevens: </System:String>
+    <System:String x:Key="SettingsResetConnectionFailureText">Fout bij sluiten van de databaseconnectie: </System:String>
 
     <!-- CHECK THIS ONE --><System:String x:Key="StartButton">Start nieuw Dossier</System:String>
     <System:String x:Key="CreateButton">Dossier aanmaken</System:String>
@@ -13,7 +23,14 @@
 
     <!-- SectieViews -->
     <!-- IntroductionView -->
-    <!-- NOT DONE -->
+    <System:String x:Key="IntroductionTitle">Dossiers: De Introductie</System:String>
+    <System:String x:Key="IntroductionEditText">Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een Pdf-bestand.</System:String>
+    <System:String x:Key="IntroductionCreateText">Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les. Deze stap helpt je om het proces van het invullen van pati&#235;ntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.</System:String>
+    <System:String x:Key="IntroductionEditButtonText">Wijzigen beginnen</System:String>
+    <System:String x:Key="IntroductionCreateButtonText">Aanmaken beginnen</System:String>
+    <System:String x:Key="IntroductionCancelButtonText">Annuleren</System:String>
+
+    <System:String x:Key="IntroductionMessageText">Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.</System:String>
 
     <!-- BasicInformation -->
     <System:String x:Key="BasicInformationTitle">Dossiers: Basisinformatie</System:String>
@@ -183,6 +200,9 @@
     <System:String x:Key="SettingsCmbDarkText">Donker</System:String>
     <System:String x:Key="SettingsCmbDutchText">Nederlands</System:String>
     <System:String x:Key="SettingsCmbEnglishText">Engels</System:String>
+    <System:String x:Key="SettingsResetMessageText">Weet je zeker dat je al je gegevens wilt verwijderen? Ze kunnen niet meer worden teruggehaald.</System:String>
+    <System:String x:Key="SettingsResetMessageTitleText">Waarschuwing</System:String>
+    <System:String x:Key="SettingsResetSuccesText">Database succesvol verwijderd.</System:String>
 
     <!-- MainView -->
     <System:String x:Key="MainRecordButtonText">Dossiers</System:String>

@@ -70,7 +70,7 @@
             <TextBlock Text="{DynamicResource SettingsSelectLanguageText}" FontSize="14" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="{DynamicResource BodyTextColor}"/>
             <ComboBox SelectedValue="{Binding SelectedLanguage}"
                       SelectedValuePath="Content" Width="150" Height="40" Background="White" 
-                      BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1">
+                      BorderBrush="{DynamicResource PrimaryBrush}" BorderThickness="1">
                 <ComboBoxItem Content="{DynamicResource SettingsCmbDutchText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
                 <ComboBoxItem Content="{DynamicResource SettingsCmbEnglishText}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
             </ComboBox>

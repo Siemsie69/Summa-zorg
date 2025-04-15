@@ -21,6 +21,9 @@ namespace Zorgdossier
                 appResources.Remove(existing);
 
             appResources.Insert(0, themeDict);
+
+            Properties.Settings.Default.themeName = themeName;
+            Properties.Settings.Default.Save();
         }
 
         public static void ApplyLanguage(string languageName)
@@ -35,6 +38,9 @@ namespace Zorgdossier
                 appResources.Remove(existing);
 
             appResources.Insert(0, languageDict);
+
+            Properties.Settings.Default.languageName = languageName;
+            Properties.Settings.Default.Save();
         }
     }
 

@@ -123,7 +123,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+                _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
             }
         }
 
@@ -133,7 +133,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 if (string.IsNullOrWhiteSpace(ContactAdvice.Advice))
                 {
-                    _userMessage.Text = "Het invoerveld voor de adviezen voor de patiënt moet ingevuld zijn voordat je verder kan.";
+                    String ContactAdvicesUserMessageText = (string)Application.Current.Resources["ContactAdvicesUserMessageText"];
+
+                    _userMessage.Text = ContactAdvicesUserMessageText;
                     return;
                 }
                 else

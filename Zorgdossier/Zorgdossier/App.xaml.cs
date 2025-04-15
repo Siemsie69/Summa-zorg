@@ -13,6 +13,12 @@ namespace Zorgdossier
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            
+            string savedLanguage = Zorgdossier.Properties.Settings.Default.languageName ?? "Dutch";
+            ApplyLanguage(savedLanguage);
+
+            string savedTheme = Zorgdossier.Properties.Settings.Default.themeName ?? "Light";
+            ApplyTheme(savedTheme);
 
             try
             {
@@ -46,6 +52,40 @@ namespace Zorgdossier
                 MessageBox.Show($"Fout bij het opstarten van de applicatie: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown();
             }
+        }
+
+        public static void ApplyLanguage(string languageName)
+        {
+            string uri = $"Languages/{languageName}Language.xaml";
+            var languageDict = new ResourceDictionary() { Source = new Uri(uri, UriKind.Relative) };
+
+            var appResources = Application.Current.Resources.MergedDictionaries;
+
+            var existing = appResources.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Language"));
+            if (existing != null)
+                appResources.Remove(existing);
+
+            appResources.Insert(0, languageDict);
+
+            Zorgdossier.Properties.Settings.Default.languageName = languageName;
+            Zorgdossier.Properties.Settings.Default.Save();
+        }
+
+        public static void ApplyTheme(string themeName)
+        {
+            string uri = $"Themes/{themeName}Theme.xaml";
+            var themeDict = new ResourceDictionary() { Source = new Uri(uri, UriKind.Relative) };
+
+            var appResources = Application.Current.Resources.MergedDictionaries;
+
+            var existing = appResources.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Theme"));
+            if (existing != null)
+                appResources.Remove(existing);
+
+            appResources.Insert(0, themeDict);
+
+            Zorgdossier.Properties.Settings.Default.themeName = themeName;
+            Zorgdossier.Properties.Settings.Default.Save();
         }
 
         // Verkrijg het apparaat-ID (bijv. machine naam)

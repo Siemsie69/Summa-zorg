@@ -14,6 +14,7 @@ namespace Zorgdossier.ViewModels
         #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private DossierService _dossierService = new DossierService();
         private bool _isMenuExpanded = true;
         #endregion
 
@@ -22,23 +23,31 @@ namespace Zorgdossier.ViewModels
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
-            _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage, _dossierService);
+
+            BasicInformation = _dossierService.CentralDossier.BasicInformation;
+            Phone = _dossierService.CentralDossier.Phone;
+            Question = _dossierService.CentralDossier.Question;
+            Organ = _dossierService.CentralDossier.Organ;
+            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
+            Research = _dossierService.CentralDossier.Research;
+            Policy = _dossierService.CentralDossier.Policy;
+            ContactAdvice = _dossierService.CentralDossier.ContactAdvice;
+            Treatment = _dossierService.CentralDossier.Treatment;
+
 
             ShowHomeCommand = new RelayCommand(ExecuteShowHome);
             ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
             ShowExplanationCommand = new RelayCommand(ExecuteShowExplanation);
             ShowCreditsCommand = new RelayCommand(ExecuteShowCredits);
             ToggleMenuCommand = new RelayCommand(ExecuteToggleMenu);
-            ShowSettingsCommand = new RelayCommand(ExecuteShowSettings); 
+            ShowSettingsCommand = new RelayCommand(ExecuteShowSettings);
         }
 
         public MainViewModel() { }
         #endregion
 
         #region Properties
-
-        #endregion
-
         public IAppNavigation AppNavigation
         {
             get => _appNavigation;
@@ -54,6 +63,51 @@ namespace Zorgdossier.ViewModels
             }
         }
 
+        public DossierService.BasicInformation BasicInformation
+        {
+            get;
+        }
+
+        public DossierService.Phone Phone
+        {
+            get;
+        }
+
+        public DossierService.Question Question
+        {
+            get;
+        }
+
+        public DossierService.Organ Organ
+        {
+            get;
+        }
+
+        public DossierService.ComplaintsSymptoms ComplaintsSymptoms
+        {
+            get;
+        }
+
+        public DossierService.Research Research
+        {
+            get;
+        }
+
+        public DossierService.Policy Policy
+        {
+            get;
+        }
+
+        public DossierService.ContactAdvice ContactAdvice
+        {
+            get;
+        }
+
+        public DossierService.Treatment Treatment
+        {
+            get;
+        }
+
         public bool IsMenuExpanded
         {
             get => _isMenuExpanded;
@@ -64,6 +118,7 @@ namespace Zorgdossier.ViewModels
                 OnPropertyChanged(nameof(IsMenuCollapsed));
             }
         }
+        #endregion
 
         #region Commands
         public bool IsMenuCollapsed => !IsMenuExpanded;
@@ -79,22 +134,182 @@ namespace Zorgdossier.ViewModels
         #region Methods
         private void ExecuteShowHome(object? obj)
         {
-            _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+            {
+                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage, _dossierService);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage, _dossierService);
+            }
         }
 
         private void ExecuteShowDossiers(object? obj)
         {
-            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+            {
+                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
+            }
         }
 
         private void ExecuteShowExplanation(object? obj)
         {
-            _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage);
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+            {
+                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage, _dossierService);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new ExplanationViewModel(_appNavigation, _userMessage, _dossierService);
+            }
         }
 
         private void ExecuteShowCredits(object? obj)
         {
-            _appNavigation.ActiveViewModel = new CreditsViewModel(_appNavigation, _userMessage);
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+            {
+                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    _appNavigation.ActiveViewModel = new CreditsViewModel(_appNavigation, _userMessage);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new CreditsViewModel(_appNavigation, _userMessage);
+            }
         }
 
         private void ExecuteToggleMenu(object? obj)
@@ -126,8 +341,49 @@ namespace Zorgdossier.ViewModels
 
         private void ExecuteShowSettings(object? obj)
         {
-            var dbContext = new ApplicationDbContext();
-            _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage, dbContext);
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
+            {
+                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    var dbContext = new ApplicationDbContext();
+                    _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage, dbContext);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var dbContext = new ApplicationDbContext();
+                _appNavigation.ActiveViewModel = new SettingsViewModel(_appNavigation, _userMessage, dbContext);
+            }
         }
         #endregion
     }

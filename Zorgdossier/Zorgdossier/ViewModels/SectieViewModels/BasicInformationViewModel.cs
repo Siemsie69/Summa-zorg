@@ -27,6 +27,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             BasicInformation = _dossierService.CentralDossier.BasicInformation;
             Phone = _dossierService.CentralDossier.Phone;
             Question = _dossierService.CentralDossier.Question;
+            Organ = _dossierService.CentralDossier.Organ;
             ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
             Research = _dossierService.CentralDossier.Research;
             Policy = _dossierService.CentralDossier.Policy;
@@ -51,6 +52,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
                         var questionInDb = context.Question.FirstOrDefault(x => x.DossierId == _dossier.Id);
                         Question.QuestionSummary = questionInDb.QuestionSummary;
+
+                        var organInDb = context.Organ.FirstOrDefault(x => x.DossierId == _dossier.Id);
+                        Organ.Organs = organInDb.Organs;
 
                         var complaintsSymptomsInDb = context.ComplaintsSymptoms.FirstOrDefault(x => x.DossierId == _dossier.Id);
                         ComplaintsSymptoms.ComplaintsSymptomsSummary = complaintsSymptomsInDb.ComplaintsSymptomsSummary;
@@ -115,6 +119,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         }
 
         public DossierService.Question Question
+        {
+            get;
+        }
+
+        public DossierService.Organ Organ
         {
             get;
         }
@@ -206,7 +215,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+                _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
             }
         }
 
@@ -216,7 +225,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 if (string.IsNullOrWhiteSpace(BasicInformation.Name) || string.IsNullOrWhiteSpace(BasicInformation.Complaint) || BasicInformation.Gender == null)
                 {
-                    _userMessage.Text = "Alle invoervelden moeten ingevuld zijn voordat je verder kan.";
+                    String StandardUserMessageText = (string)Application.Current.Resources["StandardUserMessageText"];
+
+                    _userMessage.Text = StandardUserMessageText;
                     return;
                 }
                 else

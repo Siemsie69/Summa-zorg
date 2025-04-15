@@ -19,16 +19,17 @@ namespace Zorgdossier.ViewModels
         #region fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
-        private DossierService _dossierService = new DossierService();
+        private DossierService _dossierService;
 
         private readonly IWindowService _windowService = new WindowService();
         #endregion
 
         #region constructers
-        public DossiersViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        public DossiersViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
             ShowIntroductionCommand = new RelayCommand(ExecuteShowIntroduction);
             ShowSampleDossierCommand = new RelayCommand(ExecuteShowSampleDossier);

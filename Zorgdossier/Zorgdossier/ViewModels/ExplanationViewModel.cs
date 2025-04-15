@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
 
@@ -10,15 +11,17 @@ namespace Zorgdossier.ViewModels
         #region Fields
         private IAppNavigation _appNavigation;
         private UserMessage _userMessage;
+        private DossierService _dossierService;
 
         private readonly IWindowService _windowService = new WindowService();
         #endregion
 
         #region Constructors
-        public ExplanationViewModel(IAppNavigation appNavigation, UserMessage userMessage)
+        public ExplanationViewModel(IAppNavigation appNavigation, UserMessage userMessage, DossierService dossierService)
         {
             _appNavigation = appNavigation;
             _userMessage = userMessage;
+            _dossierService = dossierService;
 
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
             ShowDossiersCommand = new RelayCommand(ExecuteShowDossiers);
@@ -64,7 +67,7 @@ namespace Zorgdossier.ViewModels
 
         private void ExecuteShowDossiers(object? obj)
         {
-            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
         }
 
         private void ExecuteShowSampleDossier(object? obj)

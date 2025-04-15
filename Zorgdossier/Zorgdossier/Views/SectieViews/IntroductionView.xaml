@@ -31,7 +31,7 @@
         <!-- Title Section with Buttons -->
         <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="IntroductieText" Text="Dossiers: De Introductie" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="IntroductieText" Text="{DynamicResource IntroductionTitle}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                 <!-- Underline (Rectangle) -->
                 <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=IntroductieText}"/>
             </StackPanel>
@@ -61,7 +61,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left Button (aligned to the left) -->
-            <Button Content="Annuleren" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource IntroductionCancelButtonText}" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <!-- Right Button (aligned to the right) -->

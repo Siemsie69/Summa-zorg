@@ -84,9 +84,12 @@ namespace Zorgdossier.ViewModels
         #region Methods
         private async void ExecuteReset(object? obj)
         {
+            String SettingsResetMessageText = (string)Application.Current.Resources["SettingsResetMessageText"];
+            String SettingsResetMessageTitleText = (string)Application.Current.Resources["SettingsResetMessageTitleText"];
+
             MessageBoxResult result = MessageBox.Show(
-                "Weet je zeker dat je al je gegevens wilt verwijderen? Ze kunnen niet meer worden teruggehaald.",
-                "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning
+                SettingsResetMessageText,
+                SettingsResetMessageTitleText, MessageBoxButton.YesNo, MessageBoxImage.Warning
             );
 
             if (result == MessageBoxResult.Yes)
@@ -100,18 +103,24 @@ namespace Zorgdossier.ViewModels
                     if (File.Exists(DatabasePath))
                     {
                         File.Delete(DatabasePath);
-                        _userMessage.Text = "Database succesvol verwijderd.";
+                        String SettingsResetSuccesText = (string)Application.Current.Resources["SettingsResetSuccesText"];
+
+                        MessageBox.Show(SettingsResetSuccesText);
                     }
                     else
                     {
-                        _userMessage.Text = "Database bestand niet gevonden.";
+                        String SettingsResetNotFoundText = (string)Application.Current.Resources["SettingsResetNotFoundText"];
+
+                        _userMessage.Text = SettingsResetNotFoundText;
                     }
 
                     Application.Current.Shutdown();
                 }
                 catch (Exception ex)
                 {
-                    _userMessage.Text = "Fout met het verwijderen van gegevens: " + ex.Message;
+                    String SettingsResetFailureText = (string)Application.Current.Resources["SettingsResetFailureText"];
+
+                    _userMessage.Text = SettingsResetFailureText + ex.Message;
                 }
             }
         }
@@ -134,7 +143,9 @@ namespace Zorgdossier.ViewModels
             }
             catch (Exception ex)
             {
-                _userMessage.Text = "Fout bij sluiten van de databaseconnectie: " + ex.Message;
+                String SettingsResetConnectionFailureText = (string)Application.Current.Resources["SettingsResetConnectionFailureText"];
+
+                _userMessage.Text = SettingsResetConnectionFailureText + ex.Message;
             }
         }
 

@@ -26,16 +26,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if(dossier != null)
             {
                 _dossier = dossier;
-                IntroductionText = "Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een Pdf-bestand.";
-                ButtonText = "Wijzigen beginnen";
+                String IntroductionEditText = (string)Application.Current.Resources["IntroductionEditText"];
+                String IntroductionEditButtonText = (string)Application.Current.Resources["IntroductionEditButtonText"];
+
+                IntroductionText = IntroductionEditText;
+                ButtonText = IntroductionEditButtonText;
             }
             else
             {
-                IntroductionText = "Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les.Deze stap helpt je om het proces van het invullen van patiëntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.";
-                ButtonText = "Aanmaken beginnen";
+                String IntroductionCreateText = (string)Application.Current.Resources["IntroductionCreateText"];
+                String IntroductionCreateButtonText = (string)Application.Current.Resources["IntroductionCreateButtonText"];
+
+                IntroductionText = IntroductionCreateText;
+                ButtonText = IntroductionCreateButtonText;
             }
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
-            ShowDossiersCommand = new RelayCommand(ExecuteShowDossiersView);
+            ShowDossiersCommand = new RelayCommand(ExecuteShowMainView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
         }
 
@@ -91,13 +97,15 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         #region methods
         private void ExecuteShowInfo(object? obj)
         {
-            MessageBox.Show("Heb je vragen of onzekerheden? Aarzel niet om hulp te vragen aan je docent of medestudenten. Zij kunnen je ondersteunen bij het correct invullen en begrijpen van het dossier.",
-                            "Aanvullende Informatie en Handige Tips", MessageBoxButton.OK, MessageBoxImage.Information);
+            String IntroductionMessageText = (string)Application.Current.Resources["IntroductionMessageText"];
+            String InfoMessageTitle = (string)Application.Current.Resources["InfoMessageTitle"];
+
+            MessageBox.Show(IntroductionMessageText, InfoMessageTitle, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void ExecuteShowDossiersView(object? obj)
+        private void ExecuteShowMainView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
         }
 
         private void ExecuteShowBasicInformation(object? obj)

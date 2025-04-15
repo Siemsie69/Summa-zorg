@@ -7,13 +7,31 @@
     <System:String x:Key="PreviousButton">Previous</System:String>
     <System:String x:Key="NextButton">Next</System:String>
 
-    <!-- CHECK THIS ONE --><System:String x:Key="StartButton">Start new Record</System:String>
+    <!-- USERMESSAGES -->
+    <System:String x:Key="StandardUserMessageText">All input fields must be completed before you can proceed.</System:String>
+    <System:String x:Key="ContactAdvicesUserMessageText">The input field for patient recommendations must be completed before you can proceed.</System:String>
+    <System:String x:Key="FinishCreateUserMessageText">An error occurred while adding the file: </System:String>
+    <System:String x:Key="FinishEditUserMessageText">An error occurred while modifying the file: </System:String>
+    <System:String x:Key="PolicyUserMessageText">The input fields for urgency and for policy choice must be completed before you can proceed.</System:String>
+    <System:String x:Key="SettingsResetNotFoundText">Database file not found.</System:String>
+    <System:String x:Key="SettingsResetFailureText">Data deletion error: </System:String>
+    <System:String x:Key="SettingsResetConnectionFailureText">Error closing database connection: </System:String>
+
+    <!-- CHECK THIS ONE -->
+    <System:String x:Key="StartButton">Start new Record</System:String>
     <System:String x:Key="CreateButton">Create Record</System:String>
     <System:String x:Key="UpdateButton">Update Record</System:String>
 
     <!-- SectieViews -->
     <!-- IntroductionView -->
-    <!-- NOT DONE -->
+    <System:String x:Key="IntroductionTitle">Records: The Introduction</System:String>
+    <System:String x:Key="IntroductionEditText">Welcome to the introduction of files. You are about to modify an existing dossier. All the details of the existing dossier are already filled in for you, making it easier to change the details. Otherwise, this process works exactly the same as creating a dossier. After this, you can also export the modified dossier back to a Pdf file.</System:String>
+    <System:String x:Key="IntroductionCreateText">Welcome to the introduction of files. Here you can start by creating a new record, based on a case study, role-play or explanation from class. This step will help you practice the process of completing patient records, including collecting data and recording important information. Whether you are just starting out or moving on, this exercise is essential for developing your skills.</System:String>
+    <System:String x:Key="IntroductionEditButtonText">Begin updating</System:String>
+    <System:String x:Key="IntroductionCreateButtonText">Begin creating</System:String>
+    <System:String x:Key="IntroductionCancelButtonText">Cancel</System:String>
+
+    <System:String x:Key="IntroductionMessageText">Do you have questions or uncertainties? Do not hesitate to ask for help from your teacher or fellow students. They can support you in completing and understanding the file correctly.</System:String>
 
     <!-- BasicInformation -->
     <System:String x:Key="BasicInformationTitle">Records: Basicinformation</System:String>
@@ -183,6 +201,9 @@
     <System:String x:Key="SettingsCmbDarkText">Dark</System:String>
     <System:String x:Key="SettingsCmbDutchText">Dutch</System:String>
     <System:String x:Key="SettingsCmbEnglishText">English</System:String>
+    <System:String x:Key="SettingsResetMessageText">Are you sure you want to delete all your data? They cannot be retrieved.</System:String>
+    <System:String x:Key="SettingsResetMessageTitleText">Warning</System:String>
+    <System:String x:Key="SettingsResetSuccesText">Database deleted successfully.</System:String>
 
     <!-- MainView -->
     <System:String x:Key="MainRecordButtonText">Records</System:String>

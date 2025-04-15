@@ -559,11 +559,13 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                         context.Treatment.Add(newTreatment);
 
                         context.SaveChanges();
-                        RedirectToDossierView();
+                        RedirectToMainView();
                     }
                     catch (Exception ex)
                     {
-                        _userMessage.Text = ("Fout met het toevoegen van het dossier: " + ex.Message);
+                        String FinishCreateUserMessageText = (string)Application.Current.Resources["FinishCreateUserMessageText"];
+
+                        _userMessage.Text = (FinishCreateUserMessageText + ex.Message);
                     }
                 }
             }
@@ -627,20 +629,22 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                             treatmentInDb.DossierId = dossierInDb.Id;
 
                             context.SaveChanges();
-                            RedirectToDossierView();
+                            RedirectToMainView();
                         }
                     }
                     catch (Exception ex)
                     {
-                        _userMessage.Text = ("Fout met het wijzigen van het dossier: " + ex.Message);
+                        String FinishEditUserMessageText = (string)Application.Current.Resources["FinishEditUserMessageText"];
+
+                        _userMessage.Text = (FinishEditUserMessageText + ex.Message);
                     }
                 }
             }
         }
 
-        private void RedirectToDossierView()
+        private void RedirectToMainView()
         {
-            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage);
+            _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
         }
 
         private void ExecuteShowBasicInfo(object? obj)

@@ -56,7 +56,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                     "Aanvullend: Patiënt vraagt specifiek om een afspraak."
                     : Policy.TriageCriteria;
                 Policy.PolicyChoice = IsSampleMode ? "Afspraak" : Policy.PolicyChoice;
-                Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : DateTime.Now;
+                Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : null;
             }
 
             if (Policy != null)
@@ -137,7 +137,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                _appNavigation.ActiveViewModel = new HomeViewModel(_appNavigation, _userMessage);
+                _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
             }
         }
 
@@ -145,9 +145,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             if (IsSampleMode != true)
             {
-                if (Policy.Urgency == null || Policy.PolicyChoice == null)
+                if (string.IsNullOrWhiteSpace(Policy.Urgency) || string.IsNullOrWhiteSpace(Policy.PolicyChoice))
                 {
-                    _userMessage.Text = "De invoervelden voor de urgentie en voor de beleidskeuze moeten ingevuld zijn voordat je verder kan.";
+                    String PolicyUserMessageText = (string)Application.Current.Resources["PolicyUserMessageText"];
+
+                    _userMessage.Text = PolicyUserMessageText;
                     return;
                 }
                 else
