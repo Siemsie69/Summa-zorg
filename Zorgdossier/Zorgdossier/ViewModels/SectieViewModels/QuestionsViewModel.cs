@@ -119,7 +119,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowMainView(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            string message = (string)Application.Current.FindResource("ShowMainViewMessage");
+            string title = (string)Application.Current.FindResource("ShowMainViewTitle");
+
+            MessageBoxResult result = MessageBox.Show(
+                message,
+                title,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.Yes)
             {

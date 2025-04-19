@@ -86,7 +86,7 @@
             <ComboBox Grid.Row="3" Grid.Column="1" Width="163" Height="40"
                 Margin="30,15,20,10" HorizontalAlignment="Left" 
                 Background="White" BorderBrush="{DynamicResource PrimaryBrush}"
-                BorderThickness="1" FontSize="16" SelectedIndex="0" MaxDropDownHeight="70" materialDesign:HintAssist.Hint="Selecteer Categorie"
+                BorderThickness="1" FontSize="16" SelectedIndex="0" MaxDropDownHeight="70" materialDesign:HintAssist.Hint="{DynamicResource BasicInformationCategoryHint}"
                 SelectedValue="{Binding BasicInformation.Gender, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Content">
                 <ComboBoxItem Content="{DynamicResource BasicInformationCategoryMen}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
                 <ComboBoxItem Content="{DynamicResource BasicInformationCategoryWoman}" Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BodyTextColor}"/>
@@ -123,12 +123,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Vorige" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource PreviousButton}" FontSize="14" Command="{Binding ShowIntroductionCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,30,5,-10" Grid.Column="0" HorizontalAlignment="Left"
                     Visibility="{Binding IsNotSampleMode, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <Button Content="Volgende" FontSize="14" Command="{Binding ShowPhoneSummaryCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource NextButton}" FontSize="14" Command="{Binding ShowPhoneSummaryCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,30,5,-10" Grid.Column="2" HorizontalAlignment="Right"/>
 

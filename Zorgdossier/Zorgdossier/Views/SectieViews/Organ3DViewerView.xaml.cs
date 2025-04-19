@@ -34,7 +34,6 @@ namespace Zorgdossier.Views.SectieViews
         {
             if (originalModel != null)
             {
-                // Create a deep copy of the model to avoid the "already a child" error
                 var modelCopy = CloneModelVisual3D(originalModel);
                 Viewport.Children.Add(modelCopy);
                 Viewport.ZoomExtents();
@@ -74,7 +73,6 @@ namespace Zorgdossier.Views.SectieViews
 
         public void ClearModels()
         {
-            // Keep the lights (first 4 children) and remove all models
             while (Viewport.Children.Count > 4)
             {
                 Viewport.Children.RemoveAt(4);

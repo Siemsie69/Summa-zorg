@@ -24,6 +24,7 @@
             <RowDefinition Height="15"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
@@ -39,12 +40,11 @@
 
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,10">
             <Border x:Name="RoundedMask"
-            CornerRadius="10"
-            Background="White"
-            SnapsToDevicePixels="True"/>
+                    CornerRadius="10"
+                    Background="White"
+                    SnapsToDevicePixels="True"/>
 
-            <Image Source="pack://application:,,,/Resources/summa-banner.png"
-           Stretch="Uniform">
+            <Image Source="pack://application:,,,/Resources/summa-banner.png" Stretch="Uniform">
                 <Image.OpacityMask>
                     <VisualBrush Visual="{Binding ElementName=RoundedMask}"/>
                 </Image.OpacityMask>

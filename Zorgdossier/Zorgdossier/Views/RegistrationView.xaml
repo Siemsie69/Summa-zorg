@@ -15,8 +15,6 @@
     </d:Window.DataContext>
 
     <Grid>
-        
-        <!-- Medium screen layout -->
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -33,14 +31,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Header Section with Title and Divider -->
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,0,0,0">
                 <TextBlock Text="Registratie" FontSize="30" FontWeight="Bold" Foreground="DarkBlue" HorizontalAlignment="Left"/>
                 <Rectangle Fill="DarkBlue" Height="3" Width="165" HorizontalAlignment="Left"/>
                 <TextBlock TextWrapping="Wrap" TextAlignment="Justify" Text="Registreer jezelf hieronder door je PS-studentnummer en je volledige naam in te vullen, zodat alles duidelijk is wanneer je iets inlevert. Succes met het maken van je dossiers en veel leer plezier!" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10"/>
             </StackPanel>
 
-            <!-- Other content for medium screens -->
             <TextBlock Grid.Row="2" Text="Studentnummer:" FontSize="18" FontWeight="Bold" 
                        Foreground="{StaticResource PrimaryBrush}"
                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>
@@ -51,7 +47,6 @@
                  materialDesign:TextFieldAssist.HasClearButton="True"
                  materialDesign:HintAssist.Hint="Persoonlijke studentnummer (PS123456)"/>
 
-            <!-- Triage Criteria Section -->
             <TextBlock Grid.Row="4" Text="Naam:" FontSize="18" FontWeight="Bold" 
                        Foreground="{StaticResource PrimaryBrush}"
                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,10" Padding="15,0,0,0"/>

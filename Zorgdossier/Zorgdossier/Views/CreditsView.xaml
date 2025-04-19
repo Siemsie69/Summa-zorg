@@ -29,13 +29,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Credits Title -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock x:Name="CreditsText" Text="Credits" FontSize="36" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
             <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=CreditsText}"/>
         </StackPanel>
 
-        <!-- Credits Content -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20,0,0">
             <TextBlock Text="{DynamicResource CreditsText}" 
                 FontSize="14" TextWrapping="Wrap" Margin="0,0,0,10" Foreground="{DynamicResource BodyTextColor}"/>
@@ -44,7 +42,6 @@
                 FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
-        <!-- Credits Content -->
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,20,10,0">
             <TextBlock Text="{DynamicResource CreditsDevelopedByText}" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="{DynamicResource BodyTextColor}"/>
             <TextBlock Text="{DynamicResource CreditsSiemText}" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
@@ -59,7 +56,6 @@
             <TextBlock Text="• SQLite" FontSize="14" TextWrapping="Wrap" Margin="0,5" Foreground="{DynamicResource BodyTextColor}"/>
         </StackPanel>
 
-        <!-- Buttons Section -->
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,10,0,0">
             <Button Content="Summa ICT" FontSize="14" Width="200" Height="45"
             Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
@@ -70,7 +66,6 @@
             Margin="0,10,0,0"
             Command="{Binding OpenWebsiteCommand}" CommandParameter="https://www.summacollege.nl/studiekeuze/scholen/summa-zorg-welzijn"/>
         </StackPanel>
-
 
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
             <TextBlock Text="{DynamicResource CreditsRightsText}" FontSize="14" FontStyle="Italic" Margin="0,20,0,0" HorizontalAlignment="Left" Foreground="{DynamicResource BodyTextColor}"/>

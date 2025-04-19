@@ -46,7 +46,7 @@
             <!-- Title Section with Buttons -->
             <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
                 <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0">
-                    <TextBlock x:Name="FinishProgressText" Text="Dossiers: Progressie + Klaar?" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="FinishProgressText" Text="{DynamicResource FinishProgressTitle}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                     <!-- Underline (Rectangle) -->
                     <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=FinishProgressText}"/>
                 </StackPanel>
@@ -62,117 +62,117 @@
             </Grid>
 
             <!-- Text Section -->
-            <TextBlock Text="Neem de tijd om alle details na te lopen en zorg dat je geen belangrijke gegevens mist. Zo voorkom je fouten en sluit je het dossier correct af. Klik op de sectienamen om erheen te gaan." 
+            <TextBlock Text="{DynamicResource FinishProgressText}" 
                   FontSize="14" TextWrapping="Wrap" Margin="10,10,0,0" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
 
             <Button Grid.Row="3" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowBasicInfoCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Basisinformatie" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressBasic}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="4" Background="{Binding BasicInfoName, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Naam Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressBasicName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="5" Background="{Binding BasicInfoComplaint, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Klacht Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressBasicComplaint}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="6" Background="{Binding BasicInfoType, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Type Patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressBasicCategory}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowPhoneSummaryCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Telefoonsamenvatting" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressPhoneSummary}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="4" Grid.Column="1" Background="{Binding PhoneSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Samenvatting telefoongesprek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressPhoneText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowQuestionCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Vragen stellen" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressQuestions}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="4" Grid.Column="2" Background="{Binding QuestionSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Vragen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressQuestionsText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="7" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowOrgansCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Organen selecteren" FontSize="14" FontWeight="Bold" />
+                <TextBlock Text="{DynamicResource FinishProgressOrgans}" FontSize="14" FontWeight="Bold" />
             </Button>
-            
+
             <Border Grid.Row="8" Background="{Binding Organs, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Organen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressOrgansText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowComplaintsSymptomsCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Klachten en symptomen" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressComplaints}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="8" Grid.Column="1" Background="{Binding ComplaintsSymptomsSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Klachten die de patiënt ervaart" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressComplaintsText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowResearchCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Onderzoeken" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressResearch}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="8" Grid.Column="2" Background="{Binding ResearchSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Uit te voeren onderzoeken" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressResearchText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="9" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowPolicyCommand}" Background="White" BorderThickness="0">
-                <TextBlock Grid.Row="6" Text="Beleid en urgenties" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Grid.Row="6" Text="{DynamicResource FinishProgressPolicy}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="10" Background="{Binding PolicyUrgency, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Urgentie" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressPolicyUrgency}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="11" Background="{Binding PolicyTriagecriterium, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Triagecriterium" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressPolicyTriage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="12" Background="{Binding PolicyChoice, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Beleidskeuze" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressPolicyChoice}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="13" Background="{Binding PolicyDateTime, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Moment van afspraak" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressPolicyTime}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="13" Grid.Column="1" Width="190" Height="30" Background="White" BorderThickness="0">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                     <Rectangle Width="20" Height="20" Fill="Red" Stroke="Black" Margin="0,0,5,0" />
-                    <TextBlock Text="Niet ingevuld" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Margin="0,3,0,0"/>
+                    <TextBlock Text="{DynamicResource FinishProgressLegendNotFilledIn}" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Margin="0,3,0,0"/>
                 </StackPanel>
             </Button>
-            
+
             <Button Grid.Row="13" Grid.Column="2" Width="190" Height="30" Background="White" BorderThickness="0">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                     <Rectangle Width="20" Height="20" Fill="Green" Stroke="Black" Margin="0,0,5,0" />
-                    <TextBlock Text="Wel ingevuld" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Margin="0,3,0,0"/>
+                    <TextBlock Text="{DynamicResource FinishProgressLegendFilledIn}" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Margin="0,3,0,0"/>
                 </StackPanel>
             </Button>
 
             <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowContactCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="(Contact-) adviezen" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressAdvice}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="10" Grid.Column="1" Background="{Binding Advice, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Adviezen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressAdviceText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
-            
+
             <Border Grid.Row="11" Grid.Column="1" Background="{Binding AdviceForContact, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Contact adviezen voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressAdviceContact}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <Button Grid.Row="9" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowTreatmentCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="Behandeling" FontSize="14" FontWeight="Bold"/>
+                <TextBlock Text="{DynamicResource FinishProgressTreatment}" FontSize="14" FontWeight="Bold"/>
             </Button>
-            
+
             <Border Grid.Row="10" Grid.Column="2" Background="{Binding TreatmentSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="Behandeling voor de patiënt" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressTreatmentText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
             <!-- Buttons Section -->
@@ -183,14 +183,14 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Vorige" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="195" Height="45" 
+                <Button Content="{DynamicResource PreviousButton}" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="195" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="10,10,0,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Button Content="Dossier aanmaken" FontSize="14" Command="{Binding CreateDossierCommand}" Width="195" Height="45" 
+                <Button Content="{DynamicResource CreateButton}" FontSize="14" Command="{Binding CreateDossierCommand}" Width="195" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,10,10,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"
                     Visibility="{Binding IsNotEditMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="Dossier wijzigen" FontSize="14" Command="{Binding EditDossierCommand}" Width="195" Height="45" 
+                <Button Content="{DynamicResource UpdateButton}" FontSize="14" Command="{Binding EditDossierCommand}" Width="195" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,10,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"
                     Visibility="{Binding IsEditMode,
                     Converter={StaticResource BooleanToVisibilityConverter}}"/>

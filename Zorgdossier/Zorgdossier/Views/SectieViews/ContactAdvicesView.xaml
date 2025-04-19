@@ -29,7 +29,7 @@
 
         <Grid Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="ContactAdvicesText" Text="Dossiers: (Contact-) Adviezen" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="ContactAdvicesText" Text="{DynamicResource ContactAdvicesTitle}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
                 <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=ContactAdvicesText}"/>
             </StackPanel>
 
@@ -50,7 +50,7 @@
             </StackPanel>
         </Grid>
 
-        <TextBlock Text="Vul hier de contact- en behandeladviezen in voor het dossier. Het is belangrijk om de patiënt duidelijke richtlijnen te geven over zelfzorg, activiteiten die vermeden moeten worden, en wanneer het nodig is om contact op te nemen met een zorgverlener. Dit zorgt ervoor dat de patiënt weet hoe hij of zij de situatie het beste kan beheren en wanneer verdere actie nodig is." 
+        <TextBlock Text="{DynamicResource ContactAdvicesText}" 
                FontSize="14" TextWrapping="Wrap" Margin="0,10,10,25" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}"/>
 
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
@@ -65,24 +65,24 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Adviezen:" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" 
+            <TextBlock Text="{DynamicResource ContactAdvicesSubTitle}" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15"/>
 
-            <TextBlock Text="Vul hier in welke &#10;adviezen je aan de &#10;patiënt zou geven:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
+            <TextBlock Text="{DynamicResource ContactAdvicesAdviceLabel}" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
 
             <TextBox Text="{Binding ContactAdvice.Advice, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="80" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke adviezen geef je aan de patiënt?" Background="White"/>
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{DynamicResource ContactAdvicesAdviceHint}" Background="White"/>
 
-            <TextBlock Text="Vul hier in wanneer &#10;de patiënt contact &#10;op zou moeten &#10;nemen volgens jou:" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
+            <TextBlock Text="{DynamicResource ContactAdvicesContactLabel}" FontSize="14" Foreground="{DynamicResource PrimaryBrush}" 
                        Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="10,10,10,0"/>
 
             <TextBox Text="{Binding ContactAdvice.ContactAdviceText, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="2" Grid.Column="1" FontSize="16" Margin="30,10,20,0" Height="80" VerticalContentAlignment="Top"
                      TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="Welke contact adviezen geef je aan de patiënt? (optioneel)" Background="White"/>
+                     materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.Hint="{DynamicResource ContactAdvicesContactHint}" Background="White"/>
         </Grid>
 
         <Grid Grid.Row="3" Grid.ColumnSpan="3">
@@ -93,11 +93,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Vorige" FontSize="14" Command="{Binding ShowPolicyCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource PreviousButton}" FontSize="14" Command="{Binding ShowPolicyCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
-            <Button Content="Volgende" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource NextButton}" FontSize="14" Command="{Binding ShowTreatmentCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 

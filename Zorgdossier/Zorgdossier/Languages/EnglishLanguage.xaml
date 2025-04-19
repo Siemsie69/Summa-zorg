@@ -3,9 +3,14 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="InfoMessageTitle">Additional Information and Helpful Tips</System:String>
 
+    <System:String x:Key="ShowMainViewTitle">Warning</System:String>
+    <System:String x:Key="ShowMainViewMessage">Are you sure you want to go back to the Home page? All your progress on this file will be lost then.</System:String>
+
     <!-- BUTTONS -->
     <System:String x:Key="PreviousButton">Previous</System:String>
     <System:String x:Key="NextButton">Next</System:String>
+    <System:String x:Key="EditButton">Edit</System:String>
+    <System:String x:Key="ExportButton">Export</System:String>
 
     <!-- USERMESSAGES -->
     <System:String x:Key="StandardUserMessageText">All input fields must be completed before you can proceed.</System:String>
@@ -70,6 +75,7 @@
     <!-- OrgansView -->
     <System:String x:Key="OrgansTitle">Records: Select Organs</System:String>
     <System:String x:Key="OrgansText">Select one or more organs most relevant to this case, based on the complaints and symptoms indicated by the patient. Once you have selected an organ, you can add it to the list. You can also remove organs if necessary. Each selected organ has a 3D model that allows you to view it from all sides and rotate it to get a better view.</System:String>
+    <System:String x:Key="OrgansComboboxHint">Select the organs here:</System:String>
     <System:String x:Key="OrgansAddToList">Add to the List</System:String>
     <System:String x:Key="OrgansRemoveFromList">Remove from List</System:String>
     <System:String x:Key="OrgansOpenViewer">Open 3D Viewer</System:String>
@@ -234,7 +240,7 @@
     <!-- DossiersView -->
     <System:String x:Key="RecordsTitleText">Records</System:String>
     <System:String x:Key="RecordsText">Here you'll see an overview of all your records. You can view, edit, and improve them. Use the edit options to change any information. If you get stuck, you can open an example record for help. You can also export any record and easily turn it in once it's finished.</System:String>
-    <System:String x:Key="RecordsNameText">Title</System:String>
+    <System:String x:Key="RecordsNameText">Record title</System:String>
     <System:String x:Key="RecordsEditText">Edit</System:String>
     <System:String x:Key="RecordsExportText">Export</System:String>
     <System:String x:Key="RecordsSampleButtonText">Open Example Record</System:String>

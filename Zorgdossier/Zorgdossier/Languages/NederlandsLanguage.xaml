@@ -3,9 +3,14 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
 	<System:String x:Key="InfoMessageTitle">Aanvullende Informatie en Handige Tips</System:String>
 
-	<!-- BUTTONS -->
+    <System:String x:Key="ShowMainViewTitle">Waarschuwing</System:String>
+    <System:String x:Key="ShowMainViewMessage">Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.</System:String>
+
+    <!-- BUTTONS -->
 	<System:String x:Key="PreviousButton">Vorige</System:String>
 	<System:String x:Key="NextButton">Volgende</System:String>
+	<System:String x:Key="EditButton">Bewerken</System:String>
+	<System:String x:Key="ExportButton">Exporteren</System:String>
 
 	<!-- USERMESSAGES -->
 	<System:String x:Key="StandardUserMessageText">Alle invoervelden moeten ingevuld zijn voordat je verder kan.</System:String>
@@ -71,7 +76,8 @@
 	<!-- OrgansView -->
 	<System:String x:Key="OrgansTitle">Dossiers: Organen Selecteren</System:String>
 	<System:String x:Key="OrgansText">Selecteer een of meerdere organen die het meest relevant zijn voor dit dossier, op basis van de klachten en symptomen die de pati&#235;nt heeft aangegeven. Als je een orgaan hebt geselecteerd, kun je het toevoegen aan de lijst. Je kunt ook organen verwijderen indien nodig. Elk geselecteerd orgaan heeft een 3D-model waarmee je het van alle kanten kunt bekijken en roteren, zodat je een beter beeld krijgt.</System:String>
-	<System:String x:Key="OrgansAddToList">Toevoegen aan Lijst</System:String>
+    <System:String x:Key="OrgansComboboxHint">Selecteer hier de organen:</System:String>
+    <System:String x:Key="OrgansAddToList">Toevoegen aan Lijst</System:String>
 	<System:String x:Key="OrgansRemoveFromList">Verwijderen van Lijst</System:String>
 	<System:String x:Key="OrgansOpenViewer">Open 3D Viewer</System:String>
 	<System:String x:Key="OrgansListItems">Lijst met geselecteerde organen:</System:String>
@@ -235,7 +241,7 @@
 	<!-- DossiersView -->
 	<System:String x:Key="RecordsTitleText">Dossiers</System:String>
 	<System:String x:Key="RecordsText">Hier zie je een overzicht van al je dossiers. Dossiers kunnen bekeken, bewerkt en verbeterd worden. Gebruik de bewerkingsopties om informatie aan te passen. Als je vastloopt, kun je ook een voorbeelddossier openen voor meer duidelijkheid. Daarnaast kun je elk dossier exporteren en gemakkelijk inleveren wanneer het klaar is.</System:String>
-	<System:String x:Key="RecordsNameText">Titel</System:String>
+	<System:String x:Key="RecordsNameText">Dossier titel</System:String>
 	<System:String x:Key="RecordsEditText">Bewerken</System:String>
 	<System:String x:Key="RecordsExportText">Exporteren</System:String>
 	<System:String x:Key="RecordsSampleButtonText">Voorbeelddossier openen</System:String>
