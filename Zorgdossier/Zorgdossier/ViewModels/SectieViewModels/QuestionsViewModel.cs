@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
+using Zorgdossier.Views;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
@@ -130,7 +131,24 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (result == MessageBoxResult.Yes)
             {
-                _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
+                var mainViewModel = new MainViewModel(_appNavigation, _userMessage);
+
+                // Open nieuwe window
+                var mainView = new MainView
+                {
+                    DataContext = mainViewModel
+                };
+                mainView.Show();
+
+                Window? currentWindow = Application.Current.Windows
+                    .OfType<Window>()
+                    .FirstOrDefault(w => w.IsActive);
+
+                currentWindow?.Close();
+            }
+            else
+            {
+                return;
             }
         }
 

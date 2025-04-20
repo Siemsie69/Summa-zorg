@@ -4,7 +4,7 @@
 	<System:String x:Key="InfoMessageTitle">Aanvullende Informatie en Handige Tips</System:String>
 
     <System:String x:Key="ShowMainViewTitle">Waarschuwing</System:String>
-    <System:String x:Key="ShowMainViewMessage">Weet je zeker dat je terug wilt gaan naar de Home pagina? Al je voortgang van dit dossier raakt dan verloren.</System:String>
+    <System:String x:Key="ShowMainViewMessage">Weet je zeker dat je terug wilt gaan? Alle ingevoerde data voor dit dossier gaat dan verloren.</System:String>
 
     <!-- BUTTONS -->
 	<System:String x:Key="PreviousButton">Vorige</System:String>

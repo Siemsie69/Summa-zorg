@@ -9,7 +9,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:h="http://helix-toolkit.org/wpf"
              mc:Ignorable="d"
-             Name="Organs" MinHeight="450" MaxHeight="450" MinWidth="690" MaxWidth="690" Background="White">
+             Name="Organs" Height="Auto" MaxWidth="900" Background="{DynamicResource BackgroundColor}">
     <d:UserControl.DataContext>
         <sectieviewmodels:OrgansViewModel/>
     </d:UserControl.DataContext>
@@ -30,28 +30,28 @@
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock x:Name="OrgansText" Text="{DynamicResource OrgansTitle}" FontSize="30" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" HorizontalAlignment="Left"/>
-                <Rectangle Fill="{StaticResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=OrgansText}"/>
+                <TextBlock x:Name="OrgansText" Text="{DynamicResource OrgansTitle}" FontSize="30" FontWeight="Bold" Foreground="{DynamicResource PrimaryBrush}" HorizontalAlignment="Left"/>
+                <Rectangle Fill="{DynamicResource PrimaryBrush}" Height="3" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=OrgansText}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,0,0">
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowInfoCommand}" Margin="0,0,10,0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
 
-                <Button Height="40" Width="60" Background="{StaticResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
+                <Button Height="40" Width="60" Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowHomeCommand}"
                         Visibility="{Binding IsNotSampleMode, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                        <materialDesign:PackIcon Kind="WindowClose" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
         </Grid>
 
         <TextBlock Text="{DynamicResource OrgansText}" 
-                   FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3"/>
+                   FontSize="14" TextWrapping="Wrap" Margin="0,10,10,10" Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource BodyTextColor}" />
 
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
@@ -60,10 +60,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Background="#F0F0F0" Margin="10">
+            <StackPanel Background="{DynamicResource BackgroundColor}" Margin="10">
                 <ComboBox Name="OrganComboBox" Background="White" 
-                          Foreground="{StaticResource PrimaryBrush}" 
-                          BorderBrush="{StaticResource PrimaryBrush}" 
+                          BorderBrush="{DynamicResource PrimaryBrush}" 
                           BorderThickness="1"
                           ItemsSource="{Binding AvailableOrgans}" 
                           SelectedItem="{Binding SelectedOrgan, Mode=TwoWay}" 
@@ -72,8 +71,8 @@
                     
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource BodyTextColor}"/>
                             <Setter Property="Padding" Value="5"/>
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -82,26 +81,26 @@
                 </ComboBox>
 
                 <Button Command="{Binding AddToListCommand}" 
-                        Background="{StaticResource PrimaryBrush}" 
-                        Foreground="{StaticResource SecondaryBrush}" 
+                        Background="{DynamicResource PrimaryBrush}" 
+                        Foreground="{DynamicResource SecondaryBrush}" 
                         Content="{DynamicResource OrgansAddToList}" 
                         Height="30" Margin="10 30 10 0"/>
 
                 <Button Command="{Binding RemoveFromListCommand}" 
-                        Background="{StaticResource PrimaryBrush}" 
-                        Foreground="{StaticResource SecondaryBrush}" 
+                        Background="{DynamicResource PrimaryBrush}" 
+                        Foreground="{DynamicResource SecondaryBrush}" 
                         Content="{DynamicResource OrgansRemoveFromList}" 
                         Height="30" Margin="10 20 10 0"/>
 
                 <Button Command="{Binding OpenViewerCommand}" 
-                        Background="{StaticResource PrimaryBrush}" 
-                        Foreground="{StaticResource SecondaryBrush}" 
+                        Background="{DynamicResource PrimaryBrush}" 
+                        Foreground="{DynamicResource SecondaryBrush}" 
                         Content="Open 3D Viewer" 
                         Height="30" Margin="10 20 10 0"
                         ToolTip="Open a window with 3D models of all selected organs"/>
             </StackPanel>
 
-            <Grid Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid Grid.Column="1" Grid.ColumnSpan="2" Background="{DynamicResource BackgroundColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -110,7 +109,7 @@
                 <TextBlock Text="{DynamicResource OrgansListItems}" 
                            FontSize="14" FontWeight="Bold"
                            Margin="10,10,10,5" 
-                           Grid.Row="0"/>
+                           Grid.Row="0" Foreground="{DynamicResource BodyTextColor}"/>
 
                 <ListBox Name="OrganListBox" 
                          ItemsSource="{Binding SelectedOrgans, UpdateSourceTrigger=PropertyChanged}" 
@@ -122,7 +121,7 @@
 
                     <ListBox.Resources>
                         <Style TargetType="ScrollBar">
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Background" Value="Gray"/>
                             <Setter Property="Width" Value="8"/>
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -133,16 +132,16 @@
                                                     <Thumb>
                                                         <Thumb.Style>
                                                             <Style TargetType="Thumb">
-                                                                <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
-                                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                                <Setter Property="Background" Value="Gray"/>
+                                                                <Setter Property="BorderBrush" Value="Gray"/>
                                                                 <Setter Property="BorderThickness" Value="0"/>
                                                                 <Setter Property="Width" Value="6"/>
                                                                 <Style.Triggers>
                                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Setter Property="Background" Value="#FFA0A0A0"/>
+                                                                        <Setter Property="Background" Value="Gray"/>
                                                                     </Trigger>
                                                                     <Trigger Property="IsDragging" Value="True">
-                                                                        <Setter Property="Background" Value="#FF808080"/>
+                                                                        <Setter Property="Background" Value="Gray"/>
                                                                     </Trigger>
                                                                 </Style.Triggers>
                                                             </Style>
@@ -159,23 +158,22 @@
 
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <Setter Property="Padding" Value="5"/>
                             <Setter Property="Margin" Value="0,0,0,5"/>
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="{DynamicResource OrgansListItemColor}"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Border x:Name="Border" 
-                                                Background="{TemplateBinding Background}"
+                                                Background="{DynamicResource OrgansListItemColor}"
                                                 CornerRadius="4">
-                                            <ContentPresenter />
+                                            <ContentPresenter 
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="Border" Property="Background" Value="#F0F0F0"/>
-                                            </Trigger>
                                             <Trigger Property="IsSelected" Value="True">
-                                                <Setter TargetName="Border" Property="Background" Value="#E0E0E0"/>
+                                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource OrgansSelectedListItemColor}"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -196,18 +194,18 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="{DynamicResource PreviousButton}" FontSize="14" Command="{Binding ShowQuestionsCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <Button Content="{DynamicResource NextButton}" FontSize="14" Command="{Binding ShowComplaintsAndSymptomsCommand}" Width="200" Height="45" 
-                    Background="{StaticResource PrimaryBrush}" Foreground="{StaticResource SecondaryBrush}" 
+                    Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" 
                     Margin="0,0,5,-4" Grid.Column="2" HorizontalAlignment="Right"/>
 
             <Button Height="45" Width="60" Grid.Column="3" HorizontalAlignment="Right"
-                    Background="{StaticResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
+                    Background="{DynamicResource PrimaryBrush}" Command="{Binding ShowFinishProgressCommand}"
                     Visibility="{Binding IsNotSampleMode, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,-4">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{StaticResource SecondaryBrush}"/>
+                    <materialDesign:PackIcon Kind="FlagCheckered" Width="30" Height="30" Foreground="{DynamicResource SecondaryBrush}"/>
                 </StackPanel>
             </Button>
         </Grid>

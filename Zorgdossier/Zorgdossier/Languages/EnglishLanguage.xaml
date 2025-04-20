@@ -4,7 +4,7 @@
     <System:String x:Key="InfoMessageTitle">Additional Information and Helpful Tips</System:String>
 
     <System:String x:Key="ShowMainViewTitle">Warning</System:String>
-    <System:String x:Key="ShowMainViewMessage">Are you sure you want to go back to the Home page? All your progress on this file will be lost then.</System:String>
+    <System:String x:Key="ShowMainViewMessage">Are you sure you want to go back? All data entered for this record will then be lost.</System:String>
 
     <!-- BUTTONS -->
     <System:String x:Key="PreviousButton">Previous</System:String>

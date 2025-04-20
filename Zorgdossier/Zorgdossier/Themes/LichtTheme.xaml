@@ -5,4 +5,6 @@
     <SolidColorBrush x:Key="SecondaryBrush" Color="White"/>
     <SolidColorBrush x:Key="BodyTextColor" Color="Black"/>
     <SolidColorBrush x:Key="CreditsTextColor" Color="Gray"/>
+    <SolidColorBrush x:Key="OrgansListItemColor" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="OrgansSelectedListItemColor" Color="LightGray"/>
 </ResourceDictionary>

@@ -144,7 +144,10 @@ namespace Zorgdossier.ViewModels
                 || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
                 || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
+
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -189,7 +192,10 @@ namespace Zorgdossier.ViewModels
                 || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
                 || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
+
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -234,7 +240,10 @@ namespace Zorgdossier.ViewModels
                 || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
                 || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
+
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -279,7 +288,10 @@ namespace Zorgdossier.ViewModels
                 || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
                 || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
+
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -351,7 +363,10 @@ namespace Zorgdossier.ViewModels
                 || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
                 || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je terug wilt gaan? Alle ingevoerde data gaat dan verloren.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
+
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {

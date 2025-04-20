@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Zorgdossier.Databases;
 using Zorgdossier.Helpers;
 using Zorgdossier.Models;
+using Zorgdossier.Views;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
@@ -41,7 +42,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 ButtonText = IntroductionCreateButtonText;
             }
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
-            ShowDossiersCommand = new RelayCommand(ExecuteShowMainView);
+            ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
         }
 
@@ -83,7 +84,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             get;
         }
 
-        public ICommand ShowDossiersCommand
+        public ICommand ShowHomeCommand
         {
             get;
         }
@@ -105,7 +106,20 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowMainView(object? obj)
         {
-            _appNavigation.ActiveViewModel = new MainViewModel(_appNavigation, _userMessage);
+            var mainViewModel = new MainViewModel(_appNavigation, _userMessage);
+
+            // Open nieuwe window
+            var mainView = new MainView
+            {
+                DataContext = mainViewModel
+            };
+            mainView.Show();
+
+            Window? currentWindow = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            currentWindow?.Close();
         }
 
         private void ExecuteShowBasicInformation(object? obj)

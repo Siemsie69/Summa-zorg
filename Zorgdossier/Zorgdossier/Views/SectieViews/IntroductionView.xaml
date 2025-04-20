@@ -55,7 +55,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="{DynamicResource IntroductionCancelButtonText}" FontSize="14" Command="{Binding ShowDossiersCommand}" Width="200" Height="45" 
+            <Button Content="{DynamicResource IntroductionCancelButtonText}" FontSize="14" Command="{Binding ShowHomeCommand}" Width="200" Height="45" 
                     Background="{DynamicResource PrimaryBrush}" Foreground="{DynamicResource SecondaryBrush}" Margin="0,0,5,-4" Grid.Column="0" HorizontalAlignment="Left"/>
 
             <Button Content="{Binding ButtonText}" FontSize="14" Command="{Binding ShowBasicInformationCommand}" Width="200" Height="45" 
