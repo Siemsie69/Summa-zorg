@@ -20,10 +20,10 @@ namespace Zorgdossier.Helpers
             // Stel de Content en DataContext van de Window in
             window.Content = view;
             window.DataContext = viewModel;
-            window.MinHeight = 580;
-            window.MaxHeight = 580;
-            window.MinWidth = 840;
-            window.MaxWidth = 840;
+            window.MinHeight = 540;
+            window.MaxHeight = 540;
+            window.MinWidth = 900;
+            window.MaxWidth = 900;
 
             // Toon de Window
             window.Show();

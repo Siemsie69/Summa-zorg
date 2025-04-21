@@ -103,6 +103,24 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             if (dossier == null)
             {
                 HintTextOrganChoice = (string)Application.Current.Resources["OrgansComboboxHint"];
+
+                if (IsSampleMode)
+                {
+                    var defaultOrgans = new List<string>
+                    {
+                        "Huid - Skin",
+                        "Skelet - Skeleton",
+                        "Zenuwstelsel - Nervous System"
+                    };
+
+                    foreach (var organ in defaultOrgans)
+                    {
+                        if (!SelectedOrgans.Contains(organ))
+                        {
+                            SelectedOrgans.Add(organ);
+                        }
+                    }
+                }
             }
         }
 

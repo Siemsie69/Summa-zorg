@@ -45,10 +45,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
+                String SampleFirstQuestionText = (string)Application.Current.Resources["SampleFirstQuestionText"];
+                String SampleSecondQuestionText = (string)Application.Current.Resources["SampleSecondQuestionText"];
+                String SampleThirdQuestionText = (string)Application.Current.Resources["SampleThirdQuestionText"];
+
                 Question.QuestionSummary = IsSampleMode
-                ? "Heeft u een katheter? Loopt deze nog goed door?\n" +
-                  "Heeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?\n" +
-                  "Herkent u de klachten van een eerdere urineweginfectie?"
+                ? SampleFirstQuestionText + "\n" +
+                  SampleSecondQuestionText + "\n" +
+                  SampleThirdQuestionText
                 : Question.QuestionSummary;
             }
         }

@@ -280,5 +280,26 @@
     <System:String x:Key="ExportContactAdviceText">Contactadvies voor de pati&#235;nt (indien ingevuld):</System:String>
     <System:String x:Key="ExportTreatmentText">Behandeling:</System:String>
     <System:String x:Key="ExportEndOfFileText">Einde van het dossier.</System:String>
-
+    
+    <!-- VoorbeeldDossier -->
+    <System:String x:Key="SampleBasicInfoNameText">Jan Jansen</System:String>
+    <System:String x:Key="SampleBasicInfoComplaintText">Buikpijn</System:String>
+    <System:String x:Key="SampleBasicInfoGenderText">Man</System:String>
+    <System:String x:Key="SamplePhoneText">Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?</System:String>
+    <System:String x:Key="SampleFirstQuestionText">Heeft u een katheter? Loopt deze nog goed door?</System:String>
+    <System:String x:Key="SampleSecondQuestionText">Heeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?</System:String>
+    <System:String x:Key="SampleThirdQuestionText">Herkent u de klachten van een eerdere urineweginfectie?</System:String>
+    <System:String x:Key="SampleFirstComplaintText">Pijn bij het plassen</System:String>
+    <System:String x:Key="SampleSecondComplaintText">Branderig gevoel bij het plassen</System:String>
+    <System:String x:Key="SampleThirdComplaintText">Kleine beetjes plassen</System:String>
+    <System:String x:Key="SampleResearchText">Urineonderzoek</System:String>
+    <System:String x:Key="SamplePolicyUrgencyText">U3 Dringend</System:String>
+    <System:String x:Key="SampleFirstPolicyTriageText">Categorie: Urologie | Hoofdklacht: Pijn bij het plassen (dysurie) | Leeftijd: 23 jaar</System:String>
+    <System:String x:Key="SampleSecondPolicyTriageText">Triagecriterium: Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).</System:String>
+    <System:String x:Key="SampleThirdPolicyTriageText">Aanvullend: Pati&#235;nt vraagt specifiek om een afspraak.</System:String>
+    <System:String x:Key="SamplePolicyChoiceText">Afspraak</System:String>
+    <System:String x:Key="SampleAdviceText">Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact.</System:String>
+    <System:String x:Key="SampleContactAdviceText">Contact opnemen bij koorts, bloederige urine of hevige pijn.</System:String>
+    <System:String x:Key="SampleFirstTreatmentText">Er wordt een antibioticakuur voorgeschreven, zoals nitrofuranto&#239;ne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.</System:String>
+    <System:String x:Key="SampleSecondTreatmentText">De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten.</System:String>
 </ResourceDictionary>

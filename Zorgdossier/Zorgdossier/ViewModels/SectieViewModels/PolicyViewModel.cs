@@ -46,17 +46,19 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Policy.Urgency = IsSampleMode ? "U1 Levensbedreigend" : Policy.Urgency;
+                String SamplePolicyUrgencyText = (string)Application.Current.Resources["SamplePolicyUrgencyText"];
+                String SampleFirstPolicyTriageText = (string)Application.Current.Resources["SampleFirstPolicyTriageText"];
+                String SampleSecondPolicyTriageText = (string)Application.Current.Resources["SampleSecondPolicyTriageText"];
+                String SampleThirdPolicyTriageText = (string)Application.Current.Resources["SampleThirdPolicyTriageText"];
+                String SamplePolicyChoiceText = (string)Application.Current.Resources["SamplePolicyChoiceText"];
+
+                Policy.Urgency = IsSampleMode ? SamplePolicyUrgencyText : Policy.Urgency;
                 Policy.TriageCriteria = IsSampleMode
-                    ? "Categorie: Urologie | " +
-                    "Hoofdklacht: Pijn bij het plassen (dysurie) | " +
-                    "Leeftijd: 23 jaar\n" +
-                    "Triagecriterium: " +
-                    "Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. " +
-                    "Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).\n" +
-                    "Aanvullend: Patiënt vraagt specifiek om een afspraak."
+                    ? SampleFirstPolicyTriageText + "\n" +
+                    SampleSecondPolicyTriageText + "\n" +
+                    SampleThirdPolicyTriageText
                     : Policy.TriageCriteria;
-                Policy.PolicyChoice = IsSampleMode ? "Afspraak" : Policy.PolicyChoice;
+                Policy.PolicyChoice = IsSampleMode ? SamplePolicyChoiceText : Policy.PolicyChoice;
                 Policy.PolicyDateTime = IsSampleMode ? DateTime.Now : null;
             }
 
@@ -93,7 +95,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
         {
             get;
         }
-        public bool Appointment => Policy?.PolicyChoice == "Afspraak";
+        public bool Appointment => Policy?.PolicyChoice == "Afspraak" || Policy?.PolicyChoice == "Appointment";
         #endregion
 
         #region commands

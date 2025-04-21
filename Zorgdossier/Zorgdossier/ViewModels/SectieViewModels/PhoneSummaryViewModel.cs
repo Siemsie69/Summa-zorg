@@ -45,7 +45,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Phone.PhoneSummary = IsSampleMode ? "Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?" : Phone.PhoneSummary;
+                String SamplePhoneText = (string)Application.Current.Resources["SamplePhoneText"];
+
+                Phone.PhoneSummary = IsSampleMode ? SamplePhoneText : Phone.PhoneSummary;
             }
         }
 

@@ -105,12 +105,12 @@
                 <TextBlock Text="{DynamicResource FinishProgressOrgansText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </Border>
 
-            <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowComplaintsSymptomsCommand}" Background="White" BorderThickness="0">
-                <TextBlock Text="{DynamicResource FinishProgressComplaints}" FontSize="14" FontWeight="Bold"/>
+            <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowComplaintsSymptomsCommand}" Background="White" BorderThickness="0" Height="40">
+                <TextBlock Text="{DynamicResource FinishProgressComplaints}" FontSize="14" FontWeight="Bold" TextWrapping="Wrap"/>
             </Button>
 
             <Border Grid.Row="8" Grid.Column="1" Background="{Binding ComplaintsSymptomsSummary, Converter={StaticResource BooleanToBrushConverter}}" HorizontalAlignment="Stretch" Margin="10,0,10,0">
-                <TextBlock Text="{DynamicResource FinishProgressComplaintsText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Text="{DynamicResource FinishProgressComplaintsText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" TextWrapping="Wrap"/>
             </Border>
 
             <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" Margin="10" Command="{Binding ShowResearchCommand}" Background="White" BorderThickness="0">

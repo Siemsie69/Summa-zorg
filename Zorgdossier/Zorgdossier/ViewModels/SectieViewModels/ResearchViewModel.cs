@@ -45,7 +45,9 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                Research.ResearchSummary = IsSampleMode ? "Urineonderzoek" : Research.ResearchSummary;
+                String SampleResearchText = (string)Application.Current.Resources["SampleResearchText"];
+
+                Research.ResearchSummary = IsSampleMode ? SampleResearchText : Research.ResearchSummary;
             }
         }
 

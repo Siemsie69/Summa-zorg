@@ -45,8 +45,11 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                ContactAdvice.Advice = IsSampleMode ? "Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact." : ContactAdvice.Advice;
-                ContactAdvice.ContactAdviceText = IsSampleMode ? "Contact opnemen bij koorts, bloederige urine of hevige pijn." : ContactAdvice.ContactAdviceText;
+                String SampleAdviceText = (string)Application.Current.Resources["SampleAdviceText"];
+                String SampleContactAdviceText = (string)Application.Current.Resources["SampleContactAdviceText"];
+
+                ContactAdvice.Advice = IsSampleMode ? SampleAdviceText : ContactAdvice.Advice;
+                ContactAdvice.ContactAdviceText = IsSampleMode ? SampleContactAdviceText : ContactAdvice.ContactAdviceText;
             }
         }
 

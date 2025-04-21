@@ -45,10 +45,14 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
+                String SampleFirstComplaintText = (string)Application.Current.Resources["SampleFirstComplaintText"];
+                String SampleSecondComplaintText = (string)Application.Current.Resources["SampleSecondComplaintText"];
+                String SampleThirdComplaintText = (string)Application.Current.Resources["SampleThirdComplaintText"];
+
                 ComplaintsSymptoms.ComplaintsSymptomsSummary = IsSampleMode
-                ? "Pijn bij het plassen\n" +
-                  "Branderig gevoel bij het plassen\n" +
-                  "Kleine beetjes plassen"
+                ? SampleFirstComplaintText + "\n" +
+                  SampleSecondComplaintText + "\n" +
+                  SampleThirdComplaintText
                 : ComplaintsSymptoms.ComplaintsSymptomsSummary;
             }
         }

@@ -44,9 +44,12 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
+                String SampleFirstTreatmentText = (string)Application.Current.Resources["SampleFirstTreatmentText"];
+                String SampleSecondTreatmentText = (string)Application.Current.Resources["SampleSecondTreatmentText"];
+
                 Treatment.TreatmentSummary = IsSampleMode
-                ? "Er wordt een antibioticakuur voorgeschreven, zoals nitrofurantoïne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.\n" +
-                "De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten."
+                ? SampleFirstTreatmentText + "\n" +
+                SampleSecondTreatmentText
                 : Treatment.TreatmentSummary;
             }
         }

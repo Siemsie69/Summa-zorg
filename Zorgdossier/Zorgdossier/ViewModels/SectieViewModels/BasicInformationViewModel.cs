@@ -96,9 +96,13 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
             if (dossier == null)
             {
-                BasicInformation.Name = IsSampleMode ? "Jan Jansen" : BasicInformation.Name;
-                BasicInformation.Complaint = IsSampleMode ? "Buikpijn" : BasicInformation.Complaint;
-                BasicInformation.Gender = IsSampleMode ? "Man" : BasicInformation.Gender;
+                String SampleBasicInfoNameText = (string)Application.Current.Resources["SampleBasicInfoNameText"];
+                String SampleBasicInfoComplaintText = (string)Application.Current.Resources["SampleBasicInfoComplaintText"];
+                String SampleBasicInfoGenderText = (string)Application.Current.Resources["SampleBasicInfoGenderText"];
+
+                BasicInformation.Name = IsSampleMode ? SampleBasicInfoNameText : BasicInformation.Name;
+                BasicInformation.Complaint = IsSampleMode ? SampleBasicInfoComplaintText : BasicInformation.Complaint;
+                BasicInformation.Gender = IsSampleMode ? SampleBasicInfoGenderText : BasicInformation.Gender;
             }
         }
 

@@ -280,4 +280,25 @@
     <System:String x:Key="ExportTreatmentText">Treatment:</System:String>
     <System:String x:Key="ExportEndOfFileText">End of file.</System:String>
 
+    <!-- VoorbeeldDossier -->
+    <System:String x:Key="SampleBasicInfoNameText">Jan Jansen</System:String>
+    <System:String x:Key="SampleBasicInfoComplaintText">Stomach ache</System:String>
+    <System:String x:Key="SampleBasicInfoGenderText">Men</System:String>
+    <System:String x:Key="SamplePhoneText">With Mr. Jansen, 23 years old, I have pain when urinating. Can I get an appointment?</System:String>
+    <System:String x:Key="SampleFirstQuestionText">Do you have a catheter? Is it still running properly?</System:String>
+    <System:String x:Key="SampleSecondQuestionText">Do you have a neurological condition that causes your bladder function to be abnormal?</System:String>
+    <System:String x:Key="SampleThirdQuestionText">Do you recognize the symptoms of a previous urinary tract infection?</System:String>
+    <System:String x:Key="SampleFirstComplaintText">Pain when urinating</System:String>
+    <System:String x:Key="SampleSecondComplaintText">Burning sensation when urinating</System:String>
+    <System:String x:Key="SampleThirdComplaintText">Small bits of urination</System:String>
+    <System:String x:Key="SampleResearchText">Urine test</System:String>
+    <System:String x:Key="SamplePolicyUrgencyText">U3 Pressing</System:String>
+    <System:String x:Key="SampleFirstPolicyTriageText">Category: Urology | Main complaint: Pain during urination (dysuria) | Age: 23 years</System:String>
+    <System:String x:Key="SampleSecondPolicyTriageText">Triage criterion: Probable cause: Possible urinary tract infection (UTI) or urethritis. Urgency code: U3 (Pressing: Appointment needed within 24 hours).</System:String>
+    <System:String x:Key="SampleThirdPolicyTriageText">Additional: Patient specifically requests appointment.</System:String>
+    <System:String x:Key="SamplePolicyChoiceText">Appointment</System:String>
+    <System:String x:Key="SampleAdviceText">For in the meantime, drink plenty of fluids, urinate the bladder regularly and properly. When urged, do not delay urination. Go pee immediately after sexual contact.</System:String>
+    <System:String x:Key="SampleContactAdviceText">Contact with fever, bloody urine or severe pain.</System:String>
+    <System:String x:Key="SampleFirstTreatmentText">A course of antibiotics, such as nitrofurantoin or phosphomycin, is prescribed to treat the suspected urinary tract infection.</System:String>
+    <System:String x:Key="SampleSecondTreatmentText">Dosage and duration are tailored to the clinical picture and severity of symptoms.</System:String>
 </ResourceDictionary>
