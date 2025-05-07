@@ -88,7 +88,28 @@ namespace Zorgdossier.ViewModels
         private void ExecuteShowSampleDossier(object? obj)
         {
             var sharedViewModel = SampleDossierViewModel.Instance;
-            _windowService.ShowWindow(sharedViewModel);
+
+            var mainWindow = Application.Current.MainWindow;
+            var left = mainWindow.Left;
+            var top = mainWindow.Top;
+            var width = mainWindow.Width;
+            var height = mainWindow.Height;
+
+            double sampleDossierWidth = 900;
+            double sampleDossierHeight = 540; 
+
+            var sampleDossierWindow = new Window
+            {
+                Title = "Voorbeeld/Sample Dossier",
+                Content = sharedViewModel, 
+                Width = sampleDossierWidth,
+                Height = sampleDossierHeight,
+                Left = left + width, 
+                Top = top, 
+                WindowStartupLocation = WindowStartupLocation.Manual
+            };
+
+            sampleDossierWindow.Show();
         }
 
         private bool CanExportDossier(object? obj)
@@ -133,12 +154,10 @@ namespace Zorgdossier.ViewModels
                                 PdfDocument pdf = new PdfDocument(writer);
                                 Document document = new Document(pdf);
 
-                                // Lettertypes en kleuren
                                 PdfFont normalFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
                                 PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                                DeviceRgb indigoColor = new DeviceRgb(36, 13, 104); // Updated indigo color
+                                DeviceRgb indigoColor = new DeviceRgb(36, 13, 104);
 
-                                // Titel links
                                 string titleText = $"Dossier: {basicInformation?.Complaint + " - " + basicInformation?.Name ?? "Onbekend"}";
                                 document.Add(new Paragraph(titleText)
                                     .SetFont(boldFont)
@@ -146,7 +165,6 @@ namespace Zorgdossier.ViewModels
                                     .SetFontColor(indigoColor)
                                     .SetMarginBottom(20));
 
-                                // Helper voor tekst
                                 void AddStyledParagraph(string header, string value, bool isList = false)
                                 {
                                     document.Add(new Paragraph(header)
@@ -157,7 +175,6 @@ namespace Zorgdossier.ViewModels
 
                                     if (isList && !string.IsNullOrEmpty(value))
                                     {
-                                        // Splits op de komma en zet elke waarde onder elkaar met een streepje
                                         var items = value.Split(',');
                                         foreach (var item in items)
                                         {
@@ -203,7 +220,6 @@ namespace Zorgdossier.ViewModels
                                 AddStyledParagraph(Application.Current.Resources["ExportContactAdviceText"] as string, contactAdvice?.ContactAdviceText);
                                 AddStyledParagraph(Application.Current.Resources["ExportTreatmentText"] as string, treatment?.TreatmentSummary);
 
-                                // Closing
                                 document.Add(new Paragraph(Application.Current.Resources["ExportEndOfFileText"] as string)
                                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA_OBLIQUE))
                                     .SetFontSize(10)

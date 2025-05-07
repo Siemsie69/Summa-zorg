@@ -122,7 +122,6 @@ namespace Zorgdossier.ViewModels
 
         #region Commands
         public bool IsMenuCollapsed => !IsMenuExpanded;
-
         public ICommand ShowHomeCommand { get; }
         public ICommand ShowDossiersCommand { get; }
         public ICommand ShowExplanationCommand { get; }

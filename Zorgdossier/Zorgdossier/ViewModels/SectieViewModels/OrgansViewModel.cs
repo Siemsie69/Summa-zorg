@@ -341,7 +341,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             {
                 var mainViewModel = new MainViewModel(_appNavigation, _userMessage);
 
-                // Open nieuwe window
                 var mainView = new MainView
                 {
                     DataContext = mainViewModel
@@ -398,6 +397,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
             _isViewerOpen = true;
 
             var viewer = new Organ3DViewerView();
+            viewer.Initialize(organModels);
 
             foreach (var organName in SelectedOrgans)
             {
@@ -424,7 +424,6 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 Height = viewerHeight,
                 Left = left + width,
                 Top = top,
-
                 WindowStartupLocation = WindowStartupLocation.Manual
             };
 

@@ -280,26 +280,57 @@
     <System:String x:Key="ExportContactAdviceText">Contactadvies voor de pati&#235;nt (indien ingevuld):</System:String>
     <System:String x:Key="ExportTreatmentText">Behandeling:</System:String>
     <System:String x:Key="ExportEndOfFileText">Einde van het dossier.</System:String>
-    
+
     <!-- VoorbeeldDossier -->
-    <System:String x:Key="SampleBasicInfoNameText">Jan Jansen</System:String>
-    <System:String x:Key="SampleBasicInfoComplaintText">Buikpijn</System:String>
+    <!-- Basisinformatie -->
+    <System:String x:Key="SampleBasicInfoNameText">Mark Jansen</System:String>
     <System:String x:Key="SampleBasicInfoGenderText">Man</System:String>
-    <System:String x:Key="SamplePhoneText">Met meneer Jansen, 23 jaar oud, ik heb pijn bij het plassen. Kan ik een afspraak krijgen?</System:String>
-    <System:String x:Key="SampleFirstQuestionText">Heeft u een katheter? Loopt deze nog goed door?</System:String>
-    <System:String x:Key="SampleSecondQuestionText">Heeft u een neurologische aandoening, waardoor uw blaasfunctie afwijkend is?</System:String>
-    <System:String x:Key="SampleThirdQuestionText">Herkent u de klachten van een eerdere urineweginfectie?</System:String>
-    <System:String x:Key="SampleFirstComplaintText">Pijn bij het plassen</System:String>
-    <System:String x:Key="SampleSecondComplaintText">Branderig gevoel bij het plassen</System:String>
-    <System:String x:Key="SampleThirdComplaintText">Kleine beetjes plassen</System:String>
-    <System:String x:Key="SampleResearchText">Urineonderzoek</System:String>
+    <System:String x:Key="SampleBasicInfoAgeText">42 jaar</System:String>
+    <System:String x:Key="SampleBasicInfoComplaintText">Aanhoudende lage rugpijn, huiduitslag en vermoeidheid</System:String>
+    <System:String x:Key="SampleBasicInfoMedicalHistoryText">Achtergrond van lage rugklachten, geen allergie&#235;n. Niet-roker, geen medicatie.</System:String>
+    <System:String x:Key="SampleBasicInfoCurrentMedicationsText">Geen medicijnen</System:String>
+    <System:String x:Key="SampleBasicInfoAllergiesText">Geen allergie&#235;n</System:String>
+    <System:String x:Key="SampleBasicInfoLifestyleText">Niet-roker, af en toe alcohol, regelmatig sport maar heeft recent veel stress gehad op werk.</System:String>
+
+    <!-- Samenvatting Telefoongesprek -->
+    <System:String x:Key="SamplePhoneText">Mark Jansen, 42 jaar, meldt aanhoudende lage rugpijn die niet verdwijnt, samen met huiduitslag en een gevoel van extreme vermoeidheid. Hij is bezorgd dat het misschien iets ernstigs is en vraagt of hij naar de dokter moet gaan.</System:String>
+
+    <!-- Vragen -->
+    <System:String x:Key="SampleFirstQuestionText">Is de pijn in uw onderrug continu aanwezig, of komt deze in golven?</System:String>
+    <System:String x:Key="SampleSecondQuestionText">Heeft u andere gewrichtspijn of zwelling ergens anders in uw lichaam?</System:String>
+    <System:String x:Key="SampleThirdQuestionText">Is de huiduitslag recent ontstaan en lijkt deze te verspreiden?</System:String>
+    <System:String x:Key="SampleFourthQuestionText">Heeft u moeite met ademhalen of een hoest?</System:String>
+    <System:String x:Key="SampleFifthQuestionText">Voelt u zich over het algemeen erg vermoeid, zelfs na voldoende rust?</System:String>
+
+    <!-- Klachten -->
+    <System:String x:Key="SampleFirstComplaintText">Aanhoudende lage rugpijn die niet afneemt</System:String>
+    <System:String x:Key="SampleSecondComplaintText">Huiduitslag die zich langzaam verspreidt</System:String>
+    <System:String x:Key="SampleThirdComplaintText">Extreme vermoeidheid, ook na rust</System:String>
+    <System:String x:Key="SampleFourthComplaintText">Geen ademhalingsproblemen, maar lichte hoest</System:String>
+
+    <!-- Onderzoeken -->
+    <System:String x:Key="SampleResearchText">Fysiek onderzoek van de rug en gewrichten</System:String>
+    <System:String x:Key="SampleAdditionalResearchText">Bloedonderzoek om ontstekingsmarkers en infecties te controleren</System:String>
+    <System:String x:Key="SampleImagingResearchText">R&#x00E9;ntgenfoto van de onderrug om mogelijke degeneratie of hernia te onderzoeken</System:String>
+
+    <!-- Urgentie en Beleid -->
     <System:String x:Key="SamplePolicyUrgencyText">U3 Dringend</System:String>
-    <System:String x:Key="SampleFirstPolicyTriageText">Categorie: Urologie | Hoofdklacht: Pijn bij het plassen (dysurie) | Leeftijd: 23 jaar</System:String>
-    <System:String x:Key="SampleSecondPolicyTriageText">Triagecriterium: Waarschijnlijke oorzaak: Mogelijke urineweginfectie (UTI) of urethritis. Urgentiecode: U3 (Dringend: Afspraak binnen 24 uur nodig).</System:String>
-    <System:String x:Key="SampleThirdPolicyTriageText">Aanvullend: Pati&#235;nt vraagt specifiek om een afspraak.</System:String>
+    <System:String x:Key="SampleFirstPolicyTriageText">Categorie: Lage rugpijn | Hoofdklacht: Pijn en huiduitslag | Leeftijd: 42 jaar</System:String>
+    <System:String x:Key="SampleSecondPolicyTriageText">Triage: Mogelijke auto-immuunziekte, testresultaten nodig voor verdere diagnose</System:String>
+    <System:String x:Key="SampleThirdPolicyTriageText">Pati&#235;nt ervaart vermoeidheid die niet te verklaren is door rust</System:String>
     <System:String x:Key="SamplePolicyChoiceText">Afspraak</System:String>
-    <System:String x:Key="SampleAdviceText">Voor in de tussentijd veel drinken, plas de blaas regelmatig en goed leeg. Stel bij aandrang het plassen niet uit. Ga direct plassen na seksueel contact.</System:String>
-    <System:String x:Key="SampleContactAdviceText">Contact opnemen bij koorts, bloederige urine of hevige pijn.</System:String>
-    <System:String x:Key="SampleFirstTreatmentText">Er wordt een antibioticakuur voorgeschreven, zoals nitrofuranto&#239;ne of fosfomycine, om de vermoedelijke urineweginfectie te behandelen.</System:String>
-    <System:String x:Key="SampleSecondTreatmentText">De dosering en duur worden afgestemd op het klinische beeld en de ernst van de klachten.</System:String>
+
+    <!-- Behandeladvies -->
+    <System:String x:Key="SampleAdviceText">Rust voldoende uit, neem pijnstillers zoals paracetamol en probeer stress te verminderen.</System:String>
+    <System:String x:Key="SampleContactAdviceText">Neem contact op bij verergering van de pijn, nieuwe symptomen of bij ademhalingsproblemen.</System:String>
+
+    <!-- Behandeling -->
+    <System:String x:Key="SampleFirstTreatmentText">Indien bloedonderzoek wijst op een auto-immuunziekte, kunnen ontstekingsremmers of immunosuppressiva nodig zijn.</System:String>
+    <System:String x:Key="SampleSecondTreatmentText">Als er een hernia wordt vastgesteld, kan fysiotherapie of, in ernstige gevallen, chirurgie nodig zijn.</System:String>
+    <System:String x:Key="SampleThirdTreatmentText">In geval van ernstige vermoeidheid kan een meer gedetailleerde evaluatie van het energiemetabolisme nodig zijn.</System:String>
+
+    <!-- Follow-up -->
+    <System:String x:Key="SampleFollowUpText">Follow-up binnen 7-10 dagen voor evaluatie van de pijn en huiduitslag, en om te controleren of de vermoeidheid afneemt.</System:String>
+    <System:String x:Key="SampleLongTermPlanText">Bij aanhoudende symptomen kan doorverwijzing naar een reumatoloog of specialist nodig zijn voor verdere diagnostiek.</System:String>
+
 </ResourceDictionary>

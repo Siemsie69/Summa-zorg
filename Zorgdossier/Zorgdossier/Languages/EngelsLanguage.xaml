@@ -281,25 +281,56 @@
     <System:String x:Key="ExportTreatmentText">Treatment:</System:String>
     <System:String x:Key="ExportEndOfFileText">End of file.</System:String>
 
-    <!-- VoorbeeldDossier -->
-    <System:String x:Key="SampleBasicInfoNameText">Jan Jansen</System:String>
-    <System:String x:Key="SampleBasicInfoComplaintText">Stomach ache</System:String>
+    <!-- Example File -->
+    <!-- Basic Information -->
+    <System:String x:Key="SampleBasicInfoNameText">Mark Jansen</System:String>
     <System:String x:Key="SampleBasicInfoGenderText">Men</System:String>
-    <System:String x:Key="SamplePhoneText">With Mr. Jansen, 23 years old, I have pain when urinating. Can I get an appointment?</System:String>
-    <System:String x:Key="SampleFirstQuestionText">Do you have a catheter? Is it still running properly?</System:String>
-    <System:String x:Key="SampleSecondQuestionText">Do you have a neurological condition that causes your bladder function to be abnormal?</System:String>
-    <System:String x:Key="SampleThirdQuestionText">Do you recognize the symptoms of a previous urinary tract infection?</System:String>
-    <System:String x:Key="SampleFirstComplaintText">Pain when urinating</System:String>
-    <System:String x:Key="SampleSecondComplaintText">Burning sensation when urinating</System:String>
-    <System:String x:Key="SampleThirdComplaintText">Small bits of urination</System:String>
-    <System:String x:Key="SampleResearchText">Urine test</System:String>
+    <System:String x:Key="SampleBasicInfoAgeText">42 years</System:String>
+    <System:String x:Key="SampleBasicInfoComplaintText">Persistent lower back pain, rash, and fatigue</System:String>
+    <System:String x:Key="SampleBasicInfoMedicalHistoryText">History of low back pain, no allergies. Non-smoker, no medication.</System:String>
+    <System:String x:Key="SampleBasicInfoCurrentMedicationsText">No medications</System:String>
+    <System:String x:Key="SampleBasicInfoAllergiesText">No allergies</System:String>
+    <System:String x:Key="SampleBasicInfoLifestyleText">Non-smoker, occasional alcohol, regularly exercises but has had recent stress at work.</System:String>
+
+    <!-- Call Summary -->
+    <System:String x:Key="SamplePhoneText">Mark Jansen, 42 years old, reports persistent lower back pain that doesn't go away, along with a rash and extreme fatigue. He's concerned that it might be something serious and asks if he should visit a doctor.</System:String>
+
+    <!-- Questions -->
+    <System:String x:Key="SampleFirstQuestionText">Is the pain in your lower back constant, or does it come and go?</System:String>
+    <System:String x:Key="SampleSecondQuestionText">Do you have any other joint pain or swelling anywhere in your body?</System:String>
+    <System:String x:Key="SampleThirdQuestionText">Has the rash appeared recently and does it seem to be spreading?</System:String>
+    <System:String x:Key="SampleFourthQuestionText">Do you have trouble breathing or a cough?</System:String>
+    <System:String x:Key="SampleFifthQuestionText">Do you feel generally very tired, even after resting?</System:String>
+
+    <!-- Complaints -->
+    <System:String x:Key="SampleFirstComplaintText">Persistent lower back pain that doesn't improve</System:String>
+    <System:String x:Key="SampleSecondComplaintText">A rash that is slowly spreading</System:String>
+    <System:String x:Key="SampleThirdComplaintText">Extreme fatigue, even after rest</System:String>
+    <System:String x:Key="SampleFourthComplaintText">No breathing problems, but mild cough</System:String>
+
+    <!-- Investigations -->
+    <System:String x:Key="SampleResearchText">Physical examination of the back and joints</System:String>
+    <System:String x:Key="SampleAdditionalResearchText">Blood tests to check for inflammation and infection</System:String>
+    <System:String x:Key="SampleImagingResearchText">X-ray of the lower back to check for possible degeneration or hernia</System:String>
+
+    <!-- Urgency and Policy -->
     <System:String x:Key="SamplePolicyUrgencyText">U3 Pressing</System:String>
-    <System:String x:Key="SampleFirstPolicyTriageText">Category: Urology | Main complaint: Pain during urination (dysuria) | Age: 23 years</System:String>
-    <System:String x:Key="SampleSecondPolicyTriageText">Triage criterion: Probable cause: Possible urinary tract infection (UTI) or urethritis. Urgency code: U3 (Pressing: Appointment needed within 24 hours).</System:String>
-    <System:String x:Key="SampleThirdPolicyTriageText">Additional: Patient specifically requests appointment.</System:String>
+    <System:String x:Key="SampleFirstPolicyTriageText">Category: Low back pain | Primary complaint: Pain and rash | Age: 42 years</System:String>
+    <System:String x:Key="SampleSecondPolicyTriageText">Triage: Possible autoimmune disease, test results needed for further diagnosis</System:String>
+    <System:String x:Key="SampleThirdPolicyTriageText">Patient experiences unexplained fatigue even with rest</System:String>
     <System:String x:Key="SamplePolicyChoiceText">Appointment</System:String>
-    <System:String x:Key="SampleAdviceText">For in the meantime, drink plenty of fluids, urinate the bladder regularly and properly. When urged, do not delay urination. Go pee immediately after sexual contact.</System:String>
-    <System:String x:Key="SampleContactAdviceText">Contact with fever, bloody urine or severe pain.</System:String>
-    <System:String x:Key="SampleFirstTreatmentText">A course of antibiotics, such as nitrofurantoin or phosphomycin, is prescribed to treat the suspected urinary tract infection.</System:String>
-    <System:String x:Key="SampleSecondTreatmentText">Dosage and duration are tailored to the clinical picture and severity of symptoms.</System:String>
+
+    <!-- Treatment Advice -->
+    <System:String x:Key="SampleAdviceText">Rest, take painkillers such as paracetamol, and try to reduce stress.</System:String>
+    <System:String x:Key="SampleContactAdviceText">Contact if pain worsens, new symptoms arise, or breathing problems occur.</System:String>
+
+    <!-- Treatment -->
+    <System:String x:Key="SampleFirstTreatmentText">If blood tests indicate an autoimmune disease, anti-inflammatory drugs or immunosuppressants may be required.</System:String>
+    <System:String x:Key="SampleSecondTreatmentText">If a hernia is found, physical therapy or, in severe cases, surgery may be necessary.</System:String>
+    <System:String x:Key="SampleThirdTreatmentText">In case of severe fatigue, further evaluation of energy metabolism may be needed.</System:String>
+
+    <!-- Follow-up -->
+    <System:String x:Key="SampleFollowUpText">Follow-up in 7-10 days to assess pain and rash, and monitor fatigue levels.</System:String>
+    <System:String x:Key="SampleLongTermPlanText">If symptoms persist, referral to a rheumatologist or specialist may be required for further diagnostic workup.</System:String>
+
 </ResourceDictionary>
