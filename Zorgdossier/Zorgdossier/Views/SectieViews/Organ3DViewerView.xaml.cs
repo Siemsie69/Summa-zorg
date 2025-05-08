@@ -2,24 +2,15 @@
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
-using Zorgdossier.ViewModels.SectieViewModels;
-using System.Collections.Generic;
 
 namespace Zorgdossier.Views.SectieViews
 {
     public partial class Organ3DViewerView : UserControl
     {
-        private Organ3DViewerViewModel _viewModel;
-
         public Organ3DViewerView()
         {
             InitializeComponent();
             SetupLights();
-        }
-
-        public void Initialize(Dictionary<string, ModelVisual3D> organModels)
-        {
-            _viewModel = new Organ3DViewerViewModel(Viewport, organModels);
         }
 
         private void SetupLights()
@@ -37,26 +28,55 @@ namespace Zorgdossier.Views.SectieViews
 
             var rimLight = new DirectionalLight(Color.FromRgb(80, 80, 80), new Vector3D(0, 0.5, -1));
             Viewport.Children.Add(new ModelVisual3D { Content = rimLight });
-
-            // Set up initial camera
-            var camera = new PerspectiveCamera
-            {
-                Position = new Point3D(0, 0, 5),
-                LookDirection = new Vector3D(0, 0, -5),
-                UpDirection = new Vector3D(0, 1, 0),
-                FieldOfView = 60
-            };
-            Viewport.Camera = camera;
         }
 
-        public void AddOrganModel(ModelVisual3D organModel)
+        public void AddOrganModel(ModelVisual3D originalModel)
         {
-            _viewModel?.AddOrganModel(organModel);
+            if (originalModel != null)
+            {
+                var modelCopy = CloneModelVisual3D(originalModel);
+                Viewport.Children.Add(modelCopy);
+                Viewport.ZoomExtents();
+            }
+        }
+
+        private ModelVisual3D CloneModelVisual3D(ModelVisual3D original)
+        {
+            if (original.Content is Model3DGroup originalGroup)
+            {
+                var newGroup = new Model3DGroup();
+                foreach (var model in originalGroup.Children)
+                {
+                    if (model is GeometryModel3D geometryModel)
+                    {
+                        var newGeometryModel = new GeometryModel3D
+                        {
+                            Geometry = geometryModel.Geometry,
+                            Material = geometryModel.Material,
+                            BackMaterial = geometryModel.BackMaterial,
+                            Transform = geometryModel.Transform
+                        };
+                        newGroup.Children.Add(newGeometryModel);
+                    }
+                }
+
+                var newVisual = new ModelVisual3D
+                {
+                    Content = newGroup,
+                    Transform = original.Transform
+                };
+
+                return newVisual;
+            }
+            return new ModelVisual3D();
         }
 
         public void ClearModels()
         {
-            _viewModel?.ClearModels();
+            while (Viewport.Children.Count > 4)
+            {
+                Viewport.Children.RemoveAt(4);
+            }
         }
     }
 }

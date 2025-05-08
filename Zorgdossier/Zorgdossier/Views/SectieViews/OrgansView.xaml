@@ -68,7 +68,7 @@
                           SelectedItem="{Binding SelectedOrgan, Mode=TwoWay}" 
                           Height="30" 
                           materialDesign:HintAssist.Hint="{Binding HintTextOrganChoice}">
-                    
+
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
