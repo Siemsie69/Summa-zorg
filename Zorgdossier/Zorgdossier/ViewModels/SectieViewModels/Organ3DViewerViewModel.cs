@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zorgdossier.Helpers;
 
 namespace Zorgdossier.ViewModels.SectieViewModels
 {
-    class Organ3DViewerViewModel
+    public class Organ3DViewerViewModel : ObservableObject
     {
     }
 }
