@@ -37,33 +37,27 @@ namespace Zorgdossier.Views.SectieViews
                 var modelCopy = CloneModelVisual3D(originalModel);
                 Viewport.Children.Add(modelCopy);
 
-                // Calculate model bounds and center
                 var bounds = GetBounds(modelCopy);
                 var center = new Point3D(
                     bounds.X + bounds.SizeX / 2,
                     bounds.Y + bounds.SizeY / 2,
                     bounds.Z + bounds.SizeZ / 2);
 
-                // Calculate optimal distance based on model size
                 var maxSize = Math.Max(bounds.SizeX, Math.Max(bounds.SizeY, bounds.SizeZ));
                 var distance = maxSize * 2.0;
 
-                // Set camera to perfect frontal perspective
                 var camera = Viewport.Camera as PerspectiveCamera;
                 if (camera != null)
                 {
-                    // Position camera in front of the model at 2/3 height (eye level)
                     camera.Position = new Point3D(
-                        center.X,                // Centered horizontally
-                        bounds.Y + bounds.SizeY * 0.66, // Eye level (2/3 of height)
-                        center.Z + distance     // In front of model (positive Z)
+                        center.X,               
+                        bounds.Y + bounds.SizeY * 0.66, 
+                        center.Z + distance     
                     );
 
-                    // Look directly at the center of the model
-                    camera.LookDirection = new Vector3D(0, 0, -1); // Always look along negative Z-axis
-                    camera.UpDirection = new Vector3D(0, 1, 0);   // Keep world up
+                    camera.LookDirection = new Vector3D(0, 0, -1); 
+                    camera.UpDirection = new Vector3D(0, 1, 0);   
 
-                    // Adjust field of view for better perspective
                     camera.FieldOfView = 50;
                 }
 
