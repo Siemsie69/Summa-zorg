@@ -18,6 +18,7 @@
     <System:String x:Key="FinishCreateUserMessageText">Er is een fout opgetreden bij het toevoegen van het dossier:</System:String>
     <System:String x:Key="FinishEditUserMessageText">Er is een fout opgetreden bij het wijzigen van het dossier:</System:String>
     <System:String x:Key="PolicyUserMessageText">De invoervelden voor de urgentie en voor de beleidskeuze moeten ingevuld zijn voordat je verder kan.</System:String>
+    <System:String x:Key="PolicyDateTimeText">De afspraak moet vandaag of later ingepland worden.</System:String>
     <System:String x:Key="SettingsResetNotFoundText">Database bestand niet gevonden.</System:String>
     <System:String x:Key="SettingsResetFailureText">Fout met het verwijderen van gegevens:</System:String>
     <System:String x:Key="SettingsResetConnectionFailureText">Fout bij sluiten van de databaseconnectie:</System:String>
@@ -26,11 +27,13 @@
     <System:String x:Key="StartButton">Start nieuw Dossier</System:String>
     <System:String x:Key="CreateButton">Dossier aanmaken</System:String>
     <System:String x:Key="UpdateButton">Update Dossier</System:String>
+    <System:String x:Key="RecordsExportMessageText">Weet je zeker dat je dit dossier wilt exporteren? Het PDF-bestand wordt dan gedownload op je lokale computer.</System:String>
+    <System:String x:Key="RecordsPDFSavedText">PDF opgeslagen als</System:String>
 
     <!-- SectieViews -->
     <!-- IntroductionView -->
     <System:String x:Key="IntroductionTitle">Dossiers: De Introductie</System:String>
-    <System:String x:Key="IntroductionEditText">Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een Pdf-bestand.</System:String>
+    <System:String x:Key="IntroductionEditText">Welkom bij de introductie van dossiers. Je staat op het punt om een bestaand dossier te wijzigen. Alle gegevens van het bestaande dossier zijn al ingevuld voor je, waardoor het makkelijker is om de gegevens te wijzigen. Verder werkt dit proces precies hetzelfde als het aanmaken van een dossier. Je kunt hierna het gewijzigde dossier ook weer exporteren naar een PDF-bestand.</System:String>
     <System:String x:Key="IntroductionCreateText">Welkom bij de introductie van dossiers. Hier kun je starten met het aanmaken van een nieuw dossier, gebaseerd op een casus, rollenspel of uitleg uit de les. Deze stap helpt je om het proces van het invullen van pati&#235;ntendossiers te oefenen, inclusief het verzamelen van gegevens en het vastleggen van belangrijke informatie. Of je nu net begint of verdergaat, deze oefening is essentieel voor het ontwikkelen van je vaardigheden.</System:String>
     <System:String x:Key="IntroductionEditButtonText">Wijzigen beginnen</System:String>
     <System:String x:Key="IntroductionCreateButtonText">Aanmaken beginnen</System:String>
@@ -246,6 +249,8 @@
     <System:String x:Key="RecordsExportText">Exporteren</System:String>
     <System:String x:Key="RecordsSampleButtonText">Voorbeelddossier openen</System:String>
     <System:String x:Key="RecordsCreateButtonText">Dossier aanmaken</System:String>
+    <System:String x:Key="RecordsCreateMessageText">Weet je zeker dat je dit dossier wilt aanmaken? Het kan gewijzigd, maar niet verwijderd worden.</System:String>
+    <System:String x:Key="RecordsUpdateMessageText">Weet je zeker dat je dit dossier wilt wijzigen?</System:String>
 
     <!-- CreditsView -->
     <System:String x:Key="CreditsText">Deze applicatie biedt zorgstudenten een veilige omgeving om te oefenen met fictieve pati&#235;ntendossiers. Door realistische casussen te analyseren, gerichte vragen te stellen en diagnoses te formuleren, ontwikkelen zij essenti&#235;le vaardigheden zonder de druk van een echte medische setting.</System:String>
@@ -256,9 +261,12 @@
     <System:String x:Key="CreditsDamianText">&#x2022; Damian van de Lee (Ontwikkelaar)</System:String>
     <System:String x:Key="CreditsTechnologiesText">Technologie&#235;n:</System:String>
     <System:String x:Key="CreditsSummaCareText">Summa Zorg &amp; Welzijn</System:String>
+    <System:String x:Key="CreditsWebsiteText">Zorgdossier website</System:String>
     <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. Alle rechten voorbehouden.</System:String>
 
     <!-- Exporteren DossierView -->
+    <System:String x:Key="RecordsPDFTitleText">Dossier:</System:String>
+    <System:String x:Key="RecordsPDFUndefinedText">Onbekend</System:String>
     <System:String x:Key="ExportStudentNameText">Naam student:</System:String>
     <System:String x:Key="ExportStudentNumberText">Studentnummer:</System:String>
     <System:String x:Key="ExportCreatedAtText">Aangemaakt op:</System:String>

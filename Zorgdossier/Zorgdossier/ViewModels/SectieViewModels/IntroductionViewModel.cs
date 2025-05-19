@@ -41,6 +41,17 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 IntroductionText = IntroductionCreateText;
                 ButtonText = IntroductionCreateButtonText;
             }
+
+            BasicInformation = _dossierService.CentralDossier.BasicInformation;
+            Phone = _dossierService.CentralDossier.Phone;
+            Question = _dossierService.CentralDossier.Question;
+            Organ = _dossierService.CentralDossier.Organ;
+            ComplaintsSymptoms = _dossierService.CentralDossier.ComplaintsSymptoms;
+            Research = _dossierService.CentralDossier.Research;
+            Policy = _dossierService.CentralDossier.Policy;
+            ContactAdvice = _dossierService.CentralDossier.ContactAdvice;
+            Treatment = _dossierService.CentralDossier.Treatment;
+
             ShowInfoCommand = new RelayCommand(ExecuteShowInfo);
             ShowHomeCommand = new RelayCommand(ExecuteShowMainView);
             ShowBasicInformationCommand = new RelayCommand(ExecuteShowBasicInformation);
@@ -76,6 +87,51 @@ namespace Zorgdossier.ViewModels.SectieViewModels
                 }
             }
         }
+
+        public DossierService.BasicInformation BasicInformation
+        {
+            get;
+        }
+
+        public DossierService.Phone Phone
+        {
+            get;
+        }
+
+        public DossierService.Question Question
+        {
+            get;
+        }
+
+        public DossierService.Organ Organ
+        {
+            get;
+        }
+
+        public DossierService.ComplaintsSymptoms ComplaintsSymptoms
+        {
+            get;
+        }
+
+        public DossierService.Research Research
+        {
+            get;
+        }
+
+        public DossierService.Policy Policy
+        {
+            get;
+        }
+
+        public DossierService.ContactAdvice ContactAdvice
+        {
+            get;
+        }
+
+        public DossierService.Treatment Treatment
+        {
+            get;
+        }
         #endregion
 
         #region commands
@@ -106,20 +162,50 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteShowMainView(object? obj)
         {
-            var mainViewModel = new MainViewModel(_appNavigation, _userMessage);
-
-            // Open nieuwe window
-            var mainView = new MainView
+            if (!string.IsNullOrWhiteSpace(BasicInformation.Name) || !string.IsNullOrWhiteSpace(BasicInformation.Complaint) || !string.IsNullOrWhiteSpace(BasicInformation.Gender)
+                || !string.IsNullOrWhiteSpace(Phone.PhoneSummary)
+                || !string.IsNullOrWhiteSpace(Question.QuestionSummary)
+                || !string.IsNullOrWhiteSpace(Organ.Organs)
+                || !string.IsNullOrWhiteSpace(ComplaintsSymptoms.ComplaintsSymptomsSummary)
+                || !string.IsNullOrWhiteSpace(Research.ResearchSummary)
+                || !string.IsNullOrWhiteSpace(Policy.Urgency) || !string.IsNullOrWhiteSpace(Policy.TriageCriteria) || !string.IsNullOrWhiteSpace(Policy.PolicyChoice) || Policy.PolicyDateTime != null
+                || !string.IsNullOrWhiteSpace(ContactAdvice.Advice) || !string.IsNullOrWhiteSpace(ContactAdvice.ContactAdviceText)
+                || !string.IsNullOrWhiteSpace(Treatment.TreatmentSummary))
             {
-                DataContext = mainViewModel
-            };
-            mainView.Show();
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+                String ShowMainViewMessage = (string)Application.Current.Resources["ShowMainViewMessage"];
 
-            Window? currentWindow = Application.Current.Windows
-                .OfType<Window>()
-                .FirstOrDefault(w => w.IsActive);
+                MessageBoxResult result = MessageBox.Show(ShowMainViewMessage, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            currentWindow?.Close();
+                if (result == MessageBoxResult.Yes)
+                {
+                    BasicInformation.Name = string.Empty;
+                    BasicInformation.Complaint = string.Empty;
+                    BasicInformation.Gender = string.Empty;
+                    Phone.PhoneSummary = string.Empty;
+                    Question.QuestionSummary = string.Empty;
+                    Organ.Organs = string.Empty;
+                    ComplaintsSymptoms.ComplaintsSymptomsSummary = string.Empty;
+                    Research.ResearchSummary = string.Empty;
+                    Policy.Urgency = string.Empty;
+                    Policy.TriageCriteria = string.Empty;
+                    Policy.PolicyChoice = string.Empty;
+                    Policy.PolicyDateTime = null;
+                    ContactAdvice.Advice = string.Empty;
+                    ContactAdvice.ContactAdviceText = string.Empty;
+                    Treatment.TreatmentSummary = string.Empty;
+
+                    _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
+            }
         }
 
         private void ExecuteShowBasicInformation(object? obj)

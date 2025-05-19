@@ -474,7 +474,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteCreateDossier(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je dit dossier wilt aanmaken? Het kan gewijzigd, maar niet verwijderd worden.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            String RecordsCreateMessageText = (string)Application.Current.Resources["RecordsCreateMessageText"];
+            String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+
+            MessageBoxResult result = MessageBox.Show(RecordsCreateMessageText, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -579,7 +582,10 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void ExecuteEditDossier(object? obj)
         {
-            MessageBoxResult result = MessageBox.Show("Weet je zeker dat je het dossier wilt weizigen?", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            String RecordsUpdateMessageText = (string)Application.Current.Resources["RecordsUpdateMessageText"];
+            String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+
+            MessageBoxResult result = MessageBox.Show(RecordsUpdateMessageText, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Information);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -645,20 +651,7 @@ namespace Zorgdossier.ViewModels.SectieViewModels
 
         private void RedirectToMainView()
         {
-            var mainViewModel = new MainViewModel(_appNavigation, _userMessage);
-
-            // Open nieuwe window
-            var mainView = new MainView
-            {
-                DataContext = mainViewModel
-            };
-            mainView.Show();
-
-            Window? currentWindow = Application.Current.Windows
-                .OfType<Window>()
-                .FirstOrDefault(w => w.IsActive);
-
-            currentWindow?.Close();
+            _appNavigation.ActiveViewModel = new DossiersViewModel(_appNavigation, _userMessage, _dossierService);
         }
 
         private void ExecuteShowBasicInfo(object? obj)

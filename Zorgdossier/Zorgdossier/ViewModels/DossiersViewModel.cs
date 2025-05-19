@@ -121,7 +121,10 @@ namespace Zorgdossier.ViewModels
         {
             if (obj is Dossier dossier)
             {
-                MessageBoxResult result = MessageBox.Show("Weet je zeker dat je dit dossier wilt exporteren? Het Pdf-bestand wordt dan gedownload op je lokale computer.", "Waarschuwing", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                String RecordsExportMessageText = (string)Application.Current.Resources["RecordsExportMessageText"];
+                String ShowMainViewTitle = (string)Application.Current.Resources["ShowMainViewTitle"];
+
+                MessageBoxResult result = MessageBox.Show(RecordsExportMessageText, ShowMainViewTitle, MessageBoxButton.YesNo, MessageBoxImage.Information);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -158,7 +161,15 @@ namespace Zorgdossier.ViewModels
                                 PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
                                 DeviceRgb indigoColor = new DeviceRgb(36, 13, 104);
 
-                                string titleText = $"Dossier: {basicInformation?.Complaint + " - " + basicInformation?.Name ?? "Onbekend"}";
+                                string RecordsPDFTitleText = (string)Application.Current.Resources["RecordsPDFTitleText"];
+                                string RecordsPDFUndefinedText = (string)Application.Current.Resources["RecordsPDFUndefinedText"];
+
+                                string titleContent = (basicInformation?.Complaint != null && basicInformation?.Name != null)
+                                    ? $"{basicInformation.Complaint} - {basicInformation.Name}"
+                                    : RecordsPDFUndefinedText;
+
+                                string titleText = $"{RecordsPDFTitleText} {titleContent}";
+
                                 document.Add(new Paragraph(titleText)
                                     .SetFont(boldFont)
                                     .SetFontSize(24)
@@ -229,7 +240,9 @@ namespace Zorgdossier.ViewModels
                                 document.Close();
                             }
 
-                            MessageBox.Show($"PDF opgeslagen als: {filePath}", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                            string RecordsPDFSavedText = (string)Application.Current.Resources["RecordsPDFSavedText"];
+
+                            MessageBox.Show($"{RecordsPDFSavedText}: {filePath}", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                 }

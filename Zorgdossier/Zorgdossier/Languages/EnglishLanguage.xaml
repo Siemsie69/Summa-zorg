@@ -18,18 +18,22 @@
     <System:String x:Key="FinishCreateUserMessageText">An error occurred while adding the file: </System:String>
     <System:String x:Key="FinishEditUserMessageText">An error occurred while modifying the file: </System:String>
     <System:String x:Key="PolicyUserMessageText">The input fields for urgency and for policy choice must be completed before you can proceed.</System:String>
+    <System:String x:Key="PolicyDateTimeText">The appointment should be scheduled today or later.</System:String>
     <System:String x:Key="SettingsResetNotFoundText">Database file not found.</System:String>
     <System:String x:Key="SettingsResetFailureText">Data deletion error: </System:String>
     <System:String x:Key="SettingsResetConnectionFailureText">Error closing database connection: </System:String>
 
-    <!-- CHECK THIS ONE --><System:String x:Key="StartButton">Start new Record</System:String>
+    <!-- CHECK THIS ONE -->
+    <System:String x:Key="StartButton">Start new Record</System:String>
     <System:String x:Key="CreateButton">Create Record</System:String>
     <System:String x:Key="UpdateButton">Update Record</System:String>
-
+    <System:String x:Key="RecordsExportMessageText">Are you sure you want to export this file? The PDF file will then be downloaded to your local computer.</System:String>
+    <System:String x:Key="RecordsPDFSavedText">PDF saved as</System:String>
+    
     <!-- SectieViews -->
     <!-- IntroductionView -->
     <System:String x:Key="IntroductionTitle">Records: The Introduction</System:String>
-    <System:String x:Key="IntroductionEditText">Welcome to the introduction of files. You are about to modify an existing dossier. All the details of the existing dossier are already filled in for you, making it easier to change the details. Otherwise, this process works exactly the same as creating a dossier. After this, you can also export the modified dossier back to a Pdf file.</System:String>
+    <System:String x:Key="IntroductionEditText">Welcome to the introduction of files. You are about to modify an existing dossier. All the details of the existing dossier are already filled in for you, making it easier to change the details. Otherwise, this process works exactly the same as creating a dossier. After this, you can also export the modified dossier back to a PDF file.</System:String>
     <System:String x:Key="IntroductionCreateText">Welcome to the introduction of files. Here you can start by creating a new record, based on a case study, role-play or explanation from class. This step will help you practice the process of completing patient records, including collecting data and recording important information. Whether you are just starting out or moving on, this exercise is essential for developing your skills.</System:String>
     <System:String x:Key="IntroductionEditButtonText">Begin updating</System:String>
     <System:String x:Key="IntroductionCreateButtonText">Begin creating</System:String>
@@ -245,6 +249,8 @@
     <System:String x:Key="RecordsExportText">Export</System:String>
     <System:String x:Key="RecordsSampleButtonText">Open Example Record</System:String>
     <System:String x:Key="RecordsCreateButtonText">Create Record</System:String>
+    <System:String x:Key="RecordsCreateMessageText">Are you sure you want to create this record? It can be changed, but not deleted.</System:String>
+    <System:String x:Key="RecordsUpdateMessageText">Are you sure you want to update this record?</System:String>
 
     <!-- CreditsView -->
     <System:String x:Key="CreditsText">This app gives healthcare students a safe place to practice with fictional patient records. By analyzing realistic cases, asking the right questions, and making diagnoses, they build essential skills without the pressure of a real medical setting.</System:String>
@@ -255,9 +261,12 @@
     <System:String x:Key="CreditsDamianText">&#x2022; Damian van de Lee (Developer)</System:String>
     <System:String x:Key="CreditsTechnologiesText">Technologies:</System:String>
     <System:String x:Key="CreditsSummaCareText">Summa Care &amp; Welfare</System:String>
+    <System:String x:Key="CreditsWebsiteText">Healthrecords website</System:String>
     <System:String x:Key="CreditsRightsText">&#x00A9; 2025 Zorgdossier. All rights reserved.</System:String>
 
     <!-- Exporteren DossierView -->
+    <System:String x:Key="RecordsPDFTitleText">Record:</System:String>
+    <System:String x:Key="RecordsPDFUndefinedText">Undefined</System:String>
     <System:String x:Key="ExportStudentNameText">Student name:</System:String>
     <System:String x:Key="ExportStudentNumberText">Student number:</System:String>
     <System:String x:Key="ExportCreatedAtText">Created on:</System:String>
